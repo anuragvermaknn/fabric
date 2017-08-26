@@ -33,6 +33,8 @@ public class LoginController {
 		ModelAndView modelAndView = new ModelAndView();
 		User user = new User();
 		modelAndView.addObject("user", user);
+		modelAndView.addObject("roleAdd", userService.findAllRoles());
+		modelAndView.addObject("user", user);
 		modelAndView.setViewName("registration");
 		return modelAndView;
 	}

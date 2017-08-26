@@ -37,6 +37,18 @@
 								placeholder="Last Name" class="form-control" /> 
 						</div>
 					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-9">
+							<select th:field="*{roles}" class="form-control" multiple>
+								<option th:each="s : ${roleAdd}" th:value="${s.id}"
+									th:text="${s.role}"></option>
+							</select>
+						</div>
+					</div>
+					
+					
+					
 					<div class="form-group">
 						<div class="col-sm-9">
 							<input type="text" th:field="*{email}" placeholder="Email"
@@ -44,6 +56,9 @@
 								th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
 								class="validation-message"></label>
 						</div>
+						
+						
+						
 					</div>
 					<div class="form-group">
 						<div class="col-sm-9">
