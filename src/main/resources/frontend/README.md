@@ -1,11 +1,4 @@
 
-[![build status](https://img.shields.io/travis/Hellenic/universal-marketcloud-storefront/master.svg?style=flat-square)](https://travis-ci.org/Hellenic/universal-marketcloud-storefront)
-[![Dependency Status](https://david-dm.org/Hellenic/universal-marketcloud-storefront.svg?style=flat-square)](https://david-dm.org/Hellenic/universal-marketcloud-storefront)
-[![devDependency Status](https://david-dm.org/Hellenic/universal-marketcloud-storefront/dev-status.svg?style=flat-square)](https://david-dm.org/Hellenic/universal-marketcloud-storefront#info=devDependencies)
-[![Live demo](https://img.shields.io/badge/live-demo-brightgreen.svg?style=flat-square)](http://karkk.ai:7998/)
-
----
-
 
 * [Universal](https://medium.com/@mjackson/universal-javascript-4761051b7ae9) rendering
 * Both client and server make calls to load data from separate API server
