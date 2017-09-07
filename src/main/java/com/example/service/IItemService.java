@@ -25,7 +25,7 @@ public interface IItemService {
 
   public Boolean saveItem(List<Item> items);
   
-  public Item saveAndGetItem(List<Item> items);
+  public List<Item> saveAndGetItem(List<Item> items);
   
   /******************** Find/Search Api *****************************/
   
@@ -34,9 +34,12 @@ public interface IItemService {
   
   public List<Item> findByEncodedString(String encodedString);
   
+  public List<Item> findByParameterBean(ParameterBean parameterBean);
+  
   public String getFilePathFromEncodedString(String encodedString);
   
-  //public List<Item> findByEncodedString(String encodedString);
+  public String getFilePathFromParameterBean(ParameterBean parameterBean);
+  
   /******************** Aggregate Api *****************************/
   
   /******************** Utility ***************************/
@@ -44,6 +47,8 @@ public interface IItemService {
   public String getEncodedStringFromParameterBean(ParameterBean parameterBean);
   
   public void saveAllItemsForOnce();
+  
+  public byte[] getImageByteArrayFromParameterBean(ParameterBean parameterBean);
   
 }
 
