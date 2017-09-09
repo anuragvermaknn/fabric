@@ -6,6 +6,7 @@ package com.example.service;
 
 import java.util.List;
 
+import com.example.model.CartItem;
 import com.example.model.ProductOrder;
 
 /**
@@ -26,6 +27,8 @@ public interface IProductOrderService {
 
   /******************** Find/Search Api *****************************/
     
+  public List<ProductOrder> findByUserId(int userId);
+
   /******************** Aggregate Api *****************************/
 
   /******************** Utility ***************************/

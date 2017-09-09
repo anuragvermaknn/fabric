@@ -39,7 +39,7 @@ public class CartItem {
   private int itemId;
 
   //@Column(name = "measurement")
-  @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+  @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
   @JoinColumn(name = "measurementId")
   private Measurement measurement;
 
@@ -200,6 +200,16 @@ public class CartItem {
    */
   public CartItem() {
     super();
+  }
+
+  /* (non-Javadoc)
+   * @see java.lang.Object#toString()
+   */
+  @Override
+  public String toString() {
+    return "CartItem [id=" + id + ", userId=" + userId + ", itemId=" + itemId + ", measurement="
+        + measurement + ", qty=" + qty + ", paymentDone=" + paymentDone + ", productOrder="
+        + productOrder + "]";
   }
   
   

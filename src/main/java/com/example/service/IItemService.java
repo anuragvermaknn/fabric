@@ -40,6 +40,7 @@ public interface IItemService {
   
   public String getFilePathFromParameterBean(ParameterBean parameterBean);
   
+  public List<Item> findByIdIn(List<Integer> itemIds);
   /******************** Aggregate Api *****************************/
   
   /******************** Utility ***************************/
@@ -47,6 +48,8 @@ public interface IItemService {
   public String getEncodedStringFromParameterBean(ParameterBean parameterBean);
   
   public void saveAllItemsForOnce();
+  
+  public Item saveSampleItem();
   
   public byte[] getImageByteArrayFromParameterBean(ParameterBean parameterBean);
   

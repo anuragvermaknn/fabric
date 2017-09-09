@@ -38,7 +38,7 @@ public class ItemServiceImpl implements IItemService{
       List<Item> items = findByEncodedString(encodedString);
       if(items.isEmpty()){
         System.out.println(" 0 item is present. Saving 1 item for now");
-        _saveSampleItem();
+        saveSampleItem();
       }else{
         System.out.println(" At least 1 item is present. Doing nothing for now");
       }
@@ -114,6 +114,10 @@ public class ItemServiceImpl implements IItemService{
     return getFilePathFromEncodedString(encodedString);
   }
 
+  @Override
+  public List<Item> findByIdIn(List<Integer> itemIds) {
+    return itemRepository.findByIdIn(itemIds);
+  }
   /*
    * 1Silhouette-
    * + 2Neckline-
@@ -144,7 +148,8 @@ public class ItemServiceImpl implements IItemService{
     
   }
 
-  private void _saveSampleItem(){
+  @Override
+  public Item saveSampleItem(){
     Item item = new Item();
     String filePath = BASE_PATH_FOR_IMAGES_IN_RESOURCES+"1A-1B-1A-1B-1A-1B-1A_BK1_optimized.png";
     String encodedString = "A-B-A-B-A-B-A";
@@ -152,8 +157,10 @@ public class ItemServiceImpl implements IItemService{
     item.setEncodedString(encodedString);
     item.setFilePath(filePath);
     item.setProductType(productType);
-    
-    saveItem(item);
+    if(itemRepository.findByEncodedString(encodedString).isEmpty()){
+      saveItem(item);
+    }
+    return itemRepository.findByEncodedString(encodedString).get(0);
   }
   
   @Override

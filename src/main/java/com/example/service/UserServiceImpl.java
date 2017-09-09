@@ -27,7 +27,13 @@ public class UserServiceImpl implements UserService
 	@Override
 	public User findUserByEmail(String email)
 	{
-		return userRepository.findByEmail(email);
+	  List<User> users = userRepository.findByEmail(email);
+	  if(users.isEmpty()){
+	    return null;
+	  }else{
+	    return users.get(0);
+	  }
+		
 	}
 
 	@Override

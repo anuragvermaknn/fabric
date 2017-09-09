@@ -27,4 +27,6 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
   
   List<Item> findByEncodedString(String encodedString);
   
+  List<Item> findByIdIn(List<Integer> itemIds);
+  
 }

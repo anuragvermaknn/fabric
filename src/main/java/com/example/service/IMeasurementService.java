@@ -22,10 +22,16 @@ public interface IMeasurementService {
 
   public Boolean saveMeasurement(List<Measurement> measurements);
   
-  public Measurement saveAndGetMeasurement(List<Measurement> measurements);
+  public List<Measurement> saveAndGetMeasurement(List<Measurement> measurements);
 
   /******************** Find/Search Api *****************************/
     
+  public List<Measurement> findByUserId(int userId);
+  
+  public List<Measurement> findByFirstMTAndSecondMT(String firstMT, String secondMT);
+  
+  public List<Measurement> findByType(String type);
+  
   /******************** Aggregate Api *****************************/
 
   /******************** Utility ***************************/

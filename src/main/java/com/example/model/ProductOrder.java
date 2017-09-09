@@ -35,7 +35,7 @@ public class ProductOrder {
 //  @Column(name = "cartItems")
 //     
   @OneToMany(targetEntity = CartItem.class, mappedBy = "productOrder",
-      cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+      cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
   private List<CartItem> cartItems;
 
   @Column(name = "country")
@@ -211,6 +211,16 @@ public class ProductOrder {
    */
   public ProductOrder() {
     super();
+  }
+
+  /* (non-Javadoc)
+   * @see java.lang.Object#toString()
+   */
+  @Override
+  public String toString() {
+    return "ProductOrder [id=" + id + ", userId=" + userId + ", cartItems=" + cartItems
+        + ", country=" + country + ", city=" + city + ", address=" + address + ", pinCode="
+        + pinCode + ", orderDate=" + orderDate + "]";
   }
   
   
