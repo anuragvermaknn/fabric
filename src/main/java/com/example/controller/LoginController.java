@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -138,6 +139,40 @@ public class LoginController {
         return responseEntity;
     }
 
+    @RequestMapping(value = "/data/category/image", method = RequestMethod.GET)
+    public ResponseEntity<List<byte[]>> getCategoryImageByteArrayFromParameterBean(@RequestBody(required=false) String category)
+    {
+     
+      ParameterBean parameterBean1 = new ParameterBean("A","B","A","B","A","B","A"); 
+      //TODO change parameterBean1 to parameterBean below
+      byte[] imageStream = itemService.getImageByteArrayFromParameterBean(parameterBean1);
+      List<byte[]> categoryImages = new ArrayList<byte[]>();
+      categoryImages.add(imageStream);
+      categoryImages.add(imageStream);
+      categoryImages.add(imageStream);
+      ResponseEntity<List<byte[]>> responseEntity = new ResponseEntity<>(categoryImages,
+                HttpStatus.OK);
+        return responseEntity;
+    }
+
+    //TODO @Navneet fix needed in this controller
+    @RequestMapping(value = "/data/category/image2", method = RequestMethod.GET)
+    public List<byte[]> getCategoryImageByteArrayFromParameterBean2(@RequestBody(required=false) String category)
+    {
+     
+      ParameterBean parameterBean1 = new ParameterBean("A","B","A","B","A","B","A"); 
+      //TODO change parameterBean1 to parameterBean below
+      byte[] imageStream = itemService.getImageByteArrayFromParameterBean(parameterBean1);
+      List<byte[]> categoryImages = new ArrayList<byte[]>();
+      categoryImages.add(imageStream);
+      categoryImages.add(imageStream);
+      categoryImages.add(imageStream);
+//      ResponseEntity<List<byte[]>> responseEntity = new ResponseEntity<>(categoryImages,
+//                HttpStatus.OK);
+//        return responseEntity;
+      return categoryImages;
+    }
+    
     @RequestMapping(value = "/data/item", method = RequestMethod.GET)
     public @ResponseBody List<Item> findItemByParameterBean(@RequestBody(required=false) ParameterBean parameterBean)
     {
