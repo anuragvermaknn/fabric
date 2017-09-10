@@ -119,7 +119,44 @@ module.exports = function (grunt) {
         },
 
 
-     
+        aws_s3: {
+
+            options: {
+                accessKeyId: 'AKIAIEMNB6D2JZGKMSAQ',
+                secretAccessKey: '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',
+                region: 'ap-south-1',
+                bucket: 'storefront-assets',
+                params: {
+                    'CacheControl': 'public,max-age=31556952'
+                },
+                sslEnabled: true,
+                progress: 'progressBar',
+                uploadConcurrency: 5,
+                downloadConcurrency: 5
+            },
+
+            /**
+             * second part copies fonts that are needed. their requests is relative to the url from where css is
+             * loaded. So fonts need to be copied to the appropriate places or urls need to be absolute.
+             */
+            production: {
+                files: [{
+                    expand: true,
+                    action: 'upload',
+                    cwd: '../webapp/assets/',
+                    src: ['**'],
+                    dest: 'static/',
+                    stream: true
+                }, {
+                    expand: true,
+                    action: 'upload',
+                    cwd: '../webapp/assets/fonts/',
+                    src: ['*.woff'],
+                    dest: 'assets/fonts/',
+                    stream: true
+                }]
+            }
+        },
 
         'string-replace': {
 
@@ -742,7 +779,7 @@ module.exports = function (grunt) {
         'htmlmin:index',
         'copy:indexIE8',
         'copy:prod_viewer',
-
+        'aws_s3:production',
         'string-replace'
 
     ]);
