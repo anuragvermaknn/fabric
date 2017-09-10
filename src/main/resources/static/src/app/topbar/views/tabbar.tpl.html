@@ -1,0 +1,55 @@
+<div class="off-canvas-wrap show-for-small" data-offcanvas ng-controller="TopbarCtrl">
+    <div class="inner-wrap list-container">
+        <div ng-if = "!isApp">
+            <nav class="tab-bar">
+                <section class="middle tab-bar-section">
+                    <h1 ui-sref="home" class="title cp-pointer-cursor">Adda 247 Store</h1>
+                </section>
+                <section class="right-small">
+                    <a class="right-off-canvas-toggle menu-icon"><span></span></a>
+                </section>
+            </nav>
+            <aside class="right-off-canvas-menu">
+                <ul class="off-canvas-list">
+                    <li>
+                        <label>Menu</label>
+                    </li>
+                    <li><a ui-sref="testSeriesAllView" ng-click="exitCanvas()">Test Series</a></li>
+                    <li><a ui-sref="ebooksListing" ng-click="exitCanvas()">E-Books</a></li>
+                    <li><a ui-sref="videos" ng-click="exitCanvas()">Video Courses</a></li>
+                    <li>
+                        <a href="http://www.careerpower.in/bank-ssc-coaching-centre.html" ng-click="exitCanvas()" target="_blank">Classroom Program</a>
+                    </li>
+
+                    <li ng-show="isLoggedIn()">
+                        <label>My Account</label>
+                        <a ui-sref="myTestSeries" ng-click="exitCanvas()">My Test Series</a>
+                        <a ui-sref="ebooks" ng-click="exitCanvas()">My E-Books</a>
+
+                    </li>
+                </ul>
+                <ul class="off-canvas-list">
+                    <li ng-click="showLogin($event);exitCanvas();" ng-show="!isLoggedIn()">
+                        <label>LOGIN/REGISTER</label>
+                    </li>
+                    <li class="no-outline-mac" ng-show="isLoggedIn()" ng-click="logout();exitCanvas();">
+                        <label>LOGOUT</label>
+                    </li>
+                </ul>
+            </aside>
+        </div>
+        <section class="main-section">
+            <div ng-include="'common/views/start.tpl.html'"></div>
+            <div class="small-12 columns sticky-cart" ng-class="{'show-only-web': cartCount === 0}" ng-hide="$state.current.name === 'myCart' || $state.current.name === 'myCartDetail' || $state.current.name === 'myTestAnalysis'" style="position: fixed;bottom: 0;width: 100%; padding: 0.165em;" ng-if="!isStoreWeb && cartCount">
+                <span class="small-6 columns">
+                    <div style="color: rgba(0, 0, 0, 0.54);">Cart [ {{cartCount}} item(s) ]</div>
+                    <div class="full-n-final-amt"><i class="fa fa-inr" aria-hidden="true"></i> {{currentCartPrice}}</div>
+                </span>
+                    <button class="sf-button-primary sticky-cart-buy" ui-sref="myCart">
+                        <span class="cta-text">GO TO CART</span>
+                    </button>
+            </div>
+        </section>
+        <a class="exit-off-canvas" id="exit-canvas"></a>
+    </div>
+</div>

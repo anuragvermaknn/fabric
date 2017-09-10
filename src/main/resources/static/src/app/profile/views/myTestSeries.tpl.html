@@ -1,0 +1,141 @@
+<section layout="row" flex>
+    <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-disable-backdrop md-whiteframe="4">
+        <md-toolbar class="sidenav-bg" ng-style="{'background-image' : 'url({{assetsURLPrefix}}/ic-sidenav-bg.jpg)'}">
+            <h1 class="md-toolbar-tools sidebar-username">{{clientName}}</h1>
+            <h5 class="md-toolbar-tools sidebar-email">{{clientEmail}}</h5>
+        </md-toolbar>
+
+        <md-content layout-padding>
+            <md-list>
+                <md-list-item class="md-3-line">
+                    <div class="md-list-item-text">
+                        <h5 class="side-bar-menu-headings">MY PURCHASES</h5>
+                    </div>
+                    <md-divider ng-if="!$last"></md-divider>
+                </md-list-item>
+                <md-list-item class="md-3-line" href='#/ebooks'>
+                    <div class="md-list-item-text">
+                        <p id="side-bar-menu-items">My E-Books</p>
+                    </div>
+                </md-list-item>
+                <md-list-item class="md-3-line" ng-class="{ 'side-lines-navbar': isActive('/myTestSeries') }">
+                    <div class="md-list-item-text">
+                        <p id="side-bar-menu-items" ng-class="{ 'active-color-navbar': isActive('/myTestSeries') }">My Test Series</p>
+                    </div>
+                </md-list-item>
+                <md-list-item class="md-3-line" href='#/myOrderHistory'>
+                    <div class="md-list-item-text">
+                        <p id="side-bar-menu-items">Order History</p>
+                    </div>
+                </md-list-item>
+                <md-list-item class="md-3-line">
+                    <div class="md-list-item-text">
+                        <h5 class="side-bar-menu-headings">MY PROFILE</h5>
+                    </div>
+                    <md-divider ng-if="!$last"></md-divider>
+                </md-list-item>
+                <md-list-item class="md-3-line" href="#/myProfile">
+                    <div class="md-list-item-text">
+                        <p id="side-bar-menu-items">Account Information</p>
+                    </div>
+                </md-list-item>
+            </md-list>
+        </md-content>
+    </md-sidenav>
+    <md-content layout-padding="" class="cp-app-loader-transparent" ng-if="loaderActivated">
+        <div layout="row" layout-sm="column" layout-align="space-around" stroke-width="2">
+            <md-progress-circular ng-if="loaderActivated" md-diameter="96" class="md-accent md-hue-1" style="margin-top: 22%;"></md-progress-circular>
+        </div>
+        <!--  <md-button class="loader-text ">Loading...
+            <br>Please Wait!</md-button> -->
+    </md-content>
+    <md-content flex layout-padding class="container myTestTabs">
+        <md-content ng-class="{'testseries-container' : viewTestFlag}">
+
+            <md-tabs md-border-bottom="" ng-hide="isSearchActive" class="vertical-height-full">
+                <md-tab label="Purchased Tests" ng-click="purchasedTabActive()">
+                    <md-content class="md-padding">
+                        <div ng-if="myTestSeriesData == '' " style="text-align: center;">
+                            <div class="zero-state">
+                                <img ng-src="{{assetsURLPrefix}}/ic-empty-mytests.png" class="zero-img">
+                                <div>
+                                    <span class="empty-cart-text">You have not purchased any test-series yet</span>
+                                </div>
+                                <div class="show-only-web" style="padding-top: 10px;">
+                                    <button class="sf-button-secondary" ui-sref="testSeriesAllView">BUY TEST SERIES</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row md-whiteframe-1dp my-testpkg-card cart-detail-card-align" ng-repeat="field in myTestSeriesData" ng-hide="!myTestSeriesData">
+                            <div class="large-3 columns img-width-cart"><img ng-src="{{field.imageUrl}}" ng-image-appear responsive placeholder/></div>
+                            <div class="large-7 columns" id="m-width">
+                                <span class="cart-item-detail">{{field.title}}</span><br><br><br>
+                                <div ng-if="field.orgName" style="font-size: 13px;line-height: 1.4;color: rgba(0, 0, 0, 0.54);">
+                                    <span class="icon-institute" style="vertical-align: middle;
+    padding-right: 5px;
+    font-size: 16px;"></span>
+                                    {{field.orgName}}</div>
+                            </div>
+                            <div class="large-3 columns" style="bottom: -30px;">
+                                <button class="sf-button-secondary view-test-button" ng-click="viewMyTests(field.id)"><span class="cta-text">View All Tests</span> <i class="icon-chevron-right home-chevron-right" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Practice Tests" ng-click="practiceTabActive()">
+                    <md-content class="md-padding">
+                        <div ng-if="myFreeTestSeriesData == '' ">
+                            <div class="zero-state">
+                                <img ng-src="{{assetsURLPrefix}}/ic-empty-mytests.png">
+                                <div>
+                                    <span class="empty-cart-text">No Practice Tests available yet!</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row md-whiteframe-1dp my-testpkg-card cart-detail-card-align" ng-repeat="field in myFreeTestSeriesData" ng-hide="!myFreeTestSeriesData">
+                            <div class="large-3 columns img-width-cart"><img ng-src="{{field.imageUrl}}" ng-image-appear responsive placeholder/></div>
+                            <div class="large-9 columns">
+                                <span class="cart-item-detail">{{field.title}}</span>
+                            </div>
+                            <div>
+                                <button class="sf-button-secondary view-test-button" ng-click="viewMyTests(field.id)"><span class="cta-text">View All Tests</span> <i class="icon-chevron-right home-chevron-right" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+            <!--<md-content class="md-padding">-->
+                <!--<div class="row md-whiteframe-1dp my-testpkg-card cart-detail-card-align" ng-repeat="field in searchResults" ng-if="isSearchActive">-->
+                    <!--<div ng-show="field.testData != ''">-->
+                        <!--<div class="large-3 columns img-width-cart"><img ng-src="{{assetsURLPrefix}}/ic_test_thumb.png" ng-image-appear responsive placeholder/></div>-->
+                        <!--<div class="large-9 columns">-->
+                            <!--<span class="cart-item-detail">{{field.testData[0].title}}</span>-->
+                        <!--</div>-->
+                        <!--<div class="large-9 columns">-->
+                            <!--<span class="cart-item-detail">{{field.noOfQuestions}}</span>-->
+                        <!--</div>-->
+                        <!--<div class="large-9 columns">-->
+                            <!--<span>Duration: </span><span class="cart-item-detail">{{field.testData[0].timeLimit / 60}} minutes</span>-->
+                        <!--</div>-->
+                        <!--<div>-->
+                            <!--<button class="sf-button-primary view-test-button" ng-class="{'start-clr': field.buttonText == 'Start Test', 'end-clr': field.buttonText == 'View Result'}" ng-click="startTest(field.testData[0].mappingId,field.packageId, field.testData[0].title, field.resumeState)">-->
+                                <!--<div ng-bind="field.buttonText" class="cta-text"></div>-->
+                            <!--</button>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div ng-if="(!(searchResults.length > 0) && isSearchActive)">-->
+                    <!--<div class="zero-state">-->
+                        <!--<img ng-src="{{assetsURLPrefix}}/ic-empty-mytests.png">-->
+                        <!--<div>-->
+                            <!--<span class="empty-cart-text">No tests for <span style="color: #000;">'{{searchText}}'</span> found.</span>-->
+                        <!--</div>-->
+                        <!--<div class="empty-cart-button">-->
+                            <!--<button class="sf-button-secondary" ng-click="goBackToMyTests()">GO BACK</button>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</md-content>-->
+        </md-content>
+    </md-content>
+</section>

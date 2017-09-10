@@ -1,0 +1,164 @@
+<section layout="row">
+    <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-disable-backdrop
+                md-whiteframe="4">
+        <md-toolbar class="sidenav-bg" ng-style="{'background-image' : 'url({{assetsURLPrefix}}/ic-sidenav-bg.jpg)'}">
+            <h1 class="md-toolbar-tools sidebar-username">{{username}}</h1>
+            <h5 class="md-toolbar-tools sidebar-email">{{userEmail}}</h5>
+        </md-toolbar>
+        <md-content layout-padding>
+            <md-list>
+                <md-list-item class="md-3-line">
+                    <div class="md-list-item-text">
+                        <h5 class="side-bar-menu-headings">MY PURCHASES</h5>
+                    </div>
+                    <md-divider ng-if="!$last"></md-divider>
+                </md-list-item>
+                <md-list-item class="md-3-line" href='#/ebooks'>
+                    <div class="md-list-item-text">
+                        <p id="side-bar-menu-items">My E-Books</p>
+                    </div>
+                </md-list-item>
+                <md-list-item class="md-3-line" href="#/myTestSeries">
+                    <div class="md-list-item-text">
+                        <p id="side-bar-menu-items">My Test Series</p>
+                    </div>
+                </md-list-item>
+                <md-list-item class="md-3-line" ng-class="{ 'side-lines-navbar': isActive('/myOrderHistory') }">
+                    <div class="md-list-item-text">
+                        <p ng-class="{ 'active-color-navbar': isActive('/myOrderHistory') }" id="side-bar-menu-items">
+                            Order History</p>
+                    </div>
+                </md-list-item>
+                <!-- <md-list-item class="md-3-line">
+                    <div class="md-list-item-text">
+                        <p id="side-bar-menu-items">My Magazines</p>
+                    </div>
+                </md-list-item>
+                <md-list-item class="md-3-line">
+                    <div class="md-list-item-text">
+                        <p id="side-bar-menu-items">My Books</p>
+                    </div>
+                </md-list-item> -->
+                <md-list-item class="md-3-line">
+                    <div class="md-list-item-text">
+                        <h5 class="side-bar-menu-headings">MY PROFILE</h5>
+                    </div>
+                    <md-divider ng-if="!$last"></md-divider>
+                </md-list-item>
+                <md-list-item class="md-3-line" href="#/myProfile">
+                    <div class="md-list-item-text">
+                        <p id="side-bar-menu-items">Account Information</p>
+                    </div>
+                </md-list-item>
+                <!--  <md-list-item class="md-3-line">
+                    <div class="md-list-item-text">
+                        <p id="side-bar-menu-items">My Addresses</p>
+                    </div>
+                </md-list-item> -->
+            </md-list>
+        </md-content>
+    </md-sidenav>
+    <md-content layout-padding="" class="cp-app-loader-transparent" ng-if="loaderActivated">
+        <div layout="row" layout-sm="column" layout-align="space-around" stroke-width="2">
+            <md-progress-circular ng-if="loaderActivated" md-diameter="96" class="md-accent md-hue-1"
+                                  style="margin-top: 22%;"></md-progress-circular>
+        </div>
+        <!--  <md-button class="loader-text ">Loading...
+            <br>Please Wait!</md-button> -->
+    </md-content>
+    <md-content flex layout-padding class="container" style="padding-bottom: 500px;">
+        <div layout="column" layout-fill layout-align="top center">
+            <div class="small-12 md-whiteframe-1dp">
+                <div class="row my-orders-card-header cart-head-top-border">
+                    Order History
+                </div>
+                <div class="small-12 columns" ng-if="ordersEmpty" style="text-align: center;height: 500px;">
+                    <div class="zero-state" style="margin-top: 70px !important;">
+                        <img ng-src="{{assetsURLPrefix}}/ic-empty-orders.png" class="zero-img">
+                        <div>
+                        <span class="empty-cart-text">You have not placed
+any orders yet</span>
+                        </div>
+                        <div style="padding-top: 10px;">
+                            <button class="sf-button-secondary " ui-sref="home">GO TO HOME</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="cart-head-list row" ng-repeat="field in orderDataHistory track by $index"
+                     ng-class="{'cart-item-card-last':$last}" ng-if="!ordersEmpty">
+                    <div class="row order-record">
+                        <span class="small-4 columns ">Order Date: {{field.createdAt | date : "MMMM d, y"}}</span>
+                        <span class="small-3 columns">Order Id: #{{field.orderId}}</span>
+                        <span class="small-3 columns">Status:
+                            <span ng-if="field.status === 'PAID'">
+                                <span class="pulse" style="font-size: 12px; background: #9acd32;"></span>
+                                &nbspSUCCESSFUL
+                            </span>
+                            <span ng-if="field.status === 'REFUNDED'">
+                                <span class="pulse" style="font-size: 12px; background: #9acd32;"></span>
+                                &nbspREFUNDED
+                            </span>
+                            <span ng-if="field.status === 'FAILED' || field.status === 'RECEIVED'">
+
+                           <span class="pulse" style="font-size: 12px; background: #dd2c00;"></span>
+                            &nbspFailed
+</span>
+                        </span>
+                        <span class="small-2 columns no-outline-mac" ng-class="!showDetails || showDetailedPos !== $index ? 'bottom-caret' : 'top-caret'"
+                              ng-click="getOrderDetail(field.orderId, $index)"></span>
+
+                    </div>
+                    <div class="row order-record" style="padding-top: 0;">
+                        <span class="small-4 columns">Order Total: <i class="icon-rupee icon-rupee-buy-card" aria-hidden="true"></i> {{field.amount}}</span>
+                        <!-- <span class="small-4 columns cp-link-color">View Invoice</span>-->
+                        <span class="small-4 columns"></span>
+                    </div>
+                    <div class="order-record" style="padding-top: 0;" ng-class="showDetails ? ' fadeIn' : 'fadeOut'" ng-if="showDetailedPos === $index && showDetails">
+                        <div class="row cart-detail-card-align cart-item-card"
+                             ng-class="{'cart-item-card-last':$last}" style="border: 1px solid #f5f5f5; margin: -10px;"
+                             ng-repeat="data in orderPackages">
+                            <div class="large-3 columns img-width-cart"><img ng-src={{data.imageUrl}}></div>
+                            <div class="large-7 columns">
+                                <span class="cart-item-detail">{{data.title}}</span>
+                            </div>
+                            <div class="cp-float-right large-2 columns">
+                                <span class="selling-price inr-cart-init inr-sp-cart"><i
+                                        class="icon-rupee icon-rupee-buy-card"
+                                        aria-hidden="true"></i>{{data.sellingPrice}}</span>
+                            </div>
+                            <div class="large-9 columns" ng-if="!data.ebook && !data.shippable && field.status === 'PAID'">
+                                <button class="sf-button-primary" ui-sref="myTestSeries" style="float: right;margin-top: 10px; margin-left: 0;">VIEW MY TEST SERIES</button>
+                            </div>
+                            <div class="large-9 columns" ng-if="!data.shippable && field.status === 'PAID' && data.ebook">
+                                <button class="sf-button-primary" ui-sref="ebooks" style="float: right;margin-top: 10px; margin-left: 0;">VIEW MY E-BOOKS</button>
+                            </div>
+
+
+                            <div class="large-7 columns" style="float: left;" ng-if="shippingAddress && data.validity">
+                                <div class="video-details-cart">
+                                    Validity : {{data.validity}}
+                                </div>
+                                <div class="video-details-cart">
+                                    Device : {{data.deviceName}}
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="shippingAddress" style="border: 1px solid #f5f5f5;margin: -10px;padding: 20px;background: #fff;line-height: 1.4;">
+                            <span>Delivery Address:</span><br>
+                            <span style="color: rgba(0, 0, 0, 0.87);">
+                                {{shippingAddress.name}}
+                            </span><br>
+                            <span>{{shippingAddress.firstLine}}</span><br>
+                            <span ng-if="shippingAddress.secondLine">{{shippingAddress.secondLine}}<br></span>
+                            <span>{{shippingAddress.landmark}}</span><br>
+                            <span>{{shippingAddress.city}}, {{shippingAddress.state}}
+                            - {{shippingAddress.pincode}}
+                            </span><br>
+                            <span>Phone: {{shippingAddress.phone}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </md-content>
+</section>

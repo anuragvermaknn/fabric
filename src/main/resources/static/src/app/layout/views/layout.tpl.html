@@ -1,0 +1,10 @@
+<div ng-controller="LayoutCtrl">
+    <div class="show-for-small" ng-if="smallScreen()" ng-include="'topbar/views/tabbar.tpl.html'"></div>
+    <!-- For medium/large screens, show the topbar and main content area -->
+    <div class="show-for-medium-up" ng-include="'topbar/views/topbar.tpl.html'" ng-if="!isTestForumActive && !isApp"></div>
+    <div class="show-for-medium-up" ng-if="!smallScreen()" ng-include="'common/views/start.tpl.html'" ng-animate="'view'" autoscroll="false">
+    </div>
+    <div class="show-for-medium-up" ng-include="'footer/views/footer.tpl.html'" ng-if="!isTestForumActive && !isApp" ng-hide="$state.current.name === 'myTestSeries' || $state.current.name === 'tests' || $state.current.name === 'ebooksDetail' || $state.current.name === 'ebooks'"></div>
+    <!-- For small screens, show the tabbar, which is like the topbar but it has a popout off canvas menu -->
+</div>
+</div>

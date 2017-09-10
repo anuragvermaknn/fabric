@@ -1,0 +1,247 @@
+<section layout="row" flex style="background-color: #F5F5F5;">
+    <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-disable-backdrop md-whiteframe="4">
+        <md-toolbar class="sidenav-bg" ng-style="{'background-image' : 'url({{assetsURLPrefix}}/ic-sidenav-bg.jpg)'}">
+            <h1 class="md-toolbar-tools sidebar-username">{{clientName}}</h1>
+            <h5 class="md-toolbar-tools sidebar-email">{{clientEmail}}</h5>
+        </md-toolbar>
+        <md-content layout-padding>
+            <md-list>
+                <md-list-item class="md-3-line">
+                    <div class="md-list-item-text">
+                        <h5 class="side-bar-menu-headings">MY PURCHASES</h5>
+                    </div>
+                    <md-divider ng-if="!$last"></md-divider>
+                </md-list-item>
+                <md-list-item class="md-3-line" href='#/ebooks'>
+                    <div class="md-list-item-text">
+                        <p id="side-bar-menu-items">My E-Books</p>
+                    </div>
+                </md-list-item>
+                <md-list-item class="md-3-line" href="#/myTestSeries">
+                    <div class="md-list-item-text">
+                        <p id="side-bar-menu-items">My Test Series</p>
+                    </div>
+                </md-list-item>
+                <md-list-item class="md-3-line" href='#/myOrderHistory'>
+                    <div class="md-list-item-text">
+                        <p id="side-bar-menu-items">Order History</p>
+                    </div>
+                </md-list-item>
+                <md-list-item class="md-3-line">
+                    <div class="md-list-item-text">
+                        <h5 class="side-bar-menu-headings">MY PROFILE</h5>
+                    </div>
+                    <md-divider ng-if="!$last"></md-divider>
+                </md-list-item>
+                <md-list-item class="md-3-line" href="#/myProfile">
+                    <div class="md-list-item-text">
+                        <p id="side-bar-menu-items">Account Information</p>
+                    </div>
+                </md-list-item>
+            </md-list>
+        </md-content>
+    </md-sidenav>
+    <md-content layout-padding="" class="cp-app-loader-transparent" ng-if="loaderActivated">
+        <div layout="row" layout-sm="column" layout-align="space-around" stroke-width="2">
+            <md-progress-circular ng-if="loaderActivated" md-diameter="96" class="md-accent md-hue-1" style="margin-top: 22%;"></md-progress-circular>
+        </div>
+    </md-content>
+    <md-content flex layout-padding class="container myTestTabs" id="insidePkg">
+        <md-content ng-class="{'testseries-container' : viewTestFlag}">
+            <div class="small-12 columns my-test-series-header" style="background: white;border-color: transparent">
+                <div class="small-6 columns show-width-full-mobile-only">
+                    <div class="small-1 columns no-outline-mac" id="cp-no-padding" ng-class="{'back-button icon-arrow-circle-back': viewTestFlag || viewFreeTestFlag}" ng-click="goBackToMyTests()" style="color: rgba(0, 0, 0, 0.87);padding-top: 6px;">
+                    </div>
+                    <div class="small-11 columns no-outline-mac my-test-ellipses" id="cp-no-padding" style="line-height: normal; color: rgba(0, 0, 0, 0.87);padding-bottom: 6px;font-weight: 400;font-size: 16px" ng-bind="headerTestSeries">
+                    </div>
+                    <div ng-click="showPrerenderedDialog($event)" class="view-test-schedule no-outline-mac show-only-web" style="color: #03a9f4"><u>View Tests Schedule & Info</u></div>
+                </div>
+                <div class="small-6 columns show-only-web">
+                    <span class="small-8 columns">
+                    <md-autocomplete placeholder="Search this set" id="autocomplete-input"
+                                     md-selected-item="selectedItem" md-search-text="searchText"
+                                     md-items="item in autocomplete(searchText)" md-no-cache="true"
+                                     md-item-text="item.title" md-min-length="3" class="search-bar"
+                                     style="background-color: #efeff4;border: #dbdbdb 1px solid"
+                    >
+                    <md-item-template>
+                        <span md-highlight-text="searchText">{{item.title}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        No matches found.
+                    </md-not-found>
+                    </md-autocomplete>
+                    </span>
+                    <span class="small-4 columns">
+                    <md-input-container id="no-margin" class="filter-tests" style="border-color: rgba(0, 0, 0, 0.87)" >
+<!--                         <label>Filter</label>
+ -->                        <md-select ng-change="getSelectedFilter(selectedFilter)" aria-label="Select"
+                                       ng-model="selectedFilter" md-selected-text="selectedFilter" style="color:rgba(0, 0, 0, 0.87);font-weight: 400;font-size: 14px;">
+                            <md-optgroup label="Filter">
+                                <md-option ng-value="filter" ng-repeat="filter in filterList">{{filter}}</md-option>
+                            </md-optgroup>
+                        </md-select>
+                    </md-input-container>
+                    </span>
+                </div>
+            </div>
+            <div class="small-12 columns my-test-series-header" style="background: transparent;border-color: transparent;padding: 0px">
+                <div class="small-3 columns my-test-series-group-menu-container" ng-if="groupNameList.length>1 && isStoreWeb">
+                    <md-content class="my-test-series-group-name-md-content flex-center">
+                        <div class="no-bullet my-test-series-group-menu-ul">
+                            <div class="my-test-series-group-li" ng-class="(selectedGroup==DEFAULT_ALL_TEST_SERIES_GROUP_NAME) ? 'my-test-series-group-li active' : 'my-test-series-group-li'" ng-click="onGroupClick(DEFAULT_ALL_TEST_SERIES_GROUP_NAME)">
+                                <div class="small-12 columns">
+                                    <div class="small-11 columns my-test-series-test-group-title-parent">
+                                        <span class="my-test-series-test-group-title">
+                                              All Tests
+                                        </span>
+                                    </div>
+                                    <div class="small-1 columns my-test-series-test-group-title-icon-parent">
+                                        <span class="icon-chevron-right my-test-series-test-group-title-icon"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="my-test-series-group-li" ng-repeat="field in groupNameList" ng-class="(selectedGroup==field) ? 'my-test-series-group-li active' : 'my-test-series-group-li'" ng-click="onGroupClick(field)">
+                                <div class="small-12 columns ">
+                                    <div class="small-11 columns my-test-series-test-group-title-parent">
+                                        <span class="my-test-series-test-group-title">
+                                             {{field}}
+                                        </span>
+                                    </div>
+                                    <div class="small-1 columns my-test-series-test-group-title-icon-parent">
+                                        <span class="icon-chevron-right my-test-series-test-group-title-icon"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </md-content>
+                </div>
+                <div class="columns" ng-class="(groupNameList.length>1 && isStoreWeb) ? 'small-9' : 'small-12'">
+                    <div class="small-12 columns my-test-series-search" ng-if="isSearchActive">Showing tests in<span> '{{packageTitle}}'</span>
+                    </div>
+                    <div ng-if="((detailedTestData  == '') || detailedTestData.length== 0) && selectedFilter === 'All Tests'" style="text-align: center;padding-top: 20vh">
+                        <div class="zero-state">
+                            <img ng-src="{{assetsURLPrefix}}/ic-empty-mytests.png">
+                            <div ng-if="!searchText">
+                                <span class="empty-cart-text">No tests available yet. Coming Soon!</span>
+                            </div>
+                            <div ng-if="searchText" style="text-align:center;">
+                                <span class="empty-cart-text">No results found for
+                            <span style="color: #000;">'{{searchText}}'</span> in
+                                <span style="color: #000;" ng-if="selectedGroup==DEFAULT_ALL_TEST_SERIES_GROUP_NAME">this package</span>
+                                <span style="color: #000;" ng-if="selectedGroup!=DEFAULT_ALL_TEST_SERIES_GROUP_NAME">{{selectedGroup}}</span>
+                                </span>
+                            </div>
+                            <div ng-if="!searchText" style="padding-top: 10px;">
+                                <button class="sf-button-secondary" ng-click="goBackToMyTests()">GO BACK</button>
+                            </div>
+                            <div ng-if="searchText" style="padding-top: 10px;">
+                                <button class="sf-button-secondary" ng-click="goBackNoSearchInAllTests()" ng-show="selectedGroup!==DEFAULT_ALL_TEST_SERIES_GROUP_NAME">SEARCH IN ALL TESTS</button>
+                                <button class="sf-button-secondary" ng-click="goBackNoResult()" ng-show="selectedGroup==DEFAULT_ALL_TEST_SERIES_GROUP_NAME">CLEAR SEARCH</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="!(detailedTestData.length> 0) && selectedFilter !== 'All Tests'" style="margin: 0 auto;
+    width: 50%;padding-top: 20vh">
+                        <div style="text-align:center;">
+                            <img style="margin-bottom: 0;" ng-src="{{assetsURLPrefix}}/ic-empty-mytests.png">
+                        </div>
+                        <div style="text-align:center;">
+                            <span class="empty-cart-text">No matches found with status <span>'{{selectedFilter}}'</span></span>
+                        </div>
+                        <div style="text-align:center;">
+                            <button class="sf-button-secondary" ng-click="goBackNoResult()">ALL TESTS</button>
+                        </div>
+                    </div>
+                    <md-content class="md-padding flex-center" id="idMyTestListMdContent">
+                        <div class="small-12 columns" style="height: 75vh;max-width: 850px">
+                            <div class="md-whiteframe-1dp row cart-detail-card-align my-testpkg-card card-move-top" dir-paginate="field in detailedTestData | itemsPerPage: pageSize" total-items="totalCount" current-page="pagination.current" ng-hide="isSearchActive || selectedFilter !== 'All Tests'" ng-if="viewTestFlag">
+                                <div ng-show="field.testData != ''">
+                                    <div class="large-9 columns" style="padding-left: 0px;padding-top: 10px;padding-bottom: 10px;">
+                                        <div>
+                                            <div class="large-12 columns my-test-series-test-title" id="m-width">
+                                                <span>{{field.testData[0].title}}</span>
+                                            </div>
+                                            <div class="large-12 columns my-test-series-test-sub-title" id="m-width">
+                                                <span class="cart-item-detail">{{field.noOfQuestions}}</span>
+                                            </div>
+                                            <div class="large-12 columns my-test-series-test-sub-title" id="m-width">
+                                                <span>Duration: </span><span class="">{{field.testData[0].timeLimit / 60}} minutes</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="large-3 columns test-action-button-container">
+                                        <button style="" class="sf-button-primary view-test-button test-action-button my-test-series-test-button" ng-class="{'start-clr': field.buttonText == 'Start Test', 'end-clr': field.buttonText == 'View Result'}" ng-click="startTest(field.testData[0].mappingId, field.testData[0].title, field.resumeState)">
+                                            <span ng-bind="field.buttonText" class="cta-text my-test-series-test-button-text"></span>
+                                            <span class="icon-chevron-right my-test-series-test-button-icon"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="md-whiteframe-1dp row cart-detail-card-align my-testpkg-card card-move-top" ng-repeat="field in detailedTestData" ng-if="viewTestFlag" ng-show="(isSearchActive || selectedFilter !== 'All Tests')">
+                                <div ng-show="field.testData !='' ">
+                                    <div class="large-9 columns" style="padding-left: 0px;padding-top: 10px;padding-bottom: 10px;">
+                                        <div class="large-12 columns my-test-series-test-title" id="m-width ">
+                                            <span>{{field.testData[0].title}}</span>
+                                        </div>
+                                        <div class="large-12 columns my-test-series-test-sub-title" id="m-width ">
+                                            <span class="cart-item-detail ">{{field.noOfQuestions}}</span>
+                                        </div>
+                                        <div class="large-12 columns my-test-series-test-sub-title" id="m-width ">
+                                            <span>Duration: </span><span class="">{{field.testData[0].timeLimit / 60}} minutes</span>
+                                        </div>
+                                    </div>
+                                    <div class="large-3 columns">
+                                        <button style="margin-top: 15px;" class="sf-button-primary view-test-button my-test-series-test-button" ng-class="{ 'start-clr': field.buttonText=='Start Test' , 'end-clr': field.buttonText=='View Result' } " ng-click="startTest(field.testData[0].mappingId, field.testData[0].title, field.resumeState) ">
+                                            <span ng-bind="field.buttonText" class="cta-text my-test-series-test-button-text"></span>
+                                            <span class="icon-chevron-right my-test-series-test-button-icon"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </md-content>
+                    <div ng-if="detailedTestData  == '' && selectedFilter === 'All Tests'" style="text-align: center;">
+                        <div class="zero-state">
+                            <img ng-src="{{assetsURLPrefix}}/ic-empty-mytests.png">
+                            <div ng-if="!searchText">
+                                <span class="empty-cart-text">No tests available yet. Coming Soon!</span>
+                            </div>
+                            <div ng-if="searchText" style="text-align:center;">
+                                <span class="empty-cart-text">No tests for <span
+                                style="color: #000;">'{{searchText}}'</span> found!</span>
+                            </div>
+                            <div ng-if="!searchText" style="padding-top: 10px;">
+                                <button class="sf-button-secondary" ng-click="goBackToMyTests()">GO BACK</button>
+                            </div>
+                            <div ng-if="searchText" style="padding-top: 10px;">
+                                <button class="sf-button-secondary" ng-click="goBackNoResult()">GO BACK</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="!(detailedTestData.length> 0) && selectedFilter !== 'All Tests'" style="margin: 0 auto;
+    width: 50%;">
+                        <div style="text-align:center;">
+                            <img style="margin-bottom: 0;" ng-src="{{assetsURLPrefix}}/ic-empty-mytests.png">
+                        </div>
+                        <div style="text-align:center;">
+                            <span class="empty-cart-text">No matches found with status <span>'{{selectedFilter}}'</span></span>
+                        </div>
+                        <div style="text-align:center;">
+                            <button class="sf-button-secondary" ng-click="goBackNoResult()">ALL TESTS</button>
+                        </div>
+                    </div>
+        </md-content>
+
+        <div class="small-12" style="padding-bottom: 50px;display: inline-block;">
+            <span>
+             <dir-pagination-controls ng-if="(detailedTestData.length > 0)"
+                                      boundary-links="false" on-page-change="pageChangeHandler(newPageNumber)"
+                                      template-url="common/views/dirPagination.tpl.html"></dir-pagination-controls>
+             </span>
+            <span class="pagination-data" ng-if="(detailedTestData.length > 0)">
+            <span class="pagination-nos">{{pageStart}}-{{pageEnd}}</span> <span style="color: #fff;">of</span> <span class="pagination-nos">{{totalCount}}</span>
+            </span>
+        </div>
+    </md-content>
+</section>

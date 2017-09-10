@@ -1,0 +1,9 @@
+<div class="autocomplete-holder">
+    <input ng-model="searchStr" autofocus="autofocus" type="text" placeholder="{{placeholder}}" class="{{inputClass}}" ng-blur="hideResults()" ng-class="{'active' : results.length > 0, 'red-error' : searchTermError}" />
+    <a class="cross" ng-click="clearSearchTerm()" ng-show="searchStr.trim().length > 0"></a>
+    <ul class="autocomplete-dropdown" ng-show="results.length > 0">
+        <li null-condition class="autocomplete-row" ng-repeat="result in results" ng-mousedown="selectResult(result)" ng-mouseover="hoverRow($index)" ng-class="{'autocomplete-selected-row': $index === currentIndex, 'last' : $last}" ng-bind-html='result.displayHtml'>
+        </li>
+    </ul>
+    <div class="search-error-message" ng-bind="searchTermError" ng-if="searchTermError"></div>
+</div>

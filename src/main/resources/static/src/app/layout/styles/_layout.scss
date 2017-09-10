@@ -1,0 +1,35 @@
+#return-to-top {
+    z-index: 30;
+    position: fixed;
+    bottom: 50px;
+    right: 20px;
+    background: #ff4081;
+    width: 50px;
+    height: 50px;
+    display: block;
+    text-decoration: none;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
+    display: none;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+#return-to-top:hover {
+    background: #03a9f4;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+.sticky-cart{
+    background-color: #ffffff;
+    box-shadow: 0 -1px 4px 0 rgba(0, 0, 0, 0.2);
+    z-index: 4;
+
+}
+.sticky-cart-buy{
+    margin: 5px !important;
+    float: right !important;
+}

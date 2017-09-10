@@ -1,0 +1,150 @@
+@import "../../common/styles/styles";
+
+$testimonial: 100px;
+
+.title-pdp {
+  font-size: $font-size-xxl;
+  font-weight: $font-weight-bold;
+  color: $link-color;
+}
+
+#dropdown-style {
+  border: solid 1px #e0e0e0;
+  padding: 6px;
+  border-radius: 2px;
+  margin: 3px 0 15px 0;
+}
+
+.dropdown-label-video{
+  font-size: $font-size-medium;
+  font-weight: $font-weight-regular;
+  color: $link-color;
+}
+
+.pdp-parent-card-video {
+  background-color: #FFFFFF;
+  width: 60%;
+  margin-left: 12px;
+}
+
+.forced-margin {
+  max-width: 75rem !important;
+}
+
+.video-variant-container {
+}
+
+.padding-default {
+  padding: 5px;
+}
+
+.shadow-full {
+  box-shadow: none !important;
+}
+
+.count-pdp {
+  padding-top: 10px;
+  font-size: $font-size-large;
+  line-height: 1.4;
+  color: $black-medium;
+}
+
+.fade-pdp {
+  font-size: $font-size-xl;
+  color: $black-medium;
+}
+
+.padding-content-pdp {
+  padding: 0 6px 0 6px;
+  width: 100%;
+  max-height: 450px;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.align-pdp-buttons {
+  position: relative;
+  display: inline;
+}
+
+.pdp-head {
+  border-style: none;
+  background: #ffffff;
+}
+
+.pdp-head-width {
+  margin-top: 30px;
+}
+
+.price-pdp {
+  padding-bottom: 20px;
+}
+
+.sp-pdp {
+  padding-left: 25px;
+  font-size: $font-size-xl;
+  color: $black-dark;
+  font-weight: $font-weight-semibold;
+}
+
+.pdp-parent-card {
+  background-color: #FFFFFF;
+  margin: 0 30px 0 30px;
+}
+
+.extra-margin {
+  margin-top: 30px;
+}
+
+.img-pdp-width {
+  width: 200px;
+}
+
+.img-pdp-attr {
+  width: 25%;
+  position: relative;
+  float: left;
+}
+
+.pdp-pkg-details {
+  width: 75%;
+}
+
+.description-pdp-top {
+  margin-top: 3%;
+  padding: 16px;
+
+}
+
+.border-description {
+  border: 1px solid #DDDDDD;
+  border-bottom: none;
+  padding: 10px 0 10px 20px;
+}
+
+.description-content {
+  border-top: none;
+  border: 1px solid #DDDDDD;
+  padding: 15px;
+  margin: 0 0 25px 0;
+}
+
+.custom-margin-pdp {
+  margin: 0.75rem 0 1.0rem;
+}
+
+.desc-blk-head {
+  font-size: $font-size-large;
+  font-weight: $font-weight-semibold;
+  color: $link-color;
+}
+
+.m-img-pdp-attr {
+  width: 30%;
+  position: relative;
+  float: left;
+}
+
+.m-img-pdp-width {
+  max-width: 80%;
+}

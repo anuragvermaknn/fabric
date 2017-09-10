@@ -1,0 +1,170 @@
+<div ng-if="isStoreWeb">
+    <div>
+        <div class="small-12 columns cart-top-color-align test-series-listing-background-head">
+            <div class="test-series-listing-head small-12 columns">
+            </div>
+        </div>
+    </div>
+    <div class="container full-page-render">
+        <div class="row margin-zero list-container cart-container-padding" style="padding: 0 15px 200px 0;">
+            <div ng-if="!cartCount" style="text-align: center;">
+                <div class="zero-state">
+                    <img ng-src="{{assetsURLPrefix}}/ic-empty-cart.png">
+                    <div>
+                        <span class="empty-cart-text">There are no items in your Cart.</span>
+                    </div>
+                    <div class="empty-cart-button">
+                        <button class="sf-button-secondary " ui-sref="home">GO TO HOME</button>
+                    </div>
+                </div>
+            </div>
+            <div class="small-12 left cart-cards-align payment-card-complete" role="main" ng-if="cartCount">
+                <div class="small-8 columns cart-list-align">
+                    <div class="row cart-head-list cart-head-top-border md-whiteframe-1dp">
+                        CART <span class="numberCircle"><span>{{cartCount}}</span></span>
+                    </div>
+                    <div class="row cart-detail-card-align cart-item-card md-whiteframe-1dp"
+                         ng-class="{'cart-item-card-last':$last}" ng-repeat="field in cartItemsDetail">
+                        <div class="large-3 columns img-width-cart"><img ng-src={{field.imageUrl}}></div>
+                        <div class="large-6 columns">
+                            <span class="cart-item-detail">{{field.title}}</span>
+                            <div ng-if="field.validityDispName">
+                                <div class="video-details-cart">
+                                    Medium : {{field.lN}}
+                                </div>
+                                <div class="video-details-cart">
+                                    Device : {{field.deviceNameVideo}}
+                                </div>
+                                <div class="video-details-cart">
+                                    Validity : {{field.validityDispName}}
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="large-3 columns" style="float: right;">
+                            <del class="fade inr-cart-init"><i class="icon-rupee icon-rupee-buy-card" aria-hidden="true"></i>{{field.maximumRetailPrice | number:0}}
+                            </del>
+                            <span class="cp-float-right selling-price inr-cart-init inr-sp-cart"><i class="icon-rupee icon-rupee-buy-card"
+                                                                                                    aria-hidden="true"></i>{{field.sellingPrice | number:0}}</span>
+                        </div>
+                        <div class="package-delete" ng-click="removeItem(field.id)" ng-hide="field.sellingPrice === 0">
+                            <span class="icon-delete" style="vertical-align: middle"></span>
+                            <span class="package-delete-text">REMOVE</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="small-4 columns shipping-address-box row right" id="shippingWidth">
+                    <div class="cart-head-list md-whiteframe-1dp cart-item-card-first">Subtotal ({{cartCount}} items)
+                    </div>
+                    <div class="body-address">
+                        <md-content layout-padding="" class="hide-scroll md-whiteframe-1dp cart-item-card-last">
+                            <div class="row">
+                                <span class="payment-card-final amt-payble-txt-cart">Amount Payable</span>
+                                <span class="amount-cart-final amt-payble-cart-init"><i class="icon-rupee icon-rupee-buy-card"
+                                                                                        aria-hidden="true"></i>{{finalAmt | number:0}}</span>
+                            </div>
+                            <div>
+                                <button class="sf-button-primary" ng-click="cartDetail()" id="saveAddressCart"><span
+                                        class="cta-text">PLACE ORDER</span></button>
+                            </div>
+                        </md-content>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div ng-if="!isStoreWeb">
+
+    <div>
+
+        <div class="small-12 columns cart-top-color-align test-series-listing-background-head">
+            <div class="test-series-listing-head small-12 columns">
+            </div>
+        </div>
+    </div>
+    <div class="container full-page-render">
+        <div class=" margin-zero list-container cart-container-padding">
+            <div ng-if="!cartCount">
+                <md-content class="md-padding" layout-xs="column" layout="row" style="background: transparent">
+                    <div flex-xs layout="column">
+                        <md-card style="background: transparent; box-shadow: none;">
+                            <img ng-src="{{assetsURLPrefix}}/ic-empty-cart.png" class="md-card-image zero-state-cart"
+                                 alt="Washed Out">
+                            <div class="cp-center">
+                                <span class="empty-cart-text">There are no items in your Cart.</span>
+                            </div>
+                            <div class="cp-center" style="margin-top: 10px;">
+                                <button class="sf-button-secondary " ui-sref="home">GO TO HOME</button>
+                                </button>
+                            </div>
+
+                        </md-card>
+
+                    </div>
+                </md-content>
+            </div>
+            <div class="small-12 columns left cart-cards-align payment-card-complete" style="padding: 0;" role="main"
+                 ng-if="cartCount">
+                <div class="small-8 columns m-cart-list-align">
+                    <div class="row cart-head-list md-whiteframe-1dp"
+                         style="-webkit-border-radius: 3px 3px 0 0;-moz-border-radius: 3px 3px 0 0;border-radius: 3px 3px 0 0;">
+                        CART <span class="numberCircle"><span>{{cartCount}}</span></span>
+                    </div>
+                    <md-content class="md-padding md-whiteframe-1dp" layout-xs="column" layout="column"
+                                style="background: transparent;padding: 0;margin-bottom: 10px;">
+                        <md-card ng-repeat="field in cartItemsDetail"
+                                 style="margin: 0; -webkit-border-radius: 0;-moz-border-radius:0 ;border-radius: 0;">
+                            <md-card-title>
+                                <md-card-title-media class="md-media-sm card-media">
+                                    <img ng-src="{{field.imageUrl}}"/>
+                                </md-card-title-media>
+                                <md-card-title-text class="item-details-cart">
+                                    <span class="cart-item-detail">{{field.title}}</span>
+                                    <span ng-if="field.validityDispName">
+                                        <div class="video-details-cart">
+                                            Validity : {{field.validityDispName}}
+                                        </div>
+                                        <div class="video-details-cart">
+                                            Device : {{field.deviceNameVideo}}
+                                        </div>
+                                    </span>
+                                    <span class="md-subhead">
+                                    <span><del class="fade inr-cart-init"><i class="icon-rupee icon-rupee-buy-card" aria-hidden="true"></i>{{field.maximumRetailPrice}}</del></span>
+                                    <span class="selling-price selling-price-cart"><i class="icon-rupee icon-rupee-buy-card"
+                                                                                      aria-hidden="true"></i>{{field.sellingPrice}}</span>
+                                </span>
+                                    <span ng-click="removeItem(field.id)" ng-hide="field.sellingPrice === 0">
+
+                                    <span class="package-delete-text">REMOVE</span>
+                                </span>
+                                </md-card-title-text>
+                            </md-card-title>
+                        </md-card>
+                    </md-content>
+                </div>
+                <div class="small-12 columns right" style="margin-bottom: 15%;">
+                    <div class=" cart-head-list md-whiteframe-1dp cart-item-card-first">Subtotal ({{cartCount}} items)
+                    </div>
+                    <div class="body-address">
+                        <md-content layout-padding="" class="hide-scroll md-whiteframe-1dp">
+                            <div class="row">
+                                <span class="payment-card-final amt-payble-txt-cart">Amount Payable</span>
+                                <span class="amount-cart-final amt-payble-cart-init"><i class="icon-rupee icon-rupee-buy-card"
+                                                                                        aria-hidden="true"></i>{{finalAmt}}</span>
+                            </div>
+                        </md-content>
+                    </div>
+                </div>
+                <div class="small-12 columns sticky-cart-pay">
+                    <button class="sf-button-primary" style="padding: 5px; border-radius: 0" ng-click="cartDetail()"
+                            id="saveAddressCart"><span class="cta-text">PLACE ORDER</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

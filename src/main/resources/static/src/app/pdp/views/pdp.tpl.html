@@ -1,0 +1,178 @@
+<div class="container" ng-if="isStoreWeb">
+    <md-content layout-padding="" class="cp-app-loader-transparent" ng-if="loaderActivated">
+        <div layout="row" layout-sm="column" layout-align="space-around" stroke-width="2">
+            <md-progress-circular ng-if="loaderActivated" md-diameter="96" class="md-accent md-hue-1"
+                                  style="margin-top: 22%;"></md-progress-circular>
+        </div>
+        <!--  <md-button class="loader-text ">Loading...
+            <br>Please Wait!</md-button> -->
+    </md-content>
+    <div style="height: 100vh" ng-show="!detailedDescription"></div>
+    <div class="row forced-margin" ng-show="detailedDescription">
+        <div class="small-12">
+            <div ng-class="details.vpData ? 'small-8 columns' : 'small-12'">
+                <md-card style="padding: 0 50px 0 50px;">
+                    <md-card-title>
+                        <md-card-title-media class="md-media-sm card-media pdp-head img-pdp-width">
+                            <img ng-src="{{details.imageUrl}}"/>
+                        </md-card-title-media>
+                        <md-card-title-text class="item-details-cart">
+                            <span class="title-pdp">{{details.title}}</span>
+                            <hr class="custom-margin-pdp">
+                            <div class="price-pdp" ng-if="!details.vpData">
+                                <span><del class="fade-pdp"><i class="fa fa-inr" aria-hidden="true"></i> {{details.maximumRetailPrice | number:0}}</del></span>
+                                <span class="sp-pdp"><i class="fa fa-inr" aria-hidden="true"></i> {{details.sellingPrice | number:0}}</span>
+                            </div>
+                            <div class="align-pdp-buttons" ng-if="!details.vpData">
+                                <button class="sf-button-secondary" ng-click="addToCart(details)">
+                                    <span class="cta-text">ADD TO CART</span>
+                                </button>
+                                <button class="sf-button-primary" ng-click="buyNow(details)">
+                                    <span class="cta-text">BUY NOW</span>
+                                </button>
+                            </div>
+                            <div ng-if="details.vpData">
+                                {{details.metaDesc}}
+                            </div>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <div class="border-carousel-home description-pdp-top clearfix">
+                        <div class="border-description">
+                            <span class="desc-blk-head">DESCRIPTION</span>
+                        </div>
+                        <ul class="large-block-grid-2 description-content">
+                            <div class="padding-content-pdp scroll-hover" ng-bind-html="detailedDescription">
+                            </div>
+                        </ul>
+                    </div>
+                </md-card>
+
+            </div>
+            <div class="small-4 columns" ng-if="details.vpData">
+                <md-card ng-class="!details.vpData ? 'shadow-full' : ''">
+                    <div class="cart-head-list">
+                        Product Options
+                    </div>
+
+                    <hr style="margin: 0;">
+                    <div style="padding: 15px;">
+                        <div class="dropdown-label-video">Validity</div>
+                        <md-select ng-model="selectedObj" id="dropdown-style"
+                                   ng-change="createDeviceArray(null, selectedObj.vDN)">
+                            <md-option ng-repeat="selectedObj in validityArr" ng-value="selectedObj">
+                                {{selectedObj.vDN}}
+                            </md-option>
+                        </md-select>
+                        <div class="dropdown-label-video">Device</div>
+                        <md-select ng-model="selectedObj" id="dropdown-style"
+                                   ng-change="createValidityArray(null, selectedObj.name)">
+                            <md-option ng-repeat="selectedObj in deviceArr" ng-value="selectedObj">
+                                {{selectedObj.name}}
+                            </md-option>
+                        </md-select>
+                        <div>
+                            <span><del class="fade-pdp"><i class="fa fa-inr" aria-hidden="true"></i> {{selectedObj.maximumRetailPrice | number:0}}</del></span>
+                            <span class="sp-pdp" style="float: right;"><i class="fa fa-inr" aria-hidden="true"></i> {{selectedObj.price | number:0}}</span>
+                        </div>
+                    </div>
+                    <div style="padding: 0 15px 0 15px;">
+                        <button style="margin: 0; width: 100%" class="sf-button-primary"
+                                ng-click="createDTO(selectedObj, 'bN')">
+                            <span class="cta-text">BUY NOW
+                            </span>
+                        </button>
+                    </div>
+
+                    <div style="padding: 10px 15px 0 15px;">
+                        <button style="width: 100%;" class="sf-button-secondary"
+                                ng-click="createDTO(selectedObj, 'atC')"><span
+                                class="cta-text">ADD TO CART</span>
+                        </button>
+                    </div>
+
+                </md-card>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!--For Mobile-->
+<div class="prod-head" style="margin-bottom: 50px;" ng-if="!isStoreWeb">
+    <div flex-xs="" flex-gt-xs="100" layout="column">
+        <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch="">
+            <md-card-title>
+                <md-card-title-media class="md-media-sm card-media">
+                    <img ng-src="{{details.imageUrl}}"/>
+                </md-card-title-media>
+                <md-card-title-text class="item-details-cart">
+                    <span class="title-pdp" style="font-size: 14px;">{{details.title}}</span>
+                    <span class="md-subhead" ng-if="!details.vpData">
+                                    <span><del class="fade inr-cart-init"><i class="fa fa-inr" aria-hidden="true"></i>{{details.maximumRetailPrice}}</del></span>
+                                    <span class="selling-price selling-price-cart"><i class="fa fa-inr"
+                                                                                      aria-hidden="true"></i>{{details.sellingPrice}}</span>
+                    </span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="end center" ng-if="!details.vpData">
+                <button style="width: 50%;" class="sf-button-secondary" ng-click="addToCart(details)"><span
+                        class="cta-text">ADD TO CART</span></button>
+                <button style="width: 50%;" class="sf-button-primary" ng-click="buyNow(details)"><span
+                        class="cta-text">BUY NOW</span></button>
+            </md-card-actions>
+        </md-card>
+
+        <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch="" ng-if="details.vpData">
+            <div class="cart-head-list">
+                Product Options
+            </div>
+
+            <hr style="margin: 0;">
+            <div style="padding: 15px;">
+                <div class="dropdown-label-video">Validity</div>
+                <md-select ng-model="selectedObj" id="dropdown-style"
+                           ng-change="createDeviceArray(null, selectedObj.vDN)">
+                    <md-option ng-repeat="selectedObj in validityArr" ng-value="selectedObj">
+                        {{selectedObj.vDN}}
+                    </md-option>
+                </md-select>
+                <div class="dropdown-label-video">Device</div>
+                <md-select ng-model="selectedObj" id="dropdown-style"
+                           ng-change="createValidityArray(null, selectedObj.name)">
+                    <md-option ng-repeat="selectedObj in deviceArr" ng-value="selectedObj">
+                        {{selectedObj.name}}
+                    </md-option>
+                </md-select>
+                <div>
+                    <span><del class="fade-pdp"><i class="fa fa-inr" aria-hidden="true"></i> {{selectedObj.maximumRetailPrice | number:0}}</del></span>
+                    <span class="sp-pdp" style="float: right;"><i class="fa fa-inr" aria-hidden="true"></i> {{selectedObj.price | number:0}}</span>
+                </div>
+            </div>
+            <div style="padding: 0 15px 0 15px;">
+                <button style="margin: 0; width: 100%" class="sf-button-primary"
+                        ng-click="createDTO(selectedObj, 'bN')">
+                            <span class="cta-text">BUY NOW
+                            </span>
+                </button>
+            </div>
+
+            <div style="padding: 10px 15px 0 15px;">
+                <button style="width: 100%;" class="sf-button-secondary"
+                        ng-click="createDTO(selectedObj, 'atC')"><span
+                        class="cta-text">ADD TO CART</span>
+                </button>
+            </div>
+        </md-card>
+
+        <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch="">
+            <div class=" border-description ">
+                <span class="desc-blk-head">DESCRIPTION</span>
+            </div>
+            <ul class="large-block-grid-2 description-content">
+                <div class="padding-content-pdp" ng-bind-html="detailedDescription">
+                </div>
+            </ul>
+        </md-card>
+    </div>
+</div>

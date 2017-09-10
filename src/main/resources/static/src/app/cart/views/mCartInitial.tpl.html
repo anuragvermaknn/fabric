@@ -1,0 +1,72 @@
+<!--<div>-->
+
+    <!--<div class="small-12 columns cart-top-color-align test-series-listing-background-head">-->
+        <!--<div class="test-series-listing-head small-12 columns">-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<div class="container full-page-render">-->
+    <!--<div class=" margin-zero list-container cart-container-padding">-->
+        <!--<div ng-if="!cartCount">-->
+            <!--<md-content class="md-padding" layout-xs="column" layout="row" style="background: transparent">-->
+                <!--<div flex-xs layout="column">-->
+                    <!--<md-card style="background: transparent; box-shadow: none;">-->
+                        <!--<img ng-src="{{assetsURLPrefix}}/ic-empty-cart.png" class="md-card-image zero-state-cart" alt="Washed Out">-->
+                        <!--<div class="cp-center">-->
+                            <!--<span class="empty-cart-text">There are no items in your Cart.</span>-->
+                        <!--</div>-->
+                        <!--<div class="cp-center" style="margin-top: 10px;">-->
+                            <!--<button class="sf-button-secondary " ui-sref="testSeriesMobileView">Purchase Now</button>-->
+                        <!--</div>-->
+                    <!--</md-card>-->
+
+                <!--</div>-->
+            <!--</md-content>-->
+        <!--</div>-->
+        <!--<div class="small-12 columns left cart-cards-align payment-card-complete" style="padding: 0;" role="main" ng-if="cartCount">-->
+            <!--<div class="small-8 columns m-cart-list-align">-->
+                <!--<div class="row cart-head-list md-whiteframe-1dp" style="-webkit-border-radius: 3px 3px 0 0;-moz-border-radius: 3px 3px 0 0;border-radius: 3px 3px 0 0;">-->
+                <!--CART <span class="numberCircle"><span>{{cartCount}}</span></span>-->
+                <!--</div>-->
+            <!--<md-content class="md-padding md-whiteframe-1dp" layout-xs="column" layout="row" style="background: transparent;padding: 0;margin-bottom: 10px;">-->
+                <!--<img flex-xs="" layout="column">-->
+                    <!--<md-card ng-repeat="field in cartItemsDetail" style="margin: 0; -webkit-border-radius: 0;-moz-border-radius:0 ;border-radius: 0;">-->
+                        <!--<md-card-title>-->
+                            <!--<md-card-title-media class="md-media-sm card-media">-->
+                                <!--<img ng-src="{{field.imageUrl}}" />-->
+                            <!--</md-card-title-media>-->
+                            <!--<md-card-title-text class="item-details-cart">-->
+                                <!--<span class="cart-item-detail">{{field.title}}</span>-->
+                                <!--<span class="md-subhead">-->
+                                    <!--<span><del class="fade inr-cart-init"><i class="fa fa-inr" aria-hidden="true"></i>{{field.maximumRetailPrice}}</del></span>-->
+                                    <!--<span class="selling-price selling-price-cart"><i class="fa fa-inr" aria-hidden="true"></i>{{field.sellingPrice}}</span>-->
+                                <!--</span>-->
+                                <!--<span ng-click="removeItem(field.id)">-->
+
+                                    <!--<span class="package-delete-text">REMOVE</span>-->
+                                <!--</span>-->
+                            <!--</md-card-title-text>-->
+                        <!--</md-card-title>-->
+                    <!--</md-card>-->
+            <!--</md-content>-->
+            <!--</div>-->
+            <!--<div class="small-12 columns right" style="margin-bottom: 15%;">-->
+                <!--<div class=" cart-head-list md-whiteframe-1dp cart-item-card-first">Subtotal ({{cartCount}} items)</div>-->
+                <!--<div class="body-address">-->
+                    <!--<md-content layout-padding="" class="hide-scroll md-whiteframe-1dp">-->
+                        <!--<div class="row">-->
+                            <!--<span class="payment-card-final amt-payble-txt-cart">Amount Payable</span>-->
+                            <!--<span class="amount-cart-final amt-payble-cart-init"><i class="fa fa-inr" aria-hidden="true"></i>{{finalAmt}}</span>-->
+                        <!--</div>-->
+                    <!--</md-content>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="small-12 columns sticky-cart-pay">-->
+                <!--<button class="sf-button-primary" style="padding: 5px; border-radius: 0" ng-click="mCartDetail()" id="saveAddressCart"><span class="cta-text">PLACE ORDER</span></button>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+
+

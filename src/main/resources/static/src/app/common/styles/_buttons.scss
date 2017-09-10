@@ -1,0 +1,127 @@
+$button-primary-color: #ff4081;
+$button-secondary-color: #ffffff;
+$button-disabled-color: rgba(0, 0, 0, 0.38);
+$button-function-factor: 0%;
+$button-border-width: 1px;
+$button-disabled-opacity: 1;
+.sf-button-primary {
+    @include button($button-sml, $button-primary-color, $global-radius, $full-width: false, $disabled: false, $is-prefix: false, $bg-hover: null, $border-color: null, $transition: true);
+    font-size: rem-calc(14);
+    padding: 0 rem-calc(15);
+    line-height: rem-calc(35);
+    font-family: 'Open Sans', sans-serif;
+    outline: none;
+    margin-left: 5px;
+    border-radius: 2px;
+    &:hover {
+        color: $button-secondary-color;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+    }
+    &.disabled {
+        opacity: 1;
+        pointer-events: none;
+        color: rgba(0, 0, 0, 0.38);
+        background: #dadada;
+        border-color: $button-disabled-color;
+        &:focus {
+            outline-color: transparent;
+            background-color: #dadada;
+            color: $button-disabled-color;
+        }
+        &:hover {
+            outline-color: transparent;
+            background-color: #fff;
+            color: $button-disabled-color;
+        }
+    }
+    &.large {
+        font-size: rem-calc(18);
+        padding: 0 rem-calc(15);
+        line-height: rem-calc(53);
+        font-weight: 700;
+    }
+    &:focus {
+        outline-color: $button-primary-color;
+    }
+}
+
+
+.cp-banner-btn{
+    @include button($button-sml, $link-color, $global-radius, $full-width: false, $disabled: false, $is-prefix: false, $bg-hover: null, $border-color: null, $transition: true);
+    font-size: rem-calc(14);
+    padding: 0 rem-calc(15);
+    line-height: rem-calc(35);
+    font-family: 'Open Sans', sans-serif;
+    outline: none;
+    border-radius: 2px;
+    background-color: $link-color;
+    top: 40%;
+    left: 45%;
+
+    &:hover{
+        background-color: $link-color;
+        color: #FFFFFF;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    &.large {
+        font-size: rem-calc(18);
+        padding: 0 rem-calc(15);
+        line-height: rem-calc(53);
+        font-weight: 700;
+    }
+
+    &:focus{
+        background: $link-color;
+    }
+}
+
+
+.sf-button-secondary {
+    @include button($button-sml, $button-secondary-color, $global-radius, $full-width: false, $disabled: false, $is-prefix: false, $bg-hover: $button-primary-color, $border-color: $button-primary-color, $transition: true);
+    font-size: rem-calc(14);
+    color: $button-primary-color;
+    padding: 0 rem-calc(15);
+    line-height: rem-calc(35);
+    font-family: 'Open Sans', sans-serif;
+    outline: none;
+    border-radius: 2px;
+    &.disabled {
+        opacity: 1 !important;
+        pointer-events: none;
+        color: $button-disabled-color;
+        background: #fff;
+        border-color: $button-disabled-color;
+        &:focus {
+            outline-color: transparent;
+            background-color: #FFFFFF;
+            border-color: #000;
+            color: $button-disabled-color;
+            box-shadow: none;
+        }
+        &:hover {
+            outline-color: transparent;
+            background-color: #EAEAEA;
+            border-color: #000;
+            color: $button-disabled-color;
+            box-shadow: none;
+        }
+    }
+    &.large {
+        font-size: rem-calc(18);
+        padding: 0 rem-calc(15);
+        line-height: rem-calc(53);
+        font-weight: 700;
+    }
+    &:focus {
+        outline-color: $button-primary-color;
+        background-color: #FFFFFF;
+        border-color: $button-primary-color;
+        color: $button-primary-color;
+    }
+    &:hover {
+        background: $button-primary-color;
+        box-shadow: 0 0 0 1px $button-primary-color inset;
+        color: #ffffff;
+    }
+}

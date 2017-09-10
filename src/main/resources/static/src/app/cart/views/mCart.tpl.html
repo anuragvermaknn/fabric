@@ -1,0 +1,283 @@
+<!--<div>-->
+    <!--<md-content layout-padding="" class="cp-app-loader-transparent" ng-if="paymentStarted">-->
+    <!--<div layout="row" layout-sm="column" layout-align="space-around" stroke-width="2">-->
+        <!--<md-progress-circular ng-if="paymentStarted" md-diameter="96" class="md-accent md-hue-1" style="margin-top: 22%;"></md-progress-circular>-->
+    <!--</div>-->
+    <!--<md-button class="loader-text">Please Wait...</md-button>-->
+    <!--</md-content>-->
+    <!--<div class="small-12 columns cart-top-color-align test-series-listing-background-head">-->
+        <!--<div class="test-series-listing-head small-12 columns">-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<div class="container">-->
+    <!--<div class="row margin-zero list-container">-->
+        <!--<div ng-if="!cartCount">-->
+            <!--<md-content class="md-padding" layout-xs="column" layout="row" style="background: transparent">-->
+                <!--<div flex-xs layout="column">-->
+                    <!--<md-card style="background: transparent; box-shadow: none;">-->
+                        <!--<img ng-src="{{assetsURLPrefix}}/ic-empty-cart.png" class="md-card-image zero-state-cart" alt="Washed Out">-->
+                        <!--<div class="cp-center">-->
+                            <!--<span class="empty-cart-text">There are no items in your Cart.</span>-->
+                        <!--</div>-->
+                        <!--<div class="cp-center" style="margin-top: 10px;">-->
+                            <!--<button class="sf-button-secondary " ui-sref="testSeriesMobileView">Purchase Now</button>-->
+                        <!--</div>-->
+                    <!--</md-card>-->
+                <!--</div>-->
+            <!--</md-content>-->
+        <!--</div>-->
+
+
+
+
+
+        <!--<div class="small-12 columns left cart-cards-align" role="main" ng-show="cartCount">-->
+
+            <!--<div class="small-8 columns m-cart-list-align">-->
+                <!--<div class="row cart-head-list md-whiteframe-1dp cart-item-card-first" style="-webkit-border-radius: 3px 3px 0 0;-moz-border-radius: 3px 3px 0 0;border-radius: 3px 3px 0 0;">-->
+                    <!--CART <span class="numberCircle"><span>{{cartCount}}</span></span>-->
+                <!--</div>-->
+                <!--<md-content class="row md-padding md-whiteframe-1dp" layout-xs="column" layout="row" style="background: transparent;padding: 0;margin-bottom: 10px;">-->
+                    <!--<img flex-xs=""  layout="column">-->
+                    <!--<md-card ng-repeat="field in cartItemsDetail" style="margin: 0; -webkit-border-radius: 0;-moz-border-radius:0 ;border-radius: 0;">-->
+                        <!--<md-card-title>-->
+                            <!--<md-card-title-media class="md-media-sm card-media">-->
+                                <!--<img ng-src="{{field.imageUrl}}" />-->
+                            <!--</md-card-title-media>-->
+                            <!--<md-card-title-text class="item-details-cart">-->
+                                <!--<span class="cart-item-detail">{{field.title}}</span>-->
+                                <!--<span class="md-subhead">-->
+                                    <!--<span><del class="fade inr-cart-init"><i class="fa fa-inr" aria-hidden="true"></i>{{field.maximumRetailPrice}}</del></span>-->
+                                    <!--<span class="selling-price selling-price-cart"><i class="fa fa-inr" aria-hidden="true"></i>{{field.sellingPrice}}</span>-->
+                                <!--</span>-->
+                                <!--<span ng-click="removeItem(field.id)">-->
+
+                                    <!--<span class="package-delete-text">REMOVE</span>-->
+                                <!--</span>-->
+                            <!--</md-card-title-text>-->
+                        <!--</md-card-title>-->
+                    <!--</md-card>-->
+                <!--</md-content>-->
+            <!--</div>-->
+
+            <!--<div class="small-12" ng-show="isShippable" style="margin-bottom: 12px; display: inline-block;">-->
+                <!--<div class="cart-head-list md-whiteframe-1dp cart-item-card-first"><i class="fa fa-list-alt" aria-hidden="true"></i> Shipping Address</div>-->
+
+
+                <!--<div class="body-address md-whiteframe-1dp">-->
+                    <!--<md-content layout-padding="" ng-hide="hasSavedAddress"  class="content-padding">-->
+                        <!--<form name="address" class="inputdemoErrors" ng-model="addressForm">-->
+                            <!--<md-input-container class="md-block margin-md-block">-->
+                                <!--<label>Full Name </label>-->
+                                <!--<input required="" name="clientName" ng-model="clientName" id="cp-background-white" class="no-margin">-->
+                                <!--<div ng-messages="address.clientName.$error" md-auto-hide="false" ng-show="address.clientName.$touched">-->
+                                    <!--<div ng-message="required">Let us know your name!</div>-->
+                                <!--</div>-->
+                            <!--</md-input-container>-->
+                            <!--<md-input-container class="md-block margin-md-block">-->
+                                <!--<label>Address Line 1</label>-->
+                                <!--<input required="" name="clientAddress" ng-model="clientAddress" id="cp-background-white" class="no-margin">-->
+                                <!--<div ng-messages="address.clientAddress.$error" md-auto-hide="false" ng-show="address.clientAddress.$touched">-->
+                                    <!--<div ng-message="required">Let us know your address!</div>-->
+                                <!--</div>-->
+                            <!--</md-input-container>-->
+                            <!--<md-input-container class="md-block margin-md-block">-->
+                                <!--<label>Address Line 2 (Optional)</label>-->
+                                <!--<input name="clientAddress2" ng-model="clientAddress2" id="cp-background-white" class="no-margin">-->
+                            <!--</md-input-container>-->
+                            <!--<md-input-container class="md-block margin-md-block">-->
+                                <!--<label>Landmark (Optional)</label>-->
+                                <!--<input name="landmark" ng-model="landmark" id="cp-background-white" class="no-margin">-->
+                            <!--</md-input-container>-->
+                            <!--<md-input-container class="md-block margin-md-block">-->
+                                <!--<label>Pincode</label>-->
+                                <!--<input required="" name="pincode" ng-model="pincode" id="cp-background-white" class="no-margin" md-maxlength="6" ng-pattern="/^[0-9]{6}$/" maxlength="6">-->
+                                <!--<div ng-messages="address.pincode.$error" md-auto-hide="false" ng-show="address.pincode.$touched">-->
+                                    <!--<div ng-message="required">You forgot to enter your pincode!</div>-->
+                                    <!--<div ng-message="pattern" class="my-message">That doesn't look like a valid postal code.-->
+                                    <!--</div>-->
+                                    <!--<div ng-message="md-maxlength">Hey! The Pincode is usually 6 digit long!</div>-->
+                                <!--</div>-->
+                            <!--</md-input-container>-->
+                            <!--<md-input-container class="md-block margin-md-block">-->
+                                <!--<label>City</label>-->
+                                <!--<input required="" name="clientCity" ng-model="clientCity" id="cp-background-white" class="no-margin">-->
+                                <!--<div ng-messages="address.clientCity.$error" md-auto-hide="false" ng-show="address.clientCity.$touched">-->
+                                    <!--<div ng-message="required">Let us know your city!</div>-->
+                                <!--</div>-->
+                            <!--</md-input-container>-->
+                            <!--<md-input-container class="md-block margin-md-block">-->
+                                <!--<label>State</label>-->
+                                <!--<input required="" name="clientState" ng-model="clientState" id="cp-background-white" class="no-margin">-->
+                                <!--<div ng-messages="address.clientState.$error" md-auto-hide="false" ng-show="address.clientState.$touched">-->
+                                    <!--<div ng-message="required">Let us know your state!</div>-->
+                                <!--</div>-->
+                            <!--</md-input-container>-->
+                            <!--<md-input-container class="md-block margin-md-block">-->
+                                <!--<label>Mobile Number (Mandatory)</label>-->
+                                <!--<input required name="fMobileNumber" ng-focus="displayIsd()" ng-blur="hideIsd(fMobileNumber)" ng-model="fMobileNumber" id="cp-background-white" class="no-margin phone-number-input" md-maxlength="10" ng-pattern="/^[0-9]{10}$/" maxlength="10" ng-change="saveNumber(fMobileNumber)">-->
+                                <!--<span class="number-prefix-new" ng-if="showIsd">+91</span>-->
+                                <!--<div ng-messages="address.fMobileNumber.$error" md-auto-hide="false" ng-show="address.fMobileNumber.$touched">-->
+                                    <!--<div ng-message="required">Enter your mobile, incase we need to contact you!</div>-->
+                                    <!--<div ng-message="md-maxlength">Hey! The Mobile Number is usually 10 digit long!</div>-->
+                                    <!--<div ng-message="pattern" class="my-message ">That doesn't look like a valid mobile no.-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</md-input-container>-->
+
+                            <!--<div>-->
+                                <!--<button class="sf-button-primary" id="saveAddressCart" ng-click="address.$valid && saveAddress($event)"><span class="cta-text">SAVE ADDRESS</span></button>-->
+                            <!--</div>-->
+                            <!--<hr>-->
+                            <!--<div>-->
+                                <!--<button class="sf-button-secondary" id="cancelAddressCart" ui-sref="myCartMobile"><span class="cta-text">CANCEL</span></button>-->
+                            <!--</div>-->
+                        <!--</form>-->
+                    <!--</md-content>-->
+                    <!--<md-content ng-if="hasSavedAddress" class="content-padding">-->
+                        <!--<md-input-container class="no-margin saved-address-name" ng-model="clientName">{{clientName}}</md-input-container>-->
+                        <!--<br>-->
+                        <!--<md-input-container class="no-margin saved-address-color">{{validatedFirstLineAddress}}</md-input-container>-->
+                        <!--<br>-->
+                        <!--<md-input-container class="no-margin saved-address-color" ng-if="validatedSecondLineAddress">{{validatedSecondLineAddress}}</md-input-container>-->
+                        <!--<br>-->
+                        <!--<md-input-container class="no-margin saved-address-color">{{validatedCity}}, {{validatedState}} - {{validatedPinCode}}</md-input-container>-->
+                        <!--<br>-->
+                        <!--<div>-->
+                            <!--<md-input-container class="no-margin clearfix saved-address-color" ng-model="phoneNumber">Ph: {{phoneNumber}}</md-input-container>-->
+                        <!--</div>-->
+                    <!--</md-content>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="small-12 columns right" ng-if="isShippable" style="padding: 0; margin-bottom: 20px;">-->
+                <!--<div class="cart-head-list md-whiteframe-1dp cart-item-card-first"><i class="fa fa-credit-card" aria-hidden="true"></i> Payment Summary</div>-->
+                <!--<div class="body-address md-whiteframe-1dp">-->
+                    <!--<md-content layout-padding="" class="hide-scroll">-->
+                        <!--<div class="row">-->
+                            <!--<span class="payment-card-final saved-address-color">Total</span>-->
+                            <!--<span class="amount-cart-final"><i class="fa fa-inr" aria-hidden="true"></i>-->
+                        <!--{{basePrice}}-->
+                        <!--</span>-->
+                        <!--</div>-->
+                        <!--<div class="row" ng-if="discount">-->
+                            <!--<span class="payment-card-final saved-address-color">Discount</span>-->
+                            <!--<span class="amount-cart-final">- <i class="fa fa-inr" aria-hidden="true"></i>{{discount}}-->
+                        <!--</span>-->
+                        <!--</div>-->
+                        <!--<div class="row">-->
+                            <!--<hr class="payment-card-divider">-->
+                        <!--</div>-->
+                        <!--<div class="row">-->
+                            <!--<span class="full-n-final-amt payment-card-final">TOTAL</span>-->
+                            <!--<span class="full-n-final-amt amount-cart-final"><i class="fa fa-inr" aria-hidden="true"></i>{{payablePrice}}-->
+                        <!--</span>-->
+                        <!--</div>-->
+                        <!--<hr class="less-margin">-->
+                        <!--<div>-->
+                            <!--<span ng-click="expand = expand ? false : true" style="outline: none;" class="coupon-cart"><i class="fa" ng-class="{'fa-caret-right': !expand, 'fa-caret-down': expand}"></i> Have a coupon code?-->
+                        <!--</span>-->
+                        <!--</div>-->
+                        <!--<div  ng-show="expand">-->
+                            <!--<md-input-container class="md-block margin-md-block coupon-width className enterCouponInputBox couponDivAlignment" flex-gt-sm style="padding:0 !important">-->
+                                <!--&lt;!&ndash; <label>Enter Coupon Code</label> &ndash;&gt;-->
+                                <!--<input type="text" placeholder="Enter Coupon Code" ng-model="couponCode" id="cp-background-white" class="no-margin" ng-change="addCoupon(couponCode)" ng-paste='coupon(couponCode)' ng-class="couponInput ? '' : 'disabled' " style="width:50%;">-->
+                                <!--<i class="fa fa-times removeIcon no-outline-mac" aria-hidden="true" ng-hide="!couponBtn" ng-click="removeCoupon();couponCode=null;"></i>-->
+                                <!--<button class="sf-button-primary applyBtnPos" ng-click="applyCoupon()" ng-class="couponBtn ? '' : 'disabled' " id="couponApplyBtn">APPLY</button>-->
+                                <!--<div ng-if="applied && !couponValid" id="invalidCoupon">Invalid Coupon Code</div>-->
+                                <!--<div ng-if="applied && couponValid" id="validCoupon">Coupon Code applied Successfully</div>-->
+                                <!--<div ng-if="!applied && noInternet" id="invalidCoupon">Check your Internet</div>-->
+                            <!--</md-input-container>-->
+                        <!--</div>-->
+                    <!--</md-content>-->
+                <!--</div>-->
+
+            <!--</div>-->
+            <!--<div class="small-12 columns right" id="m-payment-card-align" ng-if="!isShippable">-->
+                <!--<div class="cart-head-list md-whiteframe-1dp cart-item-card-first"><i class="fa fa-list-alt" aria-hidden="true"></i> Order Details</div>-->
+                <!--<div class="body-address phone-number-order-card md-whiteframe-1dp">-->
+                    <!--<md-content layout-padding="">-->
+                        <!--<form name="telForm" class="inputdemoErrors" ng-model="telForm" ng-submit = "">-->
+                            <!--<md-input-container class="md-block margin-md-block">-->
+                                <!--<label>Full Name </label>-->
+                                <!--<input required="" name="clientName" ng-model="clientNamePrefilled" id="cp-background-white" class="no-margin">-->
+                                <!--<div ng-messages="telForm.clientName.$error" md-auto-hide="false" ng-show="telForm.clientName.$touched">-->
+                                    <!--<div ng-message="required">Let us know your name!</div>-->
+                                <!--</div>-->
+                            <!--</md-input-container>-->
+
+                            <!--<md-input-container class="md-block margin-md-block">-->
+                                <!--<label>Mobile Number (Mandatory)</label>-->
+                                <!--<input type="tel" required name="fMobileNumber" ng-focus="displayIsd()" ng-blur="hideIsd(fMobileNumber)" ng-model="fMobileNumber" id="cp-background-white" class="no-margin phone-number-input" md-maxlength="10" ng-pattern="/^[0-9]{10}$/" maxlength="10" ng-change="saveNumber(fMobileNumber)">-->
+                                <!--<span class="number-prefix-new" ng-if="showIsd">+91</span>-->
+                                <!--<div ng-messages="telForm.fMobileNumber.$error" md-auto-hide="false" ng-show="telForm.fMobileNumber.$touched">-->
+                                    <!--<div ng-message="required">Enter your mobile, incase we need to contact you!</div>-->
+                                    <!--<div ng-message="md-maxlength">Hey! The Mobile Number is usually 10 digit long!</div>-->
+                                    <!--<div ng-message="pattern" class="my-message ">That doesn't look like a valid mobile no.-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<span ng-show="noNumber" id="invalidCoupon">You forgot to enter the mobile number.</span>-->
+                            <!--</md-input-container>-->
+                        <!--</form>-->
+                    <!--</md-content>-->
+                <!--</div>-->
+                <!--<div class="cart-head-list md-whiteframe-1dp cart-item-card-first"><i class="fa fa-credit-card" aria-hidden="true"></i> Payment Summary</div>-->
+                <!--<div class="body-address md-whiteframe-1dp">-->
+                    <!--<md-content layout-padding="" class="hide-scroll">-->
+                        <!--<div class="row">-->
+                            <!--<span class="payment-card-final saved-address-color">Total</span>-->
+                            <!--<span class="amount-cart-final"><i class="fa fa-inr" aria-hidden="true"></i>-->
+                        <!--{{basePrice}}-->
+                        <!--</span>-->
+                        <!--</div>-->
+                        <!--<div class="row" ng-if="discount">-->
+                            <!--<span class="payment-card-final saved-address-color">Discount</span>-->
+                            <!--<span class="amount-cart-final">- <i class="fa fa-inr" aria-hidden="true"></i>{{discount}}-->
+                        <!--</span>-->
+                        <!--</div>-->
+                        <!--<div class="row">-->
+                            <!--<hr class="payment-card-divider">-->
+                        <!--</div>-->
+                        <!--<div class="row">-->
+                            <!--<span class="full-n-final-amt payment-card-final">Subtotal</span>-->
+                            <!--<span class="full-n-final-amt amount-cart-final"><i class="fa fa-inr" aria-hidden="true"></i>{{payablePrice}}-->
+                        <!--</span>-->
+                        <!--</div>-->
+                        <!--<hr class="less-margin ">-->
+                        <!--<div class="row coupon-code-container">-->
+                            <!--<span ng-click="expand = expand ? false : true" style="outline: none;" class="coupon-cart"><i class="fa" ng-class="{'fa-caret-right': !expand, 'fa-caret-down': expand}"></i> Have a coupon code?-->
+                        <!--</span>-->
+                            <!--<div ng-show="expand" style="padding-top: 12px;">-->
+                                <!--<md-input-container class="md-block margin-md-block coupon-width className enterCouponInputBox couponDivAlignment" flex-gt-sm style="padding:0 !important">-->
+                                    <!--&lt;!&ndash; <label>Enter Coupon Code</label> &ndash;&gt;-->
+                                    <!--<input type="text" placeholder="Enter Coupon Code" ng-model="couponCode" id="cp-background-white" class="no-margin" ng-change="addCoupon(couponCode)" ng-paste='coupon(couponCode)' ng-class="couponInput ? '' : 'disabled' " style="width:50%;">-->
+                                    <!--<i class="fa fa-times removeIcon no-outline-mac" aria-hidden="true" ng-hide="!couponBtn" ng-click="removeCoupon();couponCode=null;"></i>-->
+                                    <!--<button class="sf-button-primary applyBtnPos" ng-click="applyCoupon()" ng-class="couponBtn ? '' : 'disabled' " id="couponApplyBtn">APPLY</button>-->
+                                    <!--<div ng-if="applied && !couponValid" id="invalidCoupon">Invalid Coupon Code</div>-->
+                                    <!--<div ng-if="applied && couponValid" id="validCoupon">Coupon Code applied Successfully</div>-->
+                                    <!--<div ng-if="!applied && noInternet" id="invalidCoupon">Check your Internet</div>-->
+                                <!--</md-input-container>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                    <!--</md-content>-->
+                <!--</div>-->
+                <!--<div class="row" ng-if="!isShippable && !isStoreWeb && cartCount" style="margin-top: 12px;">-->
+                    <!--<img ng-src="{{assetsURLPrefix}}/ic_secure_payment.png" style="margin-bottom: 12px;" />-->
+                    <!--<div class="sticky-cart-pay">-->
+                        <!--<button class="sf-button-primary" id="saveAddressCart"  ng-click = "formSubmitMobile(telForm)" style="z-index: 5; border-radius: 0;"><span class="cta-text">PROCEED TO PAY</span></button>-->
+                    <!--</div>-->
+                    <!--<form-submitter></form-submitter>-->
+                <!--</div>-->
+            <!--</div>-->
+
+        <!--</div>-->
+
+    <!--</div>-->
+
+    <!--<div ng-if="isShippable && !isStoreWeb && cartCount">-->
+        <!--<img ng-src="{{assetsURLPrefix}}/ic_secure_payment.png" style="margin-bottom: 12px;" />-->
+        <!--<button class="sf-button-primary" style="padding: 5px;border-radius: 0;position: fixed;bottom: 0;width: 100%;" id="saveAddressCart" ng-class="address.$invalid || !hasSavedAddress ? 'disabled' : ''" ng-click="paymentProceed()"><span class="cta-text">PROCEED TO PAY</span></button>-->
+        <!--<form-submitter></form-submitter>-->
+    <!--</div>-->
+<!--</div>-->

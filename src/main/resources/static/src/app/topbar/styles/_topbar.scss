@@ -1,0 +1,315 @@
+@import "../../common/styles/styles";
+
+.browser-alert {
+  padding: 4px 40px 40px 40px;
+  margin: 10%;
+  border-radius: 4px;
+  box-shadow: 0px 7px 8px -4px rgba(0, 0, 0, 0.2), 0px 13px 19px 2px rgba(0, 0, 0, 0.14), 0px 5px 24px 4px rgba(0, 0, 0, 0.12);
+  position: static;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.icons-topbar{
+  vertical-align: middle;
+  font-size: 25px;
+  padding-right: 6px;
+}
+
+.padding-icon-container {
+  padding: 40px 0 30px 90px;
+}
+
+.otp-validate-tick {
+  position: absolute;
+  float: right;
+  top: 5px;
+  left: 200px;
+  color: #8BC34A
+}
+
+.width-icons-browser {
+  width: 20%;
+}
+
+.icon-text {
+  margin-left: 5%;
+}
+
+.middle-icon-margin {
+  margin: 0 100px 0 100px;
+}
+
+.contact-bar {
+  background-color: #006099;
+}
+
+.top-bar-section li:not(.has-form) a:not(.button) {
+  @media screen and (max-width: 1920px) and (min-width: 1028px) {
+    font-size: 12px;
+    font-weight: $font-weight-semibold;
+  }
+  @media screen and (max-width: 1027px) and (min-width: 938px) {
+    font-size: 10px;
+    font-weight: $font-weight-semibold;
+  }
+  @media screen and (max-width: 937px) and (min-width: 847px) {
+    font-size: 8px;
+    font-weight: $font-weight-semibold;
+  }
+  @media screen and (max-width: 846px) and (min-width: 770px) {
+    font-size: $font-size-xxsmall;
+    font-weight: $font-weight-semibold;
+  }
+  @media screen and (max-width: 768px) and (min-width: 720px) {
+    font-size: $font-size-xxxsmall;
+    font-weight: $font-weight-semibold;
+  }
+}
+
+.logo-cp-navbar {
+  margin-left: 1.1rem;
+  padding-top: 8px !important;
+}
+
+.top-bar-section ul {
+  margin-top: 1px;
+}
+
+.top-contact-text {
+  line-height: 2.5;
+  font-size: $font-size-small;
+  color: #ffffff;
+}
+
+.top-contact-text {
+  line-height: 2.5;
+  font-size: $font-size-small;
+  color: #ffffff;
+}
+
+.md-dialog-container {
+  z-index: 100;
+}
+
+.align-contactus-top {
+  margin: 0 20px 0 20px;
+}
+
+.top-bar {
+background-color: #ffffff;
+height: 3.75em;
+}
+
+.top-bar-section li:not(.has-form) a:not(.button) {
+ background-color: #ffffff;
+    line-height: 2.825rem;
+    color: #000000;
+    padding: 6px 20px 0px 10px;
+}
+
+.top-bar-section .dropdown li:not(.has-form):not(.active):hover > a:not(.button) {
+  background-color: #f5f5f5;
+  color: #000;
+  background: #f5f5f5;
+}
+
+.top-bar-section .dropdown li:not(.has-form):not(.active) > a:not(.button) {
+  background: #FFFFFF;
+  color: #000;
+}
+
+.top-bar-section li:not(.has-form) a:not(.button):hover {
+  background-color: #ffffff;
+    color: #000;
+    border-bottom: 3px solid #039af4;
+}
+
+.top-bar-section .has-dropdown > a:after {
+  z-index: 12;
+  border: inset 5px;
+  content: "";
+  display: block;
+  height: 0;
+  width: 0;
+  border-color: rgba(255, 255, 255, 0.4) transparent transparent transparent;
+  border-top-style: solid;
+  margin-top: 3.5px;
+  top: 1.40625rem;
+}
+
+.top-bar-section .has-dropdown.not-click:hover > .dropdown {
+  z-index: 12;
+  width: auto;
+  overflow: visible;
+  clip: auto;
+  display: block;
+  position: absolute !important;
+  margin-top: 0;
+}
+
+#cp-no-padding {
+  padding: 0;
+}
+
+#cp-background-white {
+  background: #ffffff;
+  outline: none;
+  box-shadow: none;
+  margin-bottom: 0;
+}
+
+.inputdemoErrors .inputErrorsApp {
+  min-height: 48px;
+}
+
+.inputdemoErrors md-input-container > p {
+  font-size: 0.8em;
+  text-align: left;
+  width: 100%;
+}
+
+.margin-md-block {
+  margin: 0 0 5px 0;
+}
+
+.font-confirm-password {
+  font-size: 12px;
+}
+
+.register-button {
+  width: 100%;
+  margin-bottom: 0 !important;
+}
+
+.social-button-width {
+  width: 48%;
+}
+
+#line-strike {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid #eeeeee;
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+}
+
+h2 span {
+  color: rgba(0, 0, 0, 0.38);
+  background: #fff;
+  padding: 0 10px;
+}
+
+.font-line {
+  font-size: 12px;
+}
+
+.center-class-parent {
+  position: relative;
+  padding-top: 20px;
+}
+
+.thisDiv {
+  font-size: 12px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+}
+
+.social-register {
+  margin: 10px 0 0 4px;
+}
+
+.cart-top {
+  outline: 1px solid #fff;
+  outline-offset: -6px;
+}
+
+.circle-icon {
+  height: 20px;
+  width: 20px;
+  color: #01579b;
+  background-color: #fff;
+  padding: 3px;
+  border-radius: 46%;
+  text-align: center;
+}
+
+.md-button.dropdown {
+  overflow: visible;
+  /*reset*/
+}
+
+.dropdown .dropdown-menu {
+  max-width: 0;
+  position: absolute;
+  left: 40px;
+  top: 100%;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  overflow: hidden;
+  background-color: #fff;
+  list-style: none;
+  transition: min-width 0.2s ease-in-out, left 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+.dropdown .dropdown-menu .md-button {
+  min-width: 100%;
+  border-radius: 0;
+  margin: 0;
+  padding: 6px 16px;
+}
+
+.dropdown.active .dropdown-menu {
+  max-width: 300px;
+  /* set a maxwidth bigger than the widest element */
+  left: 0;
+  opacity: 1;
+}
+
+md-dialog md-dialog-content {
+  order: 1;
+  flex-direction: column;
+  overflow: inherit;
+}
+
+md-tabs .md-tab.md-active {
+  color: #ff4081;
+}
+
+md-tabs md-ink-bar {
+  color: #ff4081;
+  background: #ff4081;
+}
+
+.uplift-dialog {
+  z-index: 10;
+}
+
+.no-outline-mac {
+  outline: none;
+}
+
+.forgot-password-txt {
+  padding-top: 15px;
+  font-size: 12px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.forgot-passwd-button {
+  padding: 0 !important;
+  background: #fff !important;
+  color: black !important;
+}
+
+.sf-validation-error {
+  color: rgb(221, 44, 0);
+  font-size: 12px;
+  line-height: 14px;
+  transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+  opacity: 1;
+  margin-top: 0;
+  padding-top: 5px;
+}

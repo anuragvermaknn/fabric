@@ -1,0 +1,27 @@
+{
+  "name": "fabricoot",
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "angular-loading-bar": "^0.9.0",
+    "angular-material": "^1.0.9",
+    "angular-directive.g-signin": "^0.1.2",
+    "material-design-icons": "^3.0.1",
+    "ng-device-detector": "^3.0.1",
+    "angularUtils-pagination": "angular-utils-pagination#^0.11.1",
+    "animate.css": "^3.5.2"
+  },
+  "devDependencies": {
+    "angular-resource": "~1.3.4",
+    "angular-local-storage": "~0.2.2",
+    "jquery": "~2.1.3",
+    "animate.css": "~3.4.0",
+    "underscore": "~1.8.3",
+    "foundation": "~5.5.3",
+    "angular-timer": "^1.3.4",
+    "orbicular": "~3.0.0"
+  },
+  "resolutions": {
+    "angular": "1.5.8"
+  }
+}

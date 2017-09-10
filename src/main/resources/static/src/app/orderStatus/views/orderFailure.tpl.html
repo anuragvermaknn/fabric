@@ -1,0 +1,61 @@
+<div>
+    <div class="small-12 columns cart-top-color-align test-series-listing-background-head ">
+        <div class="test-series-listing-head small-12 columns">
+        </div>
+    </div>
+</div> <md-content layout-padding="" class="cp-app-loader-transparent" ng-if="loaderActivated">
+    <div layout="row" layout-sm="column" layout-align="space-around" stroke-width="2">
+        <md-progress-circular ng-if="loaderActivated" md-diameter="96" class="md-accent md-hue-1" style="margin-top: 22%;"></md-progress-circular>
+    </div>
+    <!--  <md-button class="loader-text ">Loading...
+        <br>Please Wait!</md-button> -->
+</md-content>
+<div class="row margin-zero list-container full-page-render" style="margin-bottom: 50px;" ng-if="!loaderActivated">
+    <div class="small-12 columns left cart-cards-align footer-padding-page" role="main">
+        <div class="small-12 md-whiteframe-1dp" ng-if="!isStoreWeb" style="background: #ffffff;margin-bottom: 10px;padding-bottom: 10px;">
+            <div class="order-success-head cart-head-list above-border-radius-card">ORDER FAILED</div>
+            <div class="align-middle md-padding" layout-align="center center" layout="row" layout-wrap>
+                <img ng-src="{{assetsURLPrefix}}/ic-order-failure.png" class="clearfix" />
+            </div>
+            <div class="md-padding order-failure-header" layout-align="center center" layout="row" layout-wrap style="padding-bottom: 0;">
+                Oops!
+            </div>
+            <div class="md-padding order-failure-header" layout-align="center center" layout="row" layout-wrap style="padding-top: 0;">
+                Order could not be placed. :(
+            </div>
+            <div class="md-padding" layout-align="center center" layout="row" layout-wrap style="padding-top: 0;padding-bottom: 10px;">
+                <span class="primary-black">Your Order Id is&nbsp</span><span class="sky-blue">#{{orderId}}</span>
+            </div>
+            <div class="md-padding order-success-msg" layout-align="center center" layout="row" layout-wrap>
+                <span>We have sent a record of this order to <span><b>{{emailId}}</b></span></span>
+                <br>
+                <span class="clearfix">You can view your order and invoice at anytime from ORDER HISTORY in your Profile.</span>
+                <br>
+                <span class="clearfix">For any query regarding this order, you can reach our customer support at <b><a href="tel:01145651200">011-45651200</a></b></span>
+            </div>
+        </div>
+        <div class="small-12 columns card-shadow" ng-if="isStoreWeb">
+            <div class="row cart-head-list above-border-radius-card">
+                ORDER FAILED
+            </div>
+            <div class="row cart-head-list cart-detail-card-align no-border">
+                <div class="large-1 small-1 columns"><img ng-src="{{assetsURLPrefix}}/ic-order-failure.png" /></div>
+                <div class="large-7 columns">
+                    <span class="order-failure-header">Oops! Your Order could not be placed. :(</span>
+                    <span class="clearfix">
+                        <span class="primary-black">Your Order Id is</span> <span class="sky-blue">#{{orderId}}</span>
+                    </span>
+                </div>
+                <div class="large-2 columns">
+                </div>
+            </div>
+            <div class="cart-head-list row below-border-radius-card">
+                <div class="row order-record">
+                    <span>We have sent a record of this order to <span><b>{{emailId}}</b></span></span>
+                    <span class="clearfix">You can view your order and invoice at anytime from ORDER HISTORY in your Profile.</span>
+                    <span class="clearfix">For any query regarding this order, you can reach our customer support at <b><a href="tel:01145651200">011-45651200</a></b></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

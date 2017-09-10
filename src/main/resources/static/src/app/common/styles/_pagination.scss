@@ -1,0 +1,171 @@
+.noBackground {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+ul.pagination {
+    list-style: none;
+    padding: 4px !important;
+    position: relative;
+    float: right;
+    li {
+        margin-left: 0;
+        display: inline-block;
+        min-width: 36px;
+        min-height: 33px;
+        font-size: 14px;
+        background: #fff;
+        border-radius: 0px;
+        margin-right: 0px;
+        text-align: center;
+        cursor: pointer;
+        border: 1px solid #e0e0e0;
+        a {
+            text-decoration: none;
+            color: #01579b;
+            padding-top: 4px;
+            min-height: 33px;
+            font-weight: 800;
+        }
+        + {
+            .disabled {
+                cursor: not-allowed !important;
+                > a {
+                    cursor: not-allowed;
+                }
+            }
+            .active {
+                border-radius: inherit;
+                > a {
+                    padding-top: 4px;
+                    min-height: 31px;
+                    border-radius: inherit;
+                    text-decoration: none;
+                    color: #fff !important;
+                    background: #01579b !important;
+                    display: block;
+                }
+            }
+        }
+        &:last-child {
+            margin-right: 0px;
+            border-radius: 3px;
+        }
+        &:first-child {
+            border-radius: 3px;
+        }
+    }
+    li:last-child {
+        margin-right: 0;
+    }
+    .prev-pagination-arrow {
+        background: rgba(0, 0, 0, 0.72) !important;
+        padding: 0 !important;
+        width: 30px !important;
+        height: 30px !important;
+        border-radius: 50% !important;
+        border: 1px solid #cecece;
+        cursor: not-allowed !important;
+        position: relative;
+        bottom: 4px;
+        &:after {
+            border: solid 1px;
+            border-left-width: 0;
+            border-top-width: 0;
+            content: "";
+            display: inline-block;
+            transform: rotate(130deg);
+            height: 9px;
+            width: 9px;
+            border-color: #e0e0e0;
+            position: relative;
+            top: 3px;
+            left: -3px;
+        }
+        a {
+            cursor: not-allowed;
+        }
+    }
+    .prev-pagination-active {
+        background: #01579b !important;
+        padding: 0 !important;
+        width: 30px !important;
+        height: 30px !important;
+        border-radius: 50% !important;
+        border: 1px solid;
+        position: relative;
+        bottom: 4px;
+        &:after {
+            border: solid 1px;
+            border-left-width: 0px;
+            border-top-width: 0;
+            content: "";
+            display: inline-block;
+            transform: rotate(130deg);
+            height: 9px;
+            width: 9px;
+            border-color: #e0e0e0;
+            position: relative;
+            top: 3px;
+            left: -3px;
+        }
+    }
+    .next-pagination-arrow {
+        background: rgba(0, 0, 0, 0.72) !important;
+        padding: 0 !important;
+        width: 30px !important;
+        height: 30px !important;
+        border-radius: 50% !important;
+        cursor: not-allowed !important;
+        border: 1px solid #cecece;
+        position: relative;
+        bottom: 4px;
+        &:after {
+            border: solid 1px;
+            border-left-width: 0;
+            border-top-width: 0;
+            content: "";
+            display: inline-block;
+            transform: rotate(-45deg);
+            height: 9px;
+            width: 9px;
+            border-color: #ececec;
+            position: relative;
+            top: 3px;
+            right: 5px;
+        }
+        a {
+            cursor: not-allowed;
+        }
+    }
+    .next-pagination-active {
+        background: #01579b !important;
+        padding: 0 !important;
+        width: 30px !important;
+        height: 30px !important;
+        border-radius: 50% !important;
+        border: 1px solid #ececec;
+        position: relative;
+        bottom: 4px;
+        &:after {
+            border: solid 1px;
+            border-left-width: 0;
+            border-top-width: 0;
+            content: "";
+            display: inline-block;
+            transform: rotate(-45deg);
+            height: 9px;
+            width: 9px;
+            border-color: #ececec;
+            position: relative;
+            top: 3px;
+            right: 5px;
+        }
+    }
+}
+
+.disabled > a {
+    cursor: not-allowed;
+    position: relative;
+}
