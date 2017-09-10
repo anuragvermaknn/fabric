@@ -148,34 +148,56 @@ public class LoginController
 	// return responseEntity;
 	// }
 
+	// 3d model api
 	@RequestMapping(value = "/data/image", method = RequestMethod.GET)
-	public ResponseEntity<byte[]> getImageByteArrayFromParameterBean(
-			@RequestBody(required = false) ParameterBean parameterBean)
+	public ResponseEntity<ModelBean> getImageByteArrayFromParameterBean( ParameterBean parameterBean)
 	{
 
-		ModelBean model= new ModelBean();
+		ModelBean model = new ModelBean();
 		ParameterBean parameterBean1 = new ParameterBean("A", "B", "A", "B", "A", "B", "A");
 		// TODO change parameterBean1 to parameterBean below
 		byte[] imageStream = itemService.getImageByteArrayFromParameterBean(parameterBean1);
-		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(imageStream, HttpStatus.OK);
+
+		Map<String, byte[]> viewImages = new HashMap<>();
+
+		viewImages.put("left", imageStream);
+		viewImages.put("right", imageStream);
+		viewImages.put("front", imageStream);
+		model.setViewImages(viewImages);
+
+		ResponseEntity<ModelBean> responseEntity = new ResponseEntity<>(model, HttpStatus.OK);
 		return responseEntity;
-		//return model;
-	
+		// return model;
+
 	}
 
-	@RequestMapping(value = "/data/category/image", method = RequestMethod.GET)
-	public ResponseEntity<List<byte[]>> getCategoryImageByteArrayFromParameterBean(
-			@RequestBody(required = false) String category)
+	//All categories second part data with mapping
+	@RequestMapping(value = "/get/AllCategroies/data", method = RequestMethod.GET)
+	public ResponseEntity<Map<String, List<AllCategoryImages>>> getCategoryImageByteArrayFromParameterBean()
 	{
 
+		Map<String, List<AllCategoryImages>> map = new HashMap<>();
+		List<AllCategoryImages> list = new ArrayList<>();
 		ParameterBean parameterBean1 = new ParameterBean("A", "B", "A", "B", "A", "B", "A");
 		// TODO change parameterBean1 to parameterBean below
 		byte[] imageStream = itemService.getImageByteArrayFromParameterBean(parameterBean1);
-		List<byte[]> categoryImages = new ArrayList<byte[]>();
-		categoryImages.add(imageStream);
-		categoryImages.add(imageStream);
-		categoryImages.add(imageStream);
-		ResponseEntity<List<byte[]>> responseEntity = new ResponseEntity<>(categoryImages, HttpStatus.OK);
+
+		for (int i = 0; i < 3; i++)
+		{
+			AllCategoryImages allCategoryImages = new AllCategoryImages();
+			allCategoryImages.setId(i + "");
+			allCategoryImages.setImage(imageStream);
+			list.add(allCategoryImages);
+
+		}
+
+		for (int j = 0; j < 7; j++)
+		{
+
+			map.put(j + "", list);
+		}
+
+		ResponseEntity<Map<String, List<AllCategoryImages>>> responseEntity = new ResponseEntity<>(map, HttpStatus.OK);
 		return responseEntity;
 	}
 
@@ -213,6 +235,30 @@ public class LoginController
 		// TODO change parameterBean1 to parameterBean below
 		List<Item> items = itemService.findByParameterBean(parameterBean1);
 		return items;
+	}
+
+	//product listing api
+	@RequestMapping(value = "/product/items", method = RequestMethod.GET)
+	public ResponseEntity<List<AllCategoryImages>> allProductsListing()
+	{
+		List<AllCategoryImages> result = new ArrayList<>();
+		ParameterBean parameterBean1 = new ParameterBean("A", "B", "A", "B", "A", "B", "A");
+		// TODO change parameterBean1 to parameterBean below
+		byte[] imageStream = itemService.getImageByteArrayFromParameterBean(parameterBean1);
+
+		for (int i = 0; i < 10; i++)
+		{
+			AllCategoryImages productImage = new AllCategoryImages();
+			int k = (i + 1);
+			productImage.setId("id-" + k);
+			productImage.setProductId("productId" + k);
+			productImage.setImage(imageStream);
+			result.add(productImage);
+
+		}
+
+		ResponseEntity<List<AllCategoryImages>> responseEntity = new ResponseEntity<>(result, HttpStatus.OK);
+		return responseEntity;
 	}
 
 }
