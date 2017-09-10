@@ -1,11 +1,11 @@
 package com.example.bean;
 
-import java.util.List;
+
 
 public class AllCategoryImages
 {
 private String id;
-private List<byte[]> images;
+private byte[] images;
 
 
 
@@ -17,11 +17,11 @@ public void setId(String id)
 {
 	this.id = id;
 }
-public List<byte[]> getImages()
+public byte[] getImages()
 {
 	return images;
 }
-public void setImages(List<byte[]> images)
+public void setImages(byte[] images)
 {
 	this.images = images;
 }
