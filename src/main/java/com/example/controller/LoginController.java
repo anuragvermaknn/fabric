@@ -13,12 +13,14 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.validation.Valid;
 
+import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.bean.AllCategoryImages;
+import com.example.bean.ModelBean;
 import com.example.bean.ParameterBean;
 import com.example.model.Item;
 import com.example.model.User;
@@ -150,11 +153,14 @@ public class LoginController
 			@RequestBody(required = false) ParameterBean parameterBean)
 	{
 
+		ModelBean model= new ModelBean();
 		ParameterBean parameterBean1 = new ParameterBean("A", "B", "A", "B", "A", "B", "A");
 		// TODO change parameterBean1 to parameterBean below
 		byte[] imageStream = itemService.getImageByteArrayFromParameterBean(parameterBean1);
 		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(imageStream, HttpStatus.OK);
 		return responseEntity;
+		//return model;
+	
 	}
 
 	@RequestMapping(value = "/data/category/image", method = RequestMethod.GET)
