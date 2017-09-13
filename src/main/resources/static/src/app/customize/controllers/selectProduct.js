@@ -3,25 +3,8 @@ angular.module('customize.controllers.selectProduct', [])
         function($scope, $location, $state, StorefrontHttpService) {
 
 
-
-            $scope.arrayBufferToBase64 = function( buffer ) {
-                var binary = '';
-                var bytes = new Uint8Array( buffer );
-                var len = bytes.byteLength;
-                for (var i = 0; i < len; i++) {
-                    binary += String.fromCharCode( bytes[ i ] );
-                }
-                return window.btoa( binary );
-            };
-
-            $scope.detailedStyle = function () {
-               var createDetailRenderDTO = {
-
-                };
-            };
-
             StorefrontHttpService.getProductDetails().then(function (success){
-                $scope.categoryData = success[0];
+                $scope.categoryData = success;
                 console.log($scope.categoryData);
 
             }, function (error){
@@ -30,4 +13,4 @@ angular.module('customize.controllers.selectProduct', [])
 
 
 
-    }]);
+        }]);
