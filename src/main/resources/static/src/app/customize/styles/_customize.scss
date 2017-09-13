@@ -1,5 +1,5 @@
 
-.container {
+.container-img {
     position: relative;
     width: 0%;
 }
@@ -14,4 +14,68 @@
 
 .container:hover .image {
   opacity: 0.3;
+}
+
+.visuallyhidden {
+  display: none;
+}
+
+.wizard-progress {
+  list-style: none;
+  list-style-image: none;
+  margin: 0;
+  padding: 0;  margin-top: 20px;
+  white-space: nowrap;
+}
+
+.wizard-progress li {
+  float: left;
+  margin-right: 50px;
+  text-align: center;
+  position: relative;
+  width: 100px;
+}
+
+.wizard-progress .step-name {
+  display: table-cell;
+  height: 32px;
+  vertical-align: bottom;
+  text-align: center;
+  width: 100px;
+}
+
+.wizard-progress .step-name-wrapper {
+  display: table-cell;
+  height: 100%;
+  vertical-align: bottom;
+}
+
+.wizard-progress .step-num {
+  font-size: 14px;
+  font-weight: bold;
+  border: 3px solid #0070c0;
+  border-radius: 50%;
+  width: 30px;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.wizard-progress .step-num:after {
+  content: "";
+  display: block;
+  background: #0070c0;
+  height: 4px;
+  width: 126px;
+  position: absolute;
+  bottom: 10px;
+  left: 62px;
+}
+
+.wizard-progress li:last-of-type .step-num:after {
+  display: none;
+}
+
+.wizard-progress .active-step .step-num {
+  background-color: #0070c0;
+  color: #fff;
 }

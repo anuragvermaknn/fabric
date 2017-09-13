@@ -1,5 +1,5 @@
 /**
- * Created by shrey on 10/09/17.
+ * Created by nikhil on 10/17/16.
  */
 module.exports = {
     storefrontUrl: 'https://store.adda247.com',

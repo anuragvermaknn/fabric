@@ -4,7 +4,7 @@
 
 angular.module('config', [])
 
-.constant('fabricootUrl', 'https://xyz.com')
+.constant('storefrontUrl', 'https://store.adda247.com')
 
 .constant('couponUrl', 'https://couponapi.adda247.com')
 

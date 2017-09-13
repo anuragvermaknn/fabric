@@ -128,7 +128,7 @@ appConfig.$inject = ['$facebookProvider', 'cfpLoadingBarProvider', '$urlRouterPr
 
 function appConfig($facebookProvider, cfpLoadingBarProvider, $urlRouterProvider, $httpProvider) {
 
-    $facebookProvider.setAppId('233923120281900');
+    $facebookProvider.setAppId('123456789098');
     $facebookProvider.setPermissions("email,user_likes");
     cfpLoadingBarProvider.includeSpinner = false;
     $urlRouterProvider.otherwise('/home');
