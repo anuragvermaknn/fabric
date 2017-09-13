@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<testsuite name="PhantomJS 2.1.1 (Mac OS X 0.0.0)" package="" timestamp="2017-09-05T18:23:39" id="0" hostname="MacBook-Pro.local" tests="4" errors="1" failures="4" time="0.003">
+  <properties>
+    <property name="browser.fullName" value="Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1"/>
+  </properties>
+  <testcase name="encountered a declaration exception" time="0.003" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).HomeCtrl ">
+    <failure type="">ReferenceError: Can't find variable: module in src/app/home/unit/HomeCtrl.spec.js (line 5)
+src/app/home/unit/HomeCtrl.spec.js:5:20
+global code@src/app/home/unit/HomeCtrl.spec.js:1:9
+</failure>
+  </testcase>
+  <testcase name="encountered a declaration exception" time="0" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).Service: HomeService -">
+    <failure type="">ReferenceError: Can't find variable: module in src/app/home/unit/HomeService.service.spec.js (line 5)
+src/app/home/unit/HomeService.service.spec.js:5:20
+global code@src/app/home/unit/HomeService.service.spec.js:1:9
+</failure>
+  </testcase>
+  <testcase name="encountered a declaration exception" time="0" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).testseriesCtrl ">
+    <failure type="">ReferenceError: Can't find variable: module in src/app/testseries/unit/TestseriesCtrl.spec.js (line 5)
+src/app/testseries/unit/TestseriesCtrl.spec.js:5:22
+global code@src/app/testseries/unit/TestseriesCtrl.spec.js:1:9
+</failure>
+  </testcase>
+  <testcase name="encountered a declaration exception" time="0" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).TopbarCtrl ">
+    <failure type="">ReferenceError: Can't find variable: module in src/app/topbar/unit/topbar.spec.js (line 5)
+src/app/topbar/unit/topbar.spec.js:5:20
+global code@src/app/topbar/unit/topbar.spec.js:1:9
+</failure>
+  </testcase>
+  <system-out>
+    <![CDATA[
+]]>
+  </system-out>
+  <system-err/>
+</testsuite>
