@@ -31,7 +31,7 @@
             function getProductDetails() {
                 var config = {
                     method: 'GET',
-                    url: 'http://34.212.124.194:8081/get/AllCategroies/data'
+                    url: 'http://127.0.0.1:8081/product/items'
                     //url: 'https://api.myjson.com/bins/1dn3b5'
                 };
                 return HttpService.httpRequest(config);
