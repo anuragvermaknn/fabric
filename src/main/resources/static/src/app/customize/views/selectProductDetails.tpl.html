@@ -18,33 +18,50 @@
 <div style="text-align: center; padding: 20px 0;">CUSTOMIZE</div>
 <div class="row">
 <div style="text-align: center;margin: 0;">
-    <div class="small-2 columns">Silhoutte</div>
-    <div class="small-2 columns">Neckline</div>
 
-    <div class="small-1 columns">Backline</div>
-
-    <div class="small-2 columns">Sleeves</div>
-
-    <div class="small-2 columns">Fabric</div>
-    <div class="small-2 columns">Embroidery</div>
-    <div class="small-1 columns">Pockets</div>
-    <div></div>
+    <span>
+        <img ng-click="displaySelectedCategory(0)" class="cloth-type-image" src="https://www.arenawaterinstinct.com/en_global/body-shaping-swimwear/img/icon_classic%20bra.png" />
+    </span>
+    <span>
+        <img ng-click="displaySelectedCategory(1)" class="cloth-type-image" src="https://www.arenawaterinstinct.com/en_global/body-shaping-swimwear/img/icon_classic%20bra.png" />
+    </span>
+    <span>
+        <img ng-click="displaySelectedCategory(2)" class="cloth-type-image"  src="https://www.arenawaterinstinct.com/en_global/body-shaping-swimwear/img/icon_classic%20bra.png" />
+    </span>
+    <span>
+        <img ng-click="displaySelectedCategory(3)"  class="cloth-type-image"  src="https://www.arenawaterinstinct.com/en_global/body-shaping-swimwear/img/icon_classic%20bra.png" />
+    </span>
+    <span>
+        <img ng-click="displaySelectedCategory(4)"  class="cloth-type-image"  src="https://www.arenawaterinstinct.com/en_global/body-shaping-swimwear/img/icon_classic%20bra.png" />
+    </span>
+    <span>
+        <img ng-click="displaySelectedCategory(5)"  class="cloth-type-image"  src="https://www.arenawaterinstinct.com/en_global/body-shaping-swimwear/img/icon_classic%20bra.png" />
+    </span>
+    <span>
+        <img ng-click="displaySelectedCategory(6)"  class="cloth-type-image"  src="https://www.arenawaterinstinct.com/en_global/body-shaping-swimwear/img/icon_classic%20bra.png" />
+    </span>
+    
 </div>
 <div class="small-12 columns">
     <div class="small-6 columns">
 
-        <div class='md-padding' layout="row" layout-wrap layout-align="center center" style="margin: 0 auto;" flex="50">
+        <div class='md-padding' layout="row" layout-align="center center" style="margin: 0 auto;" flex="50">
 
-            <div class="container-img" style="width: 250px;" ng-repeat="">
+            <div class="container-img" style="width: 180px;" ng-repeat="style in currentCat">
                 <md-card>
-                    <img ng-src="data:image/JPEG;base64,{{}}" class="image md-card-image" alt="user avatar">
+                    <img ng-src="data:image/JPEG;base64,{{style.image}}" ng-click="createDTO(style.id)" class="image md-card-image" alt="user avatar">
                 </md-card>
             </div>
 
         </div>
 
     </div>
-    <div class="small-6 columns">Rendered IMG</div>
+    <div class="small-6 columns">
+        <div>this div will have two buttons</div>
+        <div>
+            <img ng-src="data:image/JPEG;base64,{{renderedImage}}" />
+        </div>
+    </div>
 </div>
 </div>
 </div>

@@ -2,6 +2,7 @@
 .container-img {
     position: relative;
     width: 0%;
+  cursor: pointer;
 }
 .image {
   opacity: 1;
@@ -78,4 +79,10 @@
 .wizard-progress .active-step .step-num {
   background-color: #0070c0;
   color: #fff;
+}
+
+.cloth-type-image{
+  cursor: pointer;
+  width: 65px;
+  padding:0 10px;
 }

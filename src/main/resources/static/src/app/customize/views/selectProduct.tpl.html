@@ -2,7 +2,7 @@
 
 <div class='md-padding' layout="row" layout-wrap layout-align="center center" style="margin: 0 auto;" flex="50">
     
-    <div class="container-img" style="width: 250px;" ng-repeat="style in categoryData track by $index">
+    <div class="container-img" style="width: 180px;" ng-repeat="style in categoryData track by $index">
         <md-card>
             <img ng-src="data:image/JPEG;base64,{{style.image}}" class="image md-card-image" alt="user avatar"
             ui-sref="detailedStyle({id: style.id})">
