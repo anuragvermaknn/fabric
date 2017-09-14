@@ -49,18 +49,27 @@
 
             <div class="container-img" style="width: 180px;" ng-repeat="style in currentCat">
                 <md-card>
-                    <img ng-src="data:image/JPEG;base64,{{style.image}}" ng-click="createDTO(style.id)" class="image md-card-image" alt="user avatar">
+                    <img ng-src="data:image/JPEG;base64,{{style.image}}" ng-click="updateDTO(style)" class="image md-card-image" alt="user avatar">
                 </md-card>
             </div>
 
         </div>
 
     </div>
-    <div class="small-6 columns">
+    <div class="small-6 columns" style="text-align: center;">
         <div>this div will have two buttons</div>
         <div>
-            <img ng-src="data:image/JPEG;base64,{{renderedImage}}" />
+            <img ng-src="data:image/JPEG;base64,{{renderedImage}}" style="height: 500px;" />
         </div>
+        <div>
+            <span ng-click="changeImage(1)">Front</span>
+            <span ng-click="changeImage(2)">Left</span>
+            <span ng-click="changeImage(3)">Right</span>
+
+
+
+        </div>
+
     </div>
 </div>
 </div>
