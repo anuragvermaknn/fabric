@@ -1,6 +1,6 @@
 <div>
-    <ol class="wizard-progress clearfix" style="margin: 0 auto;
-    width: 45%;">
+    <div id="timeline" class="row">
+    <ul class="centerUL wizard-progress clearfix">
         <li class="active-step">
             <span class="visuallyhidden">Step </span><span class="step-num">1</span>
         </li>
@@ -13,7 +13,8 @@
         <li>
             <span class="visuallyhidden">Step </span><span class="step-num">4</span>
         </li>
-    </ol>
+    </ul>
+    </div>
 
 <div style="text-align: center; padding: 20px 0;">CUSTOMIZE</div>
 <div class="row">
@@ -49,18 +50,27 @@
 
             <div class="container-img" style="width: 180px;" ng-repeat="style in currentCat">
                 <md-card>
-                    <img ng-src="data:image/JPEG;base64,{{style.image}}" ng-click="createDTO(style.id)" class="image md-card-image" alt="user avatar">
+                    <img ng-src="data:image/JPEG;base64,{{style.image}}" ng-click="updateDTO(style)" class="image md-card-image" alt="user avatar">
                 </md-card>
             </div>
 
         </div>
 
     </div>
-    <div class="small-6 columns">
+    <div class="small-6 columns" style="text-align: center;">
         <div>this div will have two buttons</div>
         <div>
-            <img ng-src="data:image/JPEG;base64,{{renderedImage}}" />
+            <img ng-src="data:image/JPEG;base64,{{renderedImage}}" style="height: 500px;" />
         </div>
+        <div>
+            <span ng-click="changeImage(1)">Front</span>
+            <span ng-click="changeImage(2)">Left</span>
+            <span ng-click="changeImage(3)">Right</span>
+
+
+
+        </div>
+
     </div>
 </div>
 </div>

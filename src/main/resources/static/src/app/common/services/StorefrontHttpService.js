@@ -11,12 +11,7 @@
     .factory('StorefrontHttpService', ['HttpService', 'Utils',
         function(HttpService, Utils) {
 
-
-
             var API_VERSION1 = "/api/v1";
-
-
-
 
             var service = {
                 getProductDetails : getProductDetails,
@@ -27,7 +22,11 @@
             return service;
 
             function renderProductImage() {
-
+                var config = {
+                    method : 'GET',
+                    url: 'http://127.0.0.1:8081/data/image'
+                };
+                return HttpService.httpRequest(config);
             }
 
             function getClothDetail() {

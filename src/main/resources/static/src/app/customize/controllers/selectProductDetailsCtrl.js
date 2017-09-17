@@ -4,13 +4,33 @@ angular.module('customize.controllers.selectProductDetailsCtrl', [])
         function($scope, $location, $state, StorefrontHttpService) {
 
             var clothDetailDTO;
+            var imageDTO;
+            var currentCatName;
+            $scope.createInitDTO = function () {
+                imageDTO = {
+                    silhouette : silhouttes[0].id,
+                    neckline : neckline[0].id,
+                    backline : backline[0].id,
+                    sleeves : sleeves[0].id,
+                    cloth : fabric[0].id,
+                    border : pockets[0].id,
+                    embroidery : embroidery[0].id
+                }
+            };
 
-            clothDetailDTO = {
 
-            }
+            $scope.updateDTO = function (data) {
+                imageDTO[currentCatName] = data.id;
+                StorefrontHttpService.renderProductImage(imageDTO).then(function (success) {
+                    $scope.images = success.viewImages;
+                    $scope.renderedImage = $scope.images.front;
+                }, function (error) {
+
+                });
 
 
-            // $scope.createDTO()
+            };
+
 
 
             $scope.getClothData = function () {
@@ -18,15 +38,17 @@ angular.module('customize.controllers.selectProductDetailsCtrl', [])
                         silhouttes = success[0];
                         neckline = success[1];
                         backline = success[2];
-                        console.log(backline);
                         sleeves = success[3];
                         fabric = success[4];
                         embroidery = success[5];
                         pockets = success[6];
                       $scope.currentCat = silhouttes;
-
-                      StorefrontHttpService.renderProductImage(clothDetailDTO).then(function (success) {
-                          $scope.renderedImage = success.image;
+                      currentCatName = 'silhouttes';
+                      $scope.createInitDTO();
+                      StorefrontHttpService.renderProductImage(imageDTO).then(function (success) {
+                          $scope.images = success.viewImages;
+                          console.log($scope.images);
+                          $scope.renderedImage = $scope.images.front;
                       }, function (error) {
 
                       });
@@ -35,35 +57,61 @@ angular.module('customize.controllers.selectProductDetailsCtrl', [])
                   });
                 };
 
+
+            $scope.changeImage = function (pos) {
+                if(pos === 1){
+                    $scope.renderedImage = $scope.images.front;
+                }
+                if(pos === 2){
+                    $scope.renderedImage = $scope.images.left;
+                }
+                else {
+                    $scope.renderedImage = $scope.images.right;
+                }
+            };
+
             $scope.displaySelectedCategory = function (id) {
                     id=id.toString();
                 switch (id){
                     case '0':
                             $scope.currentCat = silhouttes;
+                            currentCatName = 'silhouette';
                         break;
 
                     case '1':
                             $scope.currentCat = neckline;
+                        currentCatName = 'neckline';
+
                         break;
 
                     case '2':
                             $scope.currentCat = backline;
+                        currentCatName = 'backline';
+
                         break;
 
                     case '3':
                             $scope.currentCat = sleeves;
+                        currentCatName = 'sleeves';
+
                         break;
 
                     case '4':
                             $scope.currentCat = fabric;
+                        currentCatName = 'fabric';
+
                         break;
 
                     case '5':
                             $scope.currentCat = embroidery;
+                        currentCatName = 'embroidery';
+
                         break;
 
                     case '6':
                             $scope.currentCat = pockets;
+                        currentCatName = 'pockets';
+
                         break;
 
                     default:
