@@ -5,7 +5,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,20 +12,18 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.validation.Valid;
 
-import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -49,12 +46,26 @@ public class LoginController
 	@Autowired
 	private IItemService itemService;
 
-	@RequestMapping(value = { "/", "/login" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/login" }, method = RequestMethod.GET)
 	public ModelAndView login()
 	{
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("login");
 		return modelAndView;
+	}
+
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String getHomePage1(@RequestHeader("User-Agent") String userAgent)
+	{
+
+		if (userAgent.contains("MSIE 8") || userAgent.contains("MSIE 7") || userAgent.contains("MSIE 6"))
+		{
+			return "indexIE8";
+		}
+		else
+		{
+			return "index";
+		}
 	}
 
 	@RequestMapping(value = "/registration", method = RequestMethod.GET)
@@ -152,7 +163,7 @@ public class LoginController
 
 	// 3d model api
 	@RequestMapping(value = "/data/image", method = RequestMethod.GET)
-	public ResponseEntity<ModelBean> getImageByteArrayFromParameterBean( ParameterBean parameterBean)
+	public ResponseEntity<ModelBean> getImageByteArrayFromParameterBean(ParameterBean parameterBean)
 	{
 
 		ModelBean model = new ModelBean();
@@ -173,7 +184,7 @@ public class LoginController
 
 	}
 
-	//All categories second part data with mapping
+	// All categories second part data with mapping
 	@RequestMapping(value = "/get/AllCategroies/data", method = RequestMethod.GET)
 	public ResponseEntity<Map<String, List<AllCategoryImages>>> getCategoryImageByteArrayFromParameterBean()
 	{
@@ -239,7 +250,7 @@ public class LoginController
 		return items;
 	}
 
-	//product listing api
+	// product listing api
 	@RequestMapping(value = "/product/items", method = RequestMethod.GET)
 	public ResponseEntity<List<AllCategoryImages>> allProductsListing()
 	{

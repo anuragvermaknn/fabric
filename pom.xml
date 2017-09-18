@@ -70,6 +70,22 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				
+				 <configuration>
+    
+    <resources>
+      <resource>
+        <classesDirectory>src/main/java/</classesDirectory>
+        <includes>
+          <include>/*</include>
+        </includes>
+        <excludes>
+          <exclude>/src/main/resources/fabricImages*</exclude>
+        </excludes>
+      </resource>
+    </resources>               
+  </configuration>
+				
 			</plugin>
 		</plugins>
 	</build>
