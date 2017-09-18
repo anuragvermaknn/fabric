@@ -27,8 +27,6 @@ angular.module('customize.controllers.selectProductDetailsCtrl', [])
                 }, function (error) {
 
                 });
-
-
             };
 
 

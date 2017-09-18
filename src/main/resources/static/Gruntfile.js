@@ -22,8 +22,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-eslint');
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-ng-constant');
-    grunt.loadNpmTasks('grunt-aws-s3');
-    grunt.loadNpmTasks('grunt-string-replace');
     // grunt.loadNpmTasks('grunt-contrib-connect');
     // grunt.loadNpmTasks('grunt-connect-rewrite');
     //var rewriteRulesSnippet = require('grunt-connect-rewrite/lib/utils').rewriteRequest;
@@ -33,7 +31,6 @@ module.exports = function (grunt) {
      */
     var vendorConfig = require('./vendor.config.js');
     var prodConfig = require('./prod.js');
-    var stagingConfig = require('./staging.js');
     var devConfig = require('./dev.js');
 
     /*
@@ -47,9 +44,6 @@ module.exports = function (grunt) {
          */
         dev_build_dir: 'public',
         prod_build_dir: '../webapp/assets',
-        staging_build_dir: '../webapp',
-        storefront_assets_cloudfront: 'https://storecdn.adda247.com',
-
         /*
          * This is a collection of file patterns that refer to our app source code
          */
@@ -109,77 +103,7 @@ module.exports = function (grunt) {
                 options: {
                     force: true
                 }
-            },
-            staging: {
-                src: ['<%= staging_build_dir %>/public'],
-                options: {
-                    force: true
-                }
             }
-        },
-
-
-        aws_s3: {
-
-            options: {
-                accessKeyId: 'AKIAIEMNB6D2JZGKMSAQ',
-                secretAccessKey: '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',
-                region: 'ap-south-1',
-                bucket: 'storefront-assets',
-                params: {
-                    'CacheControl': 'public,max-age=31556952'
-                },
-                sslEnabled: true,
-                progress: 'progressBar',
-                uploadConcurrency: 5,
-                downloadConcurrency: 5
-            },
-
-            /**
-             * second part copies fonts that are needed. their requests is relative to the url from where css is
-             * loaded. So fonts need to be copied to the appropriate places or urls need to be absolute.
-             */
-            production: {
-                files: [{
-                    expand: true,
-                    action: 'upload',
-                    cwd: '../webapp/assets/',
-                    src: ['**'],
-                    dest: 'static/',
-                    stream: true
-                }, {
-                    expand: true,
-                    action: 'upload',
-                    cwd: '../webapp/assets/fonts/',
-                    src: ['*.woff'],
-                    dest: 'assets/fonts/',
-                    stream: true
-                }]
-            }
-        },
-
-        'string-replace': {
-
-            options: {
-                replacements: [{
-                    pattern: '<%= pkg.name %>-<%= pkg.version %>.js',
-                    replacement: '<%= storefront_assets_cloudfront %>/static/<%= pkg.name %>-<%= pkg.version %>.js'
-                }, {
-                    pattern: 'assets/<%= pkg.name %>-<%= pkg.version %>.css',
-                    replacement: '<%= storefront_assets_cloudfront %>/static/<%= pkg.name %>-<%= pkg.version %>.css'
-                }]
-            },
-
-            inline: {
-                files: [{
-                    src: 'index.html',
-                    expand: true,
-                    cwd: '../webapp/assets/',
-                    dest: '../webapp/assets/'
-
-                }]
-            }
-
         },
 
         /**
@@ -197,12 +121,7 @@ module.exports = function (grunt) {
                 },
                 constants: devConfig
             },
-            staging: {
-                options: {
-                    dest: './src/app/scripts/config.js'
-                },
-                constants: stagingConfig
-            },
+
             production: {
                 options: {
                     dest: './src/app/scripts/config.js'
@@ -259,31 +178,10 @@ module.exports = function (grunt) {
                     expand: true
                 }]
             },
-            staging_assets: {
-                files: [{
-                    cwd: '.',
-                    src: ['<%= dev_build_dir %>/**/*.*'],
-                    dest: '<%= staging_build_dir %>/'
-                }]
-            },
             indexIE8: {
                 files: [{
                     src: ['../webapp/WEB-INF/html/indexIE8.html'],
                     dest: '<%= prod_build_dir %>/indexIE8.html',
-                    cwd: '.'
-                }]
-            },
-            prod_viewer: {
-                files: [{
-                    src: ['../webapp/WEB-INF/html/viewer.html'],
-                    dest: '<%= prod_build_dir %>/viewer.html',
-                    cwd: '.'
-                }]
-            },
-            staging_viewer: {
-                files: [{
-                    src: ['../webapp/WEB-INF/html/viewer.html'],
-                    dest: '<%= staging_build_dir %>/public/viewer.html',
                     cwd: '.'
                 }]
             }
@@ -720,7 +618,6 @@ module.exports = function (grunt) {
     grunt.registerTask('default', ['development']);
     grunt.registerTask('deploy', ['production']);
 
-    grunt.registerTask('stage', ['staging']);
 
     /*
      * The `build` task gets your app ready to run for development and testing.
@@ -736,24 +633,7 @@ module.exports = function (grunt) {
         'copy:build_module_assets',
         'copy:build_appjs',
         'copy:build_vendorjs',
-        'index:build',
-        'copy:staging_viewer'
-
-    ]);
-
-    grunt.registerTask('staging', [
-        'clean:staging',
-        'ngconstant:staging',
-        'html2js:app',
-        'sass:build',
-        'concat:build_css',
-        'copy:build_app_assets',
-        'copy:build_module_assets',
-        'copy:build_appjs',
-        'copy:build_vendorjs',
-        'index:build',
-        'copy:staging_assets',
-        'copy:staging_viewer'
+        'index:build'
     ]);
 
     /*
@@ -777,11 +657,7 @@ module.exports = function (grunt) {
         'uglify',
         'index:compile',
         'htmlmin:index',
-        'copy:indexIE8',
-        'copy:prod_viewer',
-        'aws_s3:production',
-        'string-replace'
-
+        'copy:indexIE8'
     ]);
 
     grunt.registerTask('allDeployTask', [

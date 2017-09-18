@@ -5,3 +5,4 @@ target/
 src/main/resources/static/public/
 src/main/resources/static/node_modules/
 src/main/resources/static/bower_components/
+src/main/resources/webapp
