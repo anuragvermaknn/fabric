@@ -43,7 +43,7 @@ module.exports = function (grunt) {
          * completely built.
          */
         dev_build_dir: 'public',
-        prod_build_dir: '../template/assets',
+        prod_build_dir: '../templates/assets',
         /*
          * This is a collection of file patterns that refer to our app source code
          */
