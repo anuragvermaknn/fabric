@@ -12,7 +12,9 @@
         function(HttpService, Utils) {
 
             var API_VERSION1 = "/api/v1";
-
+            var parentUrl="http://34.212.124.194:8081";
+           // var parentUrl='http://127.0.0.1:8081';
+            
             var service = {
                 getProductDetails : getProductDetails,
                 getClothDetail : getClothDetail,
@@ -24,7 +26,7 @@
             function renderProductImage() {
                 var config = {
                     method : 'GET',
-                    url: 'http://127.0.0.1:8081/data/image'
+                    url: parentUrl+'/data/image'
                 };
                 return HttpService.httpRequest(config);
             }
@@ -32,7 +34,7 @@
             function getClothDetail() {
                 var config = {
                     method : 'GET',
-                    url: 'http://127.0.0.1:8081/get/AllCategroies/data'
+                    url: parentUrl+ '/get/AllCategroies/data'
                 };
                 return HttpService.httpRequest(config);
             }
@@ -40,7 +42,7 @@
             function getProductDetails() {
                 var config = {
                     method: 'GET',
-                    url: 'http://127.0.0.1:8081/product/items'
+                    url: parentUrl+'/product/items'
                 };
                 return HttpService.httpRequest(config);
             }
@@ -144,7 +146,7 @@
             //     var config = {
             //         // url: STOREFRONT_PARENT_URL + MY_TEST_SERIES_SUB_URL +
             //         url: assetsURLPrefix + '/video-faqs.json'
-            //     };
+            //     }; 
             //     return HttpService.httpRequest(config);
             // }
 
