@@ -643,7 +643,7 @@ module.exports = function (grunt) {
     grunt.registerTask('production', [
         'clean:compile',
         'ngconstant:production',
-        'html2js:min',
+        // 'html2js:min',
         'sass:compile',
         'concat:build_css',
         'copy:build_app_assets',
@@ -656,8 +656,7 @@ module.exports = function (grunt) {
         'concat:compile_js',
         'uglify',
         'index:compile',
-        'htmlmin:index',
-        'copy:indexIE8'
+        'htmlmin:index'
     ]);
 
     grunt.registerTask('allDeployTask', [
