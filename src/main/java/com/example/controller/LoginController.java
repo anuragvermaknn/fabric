@@ -55,17 +55,20 @@ public class LoginController
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String getHomePage1(@RequestHeader("User-Agent") String userAgent)
+	public ModelAndView getHomePage1(@RequestHeader("User-Agent") String userAgent)
 	{
-
+		ModelAndView modelAndView = new ModelAndView();
 		if (userAgent.contains("MSIE 8") || userAgent.contains("MSIE 7") || userAgent.contains("MSIE 6"))
 		{
-			return "indexIE8";
+			modelAndView.setViewName("indexIE8");
+
 		}
 		else
 		{
-			return "index";
+			modelAndView.setViewName("assets/index");
+
 		}
+		return modelAndView;
 	}
 
 	@RequestMapping(value = "/registration", method = RequestMethod.GET)
