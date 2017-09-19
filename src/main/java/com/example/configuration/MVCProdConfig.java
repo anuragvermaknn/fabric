@@ -17,7 +17,8 @@ public class MVCProdConfig extends WebMvcConfigurerAdapter
 	{
 		registry.addResourceHandler("*.js").addResourceLocations("classpath:/templates/assets/");
 
-		registry.addResourceHandler("*.css").addResourceLocations("classpath:/templates/assets/");
+		registry.addResourceHandler("/assets/*.css").addResourceLocations("classpath:/templates/assets/");
+		registry.addResourceHandler("/assets/images/*.png").addResourceLocations("classpath:/templates/assets/");
 	}
 
 }
