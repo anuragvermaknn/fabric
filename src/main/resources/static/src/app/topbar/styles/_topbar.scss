@@ -103,14 +103,13 @@ height: 3.75em;
 }
 
 .top-bar-section li:not(.has-form) a:not(.button) {
- background-color: #ffffff;
-    line-height: 2.825rem;
-    color: #000000;
-    padding: 6px 20px 0px 10px;
+  background-color: #ffffff;
+  line-height: 1.825rem;
+  color: #000000;
+  padding: 15px 10px 0 10px;
 }
 
 .top-bar-section .dropdown li:not(.has-form):not(.active):hover > a:not(.button) {
-  background-color: #f5f5f5;
   color: #000;
   background: #f5f5f5;
 }
@@ -122,8 +121,8 @@ height: 3.75em;
 
 .top-bar-section li:not(.has-form) a:not(.button):hover {
   background-color: #ffffff;
-    color: #000;
-    border-bottom: 3px solid #039af4;
+    border-bottom: 2px solid #1f62a7;
+  color: #1f62a7;
 }
 
 .top-bar-section .has-dropdown > a:after {
@@ -314,4 +313,14 @@ md-tabs md-ink-bar {
   opacity: 1;
   margin-top: 0;
   padding-top: 5px;
+}
+
+
+.topbar-right-items{
+  line-height: 3.825rem;
+  padding: 10px;
+  border-radius: 14px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-right: 20px;
 }
