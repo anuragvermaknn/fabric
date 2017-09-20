@@ -12,7 +12,7 @@ angular.module('config', [])
 
 .constant('assetsURLPrefix', 'https://storecdn.adda247.com')
 
-.constant('keyboardEnabled', false)
+.constant('keyboardEnabled', true)
 
 .constant('videoPdpDataUrl', 'https://storecdn.adda247.com/digital-course/prod/')
 
