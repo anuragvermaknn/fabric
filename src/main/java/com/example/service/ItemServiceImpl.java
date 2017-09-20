@@ -8,7 +8,9 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.imageio.ImageIO;
@@ -163,29 +165,86 @@ public class ItemServiceImpl implements IItemService{
     return itemRepository.findByEncodedString(encodedString).get(0);
   }
   
+//  @Override
+//  public byte[] getImageByteArrayFromParameterBean(ParameterBean parameterBean) {
+//    try {
+//      
+//      //String sampleImagePath =  "fabricImages/1A-1B-1A-1B-1A-1B-1A_BK1_optimized.png";
+//      String filePathInResourceFolder = getFilePathFromParameterBean(parameterBean);
+//      // Retrieve image from the classpath.
+//      InputStream is = this.getClass().getClassLoader().getResourceAsStream(filePathInResourceFolder); 
+//
+//      // Prepare buffered image.
+//      BufferedImage img = ImageIO.read(is);
+//
+//      // Create a byte array output stream.
+//      ByteArrayOutputStream bao = new ByteArrayOutputStream();
+//
+//      // Write to output stream
+//      ImageIO.write(img, "jpg", bao);
+//
+//      return bao.toByteArray();
+//  } catch (IOException e) {
+//      //logger.error(e);
+//      throw new RuntimeException(e);
+//  }
+//    
+//  }
+  
   @Override
-  public byte[] getImageByteArrayFromParameterBean(ParameterBean parameterBean) {
+  public Map<String,byte[]> getImageByteArrayFromParameterBean(ParameterBean parameterBean) {
+
+    Map<String, byte[]> viewImages = new HashMap<>();
+
+
     try {
       
       //String sampleImagePath =  "fabricImages/1A-1B-1A-1B-1A-1B-1A_BK1_optimized.png";
-      String filePathInResourceFolder = getFilePathFromParameterBean(parameterBean);
-      // Retrieve image from the classpath.
-      InputStream is = this.getClass().getClassLoader().getResourceAsStream(filePathInResourceFolder); 
+      String backFilePathInResourceFolder = getFilePathFromParameterBean(parameterBean);
+      
+      //fabricImages/1A-1B-1A-1B-1A-1B-1A_L1_optimized.png
+      String leftFilePathInResourceFolder = backFilePathInResourceFolder.replace("BK", "L");
+      
+      //fabricImages/1A-1B-1A-1B-1A-1B-1A_F1_optimized.png
+      String frontFilePathInResourceFolder = backFilePathInResourceFolder.replace("BK", "F");
+      
+      viewImages.put("left", _getImageByteArrayFromFilePathInResourceFolder(leftFilePathInResourceFolder));
+      
+      viewImages.put("front", _getImageByteArrayFromFilePathInResourceFolder(frontFilePathInResourceFolder));
 
-      // Prepare buffered image.
-      BufferedImage img = ImageIO.read(is);
-
-      // Create a byte array output stream.
-      ByteArrayOutputStream bao = new ByteArrayOutputStream();
-
-      // Write to output stream
-      ImageIO.write(img, "jpg", bao);
-
-      return bao.toByteArray();
-  } catch (IOException e) {
+      //FIX below. remove right below 
+      viewImages.put("back", _getImageByteArrayFromFilePathInResourceFolder(backFilePathInResourceFolder));
+      viewImages.put("right", _getImageByteArrayFromFilePathInResourceFolder(backFilePathInResourceFolder));
+      
+      return viewImages;
+   } catch (Exception e) {
       //logger.error(e);
       throw new RuntimeException(e);
   }
     
+  }
+  
+  @SuppressWarnings("unused")
+  private byte[] _getImageByteArrayFromFilePathInResourceFolder(String filePathInResourceFolder){
+     
+    try {
+      // Retrieve image from the classpath.
+      InputStream is = this.getClass().getClassLoader().getResourceAsStream(filePathInResourceFolder);
+      // Prepare buffered image.
+      BufferedImage img = ImageIO.read(is);
+  
+      // Create a byte array output stream.
+      ByteArrayOutputStream bao = new ByteArrayOutputStream();
+  
+      // Write to output stream
+      ImageIO.write(img, "jpg", bao);
+        
+      return bao.toByteArray();  
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+      throw new RuntimeException(e);
+    }
+  
   }
 }

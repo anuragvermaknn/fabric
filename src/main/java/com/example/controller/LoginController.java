@@ -172,13 +172,16 @@ public class LoginController
 		ModelBean model = new ModelBean();
 		ParameterBean parameterBean1 = new ParameterBean("A", "B", "A", "B", "A", "B", "A");
 		// TODO change parameterBean1 to parameterBean below
-		byte[] imageStream = itemService.getImageByteArrayFromParameterBean(parameterBean1);
+//		byte[] imageStream = itemService.getImageByteArrayFromParameterBean(parameterBean1);
 
-		Map<String, byte[]> viewImages = new HashMap<>();
+//		Map<String, byte[]> viewImages = new HashMap<>();
+//
+//		viewImages.put("left", imageStream);
+//		viewImages.put("right", imageStream);
+//		viewImages.put("front", imageStream);
+		
+        Map<String, byte[]> viewImages = itemService.getImageByteArrayFromParameterBean(parameterBean1);
 
-		viewImages.put("left", imageStream);
-		viewImages.put("right", imageStream);
-		viewImages.put("front", imageStream);
 		model.setViewImages(viewImages);
 
 		ResponseEntity<ModelBean> responseEntity = new ResponseEntity<>(model, HttpStatus.OK);
@@ -196,7 +199,7 @@ public class LoginController
 		List<AllCategoryImages> list = new ArrayList<>();
 		ParameterBean parameterBean1 = new ParameterBean("A", "B", "A", "B", "A", "B", "A");
 		// TODO change parameterBean1 to parameterBean below
-		byte[] imageStream = itemService.getImageByteArrayFromParameterBean(parameterBean1);
+		byte[] imageStream = itemService.getImageByteArrayFromParameterBean(parameterBean1).get("front");
 
 		for (int i = 0; i < 3; i++)
 		{
@@ -230,7 +233,7 @@ public class LoginController
 
 		ParameterBean parameterBean1 = new ParameterBean("A", "B", "A", "B", "A", "B", "A");
 		// TODO change parameterBean1 to parameterBean below
-		byte[] imageStream = itemService.getImageByteArrayFromParameterBean(parameterBean1);
+		byte[] imageStream = itemService.getImageByteArrayFromParameterBean(parameterBean1).get("front");
 		List<byte[]> categoryImages = new ArrayList<byte[]>();
 		categoryImages.add(imageStream);
 		categoryImages.add(imageStream);
@@ -260,7 +263,7 @@ public class LoginController
 		List<AllCategoryImages> result = new ArrayList<>();
 		ParameterBean parameterBean1 = new ParameterBean("A", "B", "A", "B", "A", "B", "A");
 		// TODO change parameterBean1 to parameterBean below
-		byte[] imageStream = itemService.getImageByteArrayFromParameterBean(parameterBean1);
+		byte[] imageStream = itemService.getImageByteArrayFromParameterBean(parameterBean1).get("front");
 
 		for (int i = 0; i < 10; i++)
 		{
