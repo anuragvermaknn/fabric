@@ -10,9 +10,9 @@ angular.module('config', [])
 
 .constant('userUrl', 'https://userapi.adda247.com')
 
-.constant('assetsURLPrefix', 'http://res.cloudinary.com/drd7xdko2/image/upload/v1505971532')
+.constant('assetsURLPrefix', 'https://res.cloudinary.com/drd7xdko2/image/upload/v1505971532')
 
-.constant('keyboardEnabled', true)
+.constant('keyboardEnabled', false)
 
 .constant('videoPdpDataUrl', 'https://storecdn.adda247.com/digital-course/prod/')
 
