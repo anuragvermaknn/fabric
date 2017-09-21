@@ -10,7 +10,7 @@ angular.module('config', [])
 
 .constant('userUrl', 'https://userapi.adda247.com')
 
-.constant('assetsURLPrefix', 'https://storecdn.adda247.com')
+.constant('assetsURLPrefix', 'https://res.cloudinary.com/drd7xdko2/image/upload/v1505971532')
 
 .constant('keyboardEnabled', false)
 
