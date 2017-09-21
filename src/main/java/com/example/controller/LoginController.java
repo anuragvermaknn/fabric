@@ -13,6 +13,7 @@ import javax.imageio.ImageIO;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -45,7 +46,7 @@ public class LoginController
 
 	@Autowired
 	private IItemService itemService;
-
+	@Cacheable
 	@RequestMapping(value = { "/login" }, method = RequestMethod.GET)
 	public ModelAndView login()
 	{
@@ -53,7 +54,7 @@ public class LoginController
 		modelAndView.setViewName("login");
 		return modelAndView;
 	}
-
+	@Cacheable
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView getHomePage1(@RequestHeader("User-Agent") String userAgent)
 	{
@@ -70,7 +71,7 @@ public class LoginController
 		}
 		return modelAndView;
 	}
-
+	@Cacheable
 	@RequestMapping(value = "/registration", method = RequestMethod.GET)
 	public ModelAndView registration()
 	{
@@ -82,7 +83,7 @@ public class LoginController
 		modelAndView.setViewName("registration");
 		return modelAndView;
 	}
-
+	@Cacheable
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
 	public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult)
 	{
@@ -107,7 +108,7 @@ public class LoginController
 		}
 		return modelAndView;
 	}
-
+	@Cacheable
 	@RequestMapping(value = "/admin/home", method = RequestMethod.GET)
 	public ModelAndView home()
 	{
@@ -120,7 +121,7 @@ public class LoginController
 		modelAndView.setViewName("admin/home");
 		return modelAndView;
 	}
-
+	@Cacheable
 	@RequestMapping(value = "/sample-image", method = RequestMethod.GET, produces = "image/png")
 	public @ResponseBody byte[] getFile()
 	{
@@ -165,6 +166,7 @@ public class LoginController
 	// }
 
 	// 3d model api
+	@Cacheable
 	@RequestMapping(value = "/data/image", method = RequestMethod.GET)
 	public ResponseEntity<ModelBean> getImageByteArrayFromParameterBean(ParameterBean parameterBean)
 	{
@@ -191,6 +193,7 @@ public class LoginController
 	}
 
 	// All categories second part data with mapping
+	@Cacheable
 	@RequestMapping(value = "/get/AllCategroies/data", method = RequestMethod.GET)
 	public ResponseEntity<Map<String, List<AllCategoryImages>>> getCategoryImageByteArrayFromParameterBean()
 	{
@@ -221,6 +224,7 @@ public class LoginController
 	}
 
 	// TODO @Navneet fix needed in this controller
+	@Cacheable
 	@RequestMapping(value = "/data/category/image2", method = RequestMethod.GET)
 	public List<byte[]> getCategoryImageByteArrayFromParameterBean2(@RequestBody(required = false) String category)
 	{
@@ -245,7 +249,7 @@ public class LoginController
 
 		return categoryImages;
 	}
-
+	@Cacheable
 	@RequestMapping(value = "/data/item", method = RequestMethod.GET)
 	public @ResponseBody List<Item> findItemByParameterBean(@RequestBody(required = false) ParameterBean parameterBean)
 	{
@@ -256,7 +260,9 @@ public class LoginController
 		return items;
 	}
 
+	
 	// product listing api
+	@Cacheable
 	@RequestMapping(value = "/product/items", method = RequestMethod.GET)
 	public ResponseEntity<List<AllCategoryImages>> allProductsListing()
 	{

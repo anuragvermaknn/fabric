@@ -1,0 +1,12 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="ehcache.xsd" updateCheck="true"
+	monitoring="autodetect" dynamicConfig="true">
+
+	<cache name="fabric" 
+		maxEntriesLocalHeap="2000"
+		eternal="false"
+		timeToIdleSeconds="7000" timeToLiveSeconds="11000"
+		memoryStoreEvictionPolicy="LFU" >
+	</cache>
+
+</ehcache>
