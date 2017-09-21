@@ -181,7 +181,7 @@ public class ItemServiceImpl implements IItemService{
 //      ByteArrayOutputStream bao = new ByteArrayOutputStream();
 //
 //      // Write to output stream
-//      ImageIO.write(img, "jpg", bao);
+//      ImageIO.write(img, "png", bao);
 //
 //      return bao.toByteArray();
 //  } catch (IOException e) {
@@ -237,7 +237,7 @@ public class ItemServiceImpl implements IItemService{
       ByteArrayOutputStream bao = new ByteArrayOutputStream();
   
       // Write to output stream
-      ImageIO.write(img, "jpg", bao);
+      ImageIO.write(img, "png", bao);
         
       return bao.toByteArray();  
     } catch (IOException e) {

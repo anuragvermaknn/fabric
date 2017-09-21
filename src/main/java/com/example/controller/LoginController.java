@@ -5,6 +5,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +14,7 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.validation.Valid;
 
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -139,7 +142,7 @@ public class LoginController
 			ByteArrayOutputStream bao = new ByteArrayOutputStream();
 
 			// Write to output stream
-			ImageIO.write(img, "jpg", bao);
+			ImageIO.write(img, "png", bao);
 
 			return bao.toByteArray();
 		}
@@ -150,6 +153,7 @@ public class LoginController
 		}
 	}
 
+  
 	// @RequestMapping(value = "/inventorydtoragedays/customer", method =
 	// RequestMethod.GET)
 	// public ResponseEntity<List<InventoryStorageDaysForMonth>>
