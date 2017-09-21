@@ -1,11 +1,13 @@
 
 angular.module('customize.controllers.selectProductDetailsCtrl', [])
-    .controller('selectProductDetailsCtrl', ['$scope', '$location','$state', 'StorefrontHttpService',
-        function($scope, $location, $state, StorefrontHttpService) {
+    .controller('selectProductDetailsCtrl', ['$scope', '$location','$state', 'StorefrontHttpService', '$rootScope',
+        function($scope, $location, $state, StorefrontHttpService, $rootScope) {
 
             var clothDetailDTO;
             var imageDTO;
             var currentCatName;
+            $scope.imgPrefix = $rootScope.assetsURLPrefix;
+
             $scope.createInitDTO = function () {
                 imageDTO = {
                     silhouette : silhouttes[0].id,
