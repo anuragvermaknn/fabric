@@ -5,7 +5,7 @@
 package com.example.service;
 
 import java.util.List;
-
+import java.util.Map;
 
 import com.example.bean.ParameterBean;
 import com.example.model.Item;
@@ -51,8 +51,9 @@ public interface IItemService {
   
   public Item saveSampleItem();
   
-  public byte[] getImageByteArrayFromParameterBean(ParameterBean parameterBean);
+  //public byte[] getImageByteArrayFromParameterBean(ParameterBean parameterBean);
   
+  public Map<String,byte[]> getImageByteArrayFromParameterBean(ParameterBean parameterBean); 
 }
 
 
