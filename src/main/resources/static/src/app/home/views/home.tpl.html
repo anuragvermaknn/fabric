@@ -1,1 +1,65 @@
-<div style="height: 80vh;">this is home</div>
+
+<script>
+    var slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {slideIndex = 1}
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+        setTimeout(showSlides, 2000); // Change image every 2 seconds
+    }
+</script>
+
+<div class="slideshow-container">
+
+        <div class="mySlides fade">
+            <div class="numbertext">1 / 3</div>
+            <img src="https://static1.squarespace.com/static/55297341e4b026cc27b5b40a/55765085e4b0da9c03623b5c/57c3afe5b3db2b6d36102a66/1472442344431/su2016-carousel-2-update1.jpg" style="width:100%">
+            <div class="text">Caption Text</div>
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">2 / 3</div>
+            <img src="https://static1.squarespace.com/static/55297341e4b026cc27b5b40a/5576501fe4b0377e73c36665/580bb00a893fc06243c80301/1477160974859/pleat+front+folded+peasant+carousel.jpg" style="width:100%">
+            <div class="text">Caption Two</div>
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">3 / 3</div>
+            <img src="https://static1.squarespace.com/static/55297341e4b026cc27b5b40a/5576501fe4b0377e73c36665/57cc57ed29687fcc42b85f85/1473009653106/fa2016-carousel-1.jpg" style="width:100%">
+            <div class="text">Caption Three</div>
+        </div>
+
+    </div>
+    <br>
+
+    <div style="text-align:center">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+
+<div class="home-collection-container">
+    <!--<div class="small-12 columns">-->
+        <!--<img src="https://res.cloudinary.com/drd7xdko2/image/upload/v1506094229/home-kurta_uuedmt.png">-->
+    <!--</div>-->
+
+    <div class="landscape" style="padding-top: 30px;">
+        <img src="https://res.cloudinary.com/drd7xdko2/image/upload/v1506094229/home-kurta_uuedmt.png" style="max-height: 450px;width: 1000px;">
+    </div>
+    </div>
+
+
+
+

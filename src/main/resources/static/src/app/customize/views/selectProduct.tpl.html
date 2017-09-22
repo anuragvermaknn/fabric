@@ -4,7 +4,7 @@
     
     <div class="container-img" style="width: 180px;" ng-repeat="style in categoryData track by $index">
         <md-card>
-            <img ng-src="data:image/JPEG;base64,{{style.image}}" class="image md-card-image" alt="user avatar"
+            <img ng-src="data:image/png;base64,{{style.image}}" class="image md-card-image" alt="user avatar"
             ui-sref="detailedStyle({id: style.id})">
         </md-card>
     </div>
