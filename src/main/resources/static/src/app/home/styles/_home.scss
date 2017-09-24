@@ -90,3 +90,38 @@ img {
 .landscape {
   text-align: center;
 }
+
+
+.img-wrap {
+  width: 200px;
+  height: 220px;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  margin: 0 5px;
+
+  &:hover{
+    background-color: #676567;
+    opacity: 0.9;
+  }
+}
+
+ .img-products {
+  display: block;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-height: 100%;
+  min-width: 100%;
+  transform: translate(-50%, -50%);
+}
+ .centered-text{
+   color: #ffffff;
+   font-size: 24px;
+   font-weight:500;
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+   }
