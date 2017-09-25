@@ -25,9 +25,9 @@
             <!-- center Nav Section -->
             <ul class="left" style="padding-left: 100px;">
                 
-                <li><a id="top-bar-menu" ui-sref="home">HOME</a></li>
+                <li><a id="top-bar-menu" ui-sref="home" ng-class="{hover: $state.includes('home')}">HOME</a></li>
                 <li><a id="top-bar-menu" ui-sref="testSeriesAllView">HOW IT WORKS</a></li>
-                <li><a id="top-bar-menu" ui-sref="mycustomization">CUSTOMIZE</a></li>
+                <li><a id="top-bar-menu" ui-sref="mycustomization"  ng-class="{hover: $state.includes('mycustomization') || $state.includes('detailedStyle')}">CUSTOMIZE</a></li>
                 <li><a id="top-bar-menu" ui-sref="testSeriesAllView">POP-UP STORES</a></li>
                 <li><a id="top-bar-menu" ui-sref="testSeriesAllView">BLOG</a></li>
                 <li><a id="top-bar-menu" ui-sref="booksAllView">ABOUT US</a></li>

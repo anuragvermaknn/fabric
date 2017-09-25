@@ -1,13 +1,124 @@
-<div style="text-align: center;">SELECT THE PRODUCT</div> 
+<!--<div style="text-align: center;">SELECT THE PRODUCT</div> -->
+<div>
+    <div id="timeline" class="row" style="padding: 20px 0;">
+        <ul class="centerUL wizard-progress clearfix">
+            <li class="active-step">
+                <span class="visuallyhidden">Step </span><span class="step-num">1</span>
+            </li>
+            <li>
+                <span class="visuallyhidden">Step </span><span class="step-num">2</span>
+            </li>
+            <li>
+                <span class="visuallyhidden">Step </span><span class="step-num">3</span>
+            </li>
+            <li>
+                <span class="visuallyhidden">Step </span><span class="step-num">4</span>
+            </li>
+        </ul>
+    </div>
+    <div style="text-align: center; padding: 0px 0 20px;font-weight: 600;font-size: 20px;">SELECT THE PRODUCT</div>
 
-<div class='md-padding' layout="row" layout-wrap layout-align="center center" style="margin: 0 auto;" flex="50">
-    
-    <div class="container-img" style="width: 180px;" ng-repeat="style in categoryData track by $index">
-        <md-card>
-            <img ng-src="data:image/png;base64,{{style.image}}" class="image md-card-image" alt="user avatar"
-            ui-sref="detailedStyle({id: style.id})">
-        </md-card>
+    <div class="product-parent-container">
+
+        <div class='md-padding' layout="row" layout-wrap layout-align="center center" style="max-width: 55%;margin: 0 auto;" flex="50">
+
+            <div class="container-img" style="width:auto">
+                <md-card class="img-wrap" ui-sref="detailedStyle({id: id-1})">
+                    <img ng-src="https://res.cloudinary.com/drd7xdko2/image/upload/v1506242328/select_pro1_xw4agf.png" class="image md-card-image img-products" alt="user avatar">
+                    <div class="centered-text">Kurta</div>
+                </md-card>
+            </div>
+
+            <div class="container-img" style="width:auto">
+                <md-card class="img-wrap">
+                    <img ng-src="https://res.cloudinary.com/drd7xdko2/image/upload/v1506270120/7_yncu6g.png" class="image md-card-image img-products" alt="user avatar">
+                    <div class="centered-text">Bottom</div>
+
+                </md-card>
+            </div>
+
+            <div class="container-img" style="width:auto">
+                <md-card class="img-wrap">
+                    <img ng-src="https://res.cloudinary.com/drd7xdko2/image/upload/v1506357398/3_uwk1s0.jpg" class="image md-card-image img-products" alt="user avatar">
+                    <div class="centered-text">Sari Blouse</div>
+
+                </md-card>
+            </div>
+
+
+
+
+            <div class="container-img" style="width:auto">
+                <md-card class="img-wrap">
+                    <img ng-src="https://res.cloudinary.com/drd7xdko2/image/upload/v1506357398/4_gsykru.jpg" class="image md-card-image img-products" alt="user avatar">
+                    <div class="centered-text">Dress</div>
+
+                </md-card>
+            </div>
+
+
+            <div class="container-img" style="width:auto">
+                <md-card class="img-wrap">
+                    <img ng-src="https://res.cloudinary.com/drd7xdko2/image/upload/v1506270542/9_r5kbs5.png" class="image md-card-image img-products" alt="user avatar">
+                    <div class="centered-text">Shirt/Top</div>
+
+                </md-card>
+            </div>
+
+
+            <div class="container-img" style="width:auto">
+                <md-card class="img-wrap">
+                    <img ng-src="http://res.cloudinary.com/drd7xdko2/image/upload/v1506357398/6_j9fjxf.jpg" class="image md-card-image img-products" alt="user avatar">
+                    <div class="centered-text">Trouser</div>
+
+                </md-card>
+            </div>
+
+
+            <div class="container-img" style="width:auto">
+                <md-card class="img-wrap">
+                    <img ng-src="https://res.cloudinary.com/drd7xdko2/image/upload/v1506270543/11_zygaxl.png" class="image md-card-image img-products" alt="user avatar">
+                    <div class="centered-text">Skirt</div>
+
+                </md-card>
+            </div>
+
+
+            <div class="container-img" style="width:auto">
+                <md-card class="img-wrap">
+                    <img ng-src="https://res.cloudinary.com/drd7xdko2/image/upload/v1506270542/12_cfxrqw.png" class="image md-card-image img-products" alt="user avatar">
+                    <div class="centered-text">Nightdress/
+                        Housecoat</div>
+
+                </md-card>
+            </div>
+            <div class="container-img" style="width:auto">
+                <md-card class="img-wrap">
+                    <img ng-src="https://res.cloudinary.com/drd7xdko2/image/upload/v1506270543/13_m2z64o.png" class="image md-card-image img-products" alt="user avatar">
+                    <div class="centered-text">Jacket/Coat</div>
+
+                </md-card>
+            </div>
+
+
+
+
+        </div>
     </div>
 
-</div>
 
+
+
+    <!--<div class="product-parent-container">-->
+
+        <!--<div class='md-padding' layout="row" layout-wrap layout-align="center center" style="margin: 0 auto;" flex="50">-->
+
+            <!--<div class="container-img" style="width:auto" ng-repeat="style in categoryData track by $index">-->
+                <!--<md-card class="img-wrap">-->
+                    <!--<img ng-src="data:image/png;base64,{{style.image}}" ui-sref="detailedStyle({id: style.id})" class="image md-card-image img-products" alt="user avatar">-->
+                    <!--<div class="centered-text">Kurta</div>-->
+                <!--</md-card>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+</div>
