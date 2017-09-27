@@ -279,7 +279,7 @@ public class ItemServiceImpl implements IItemService{
     AllCategoryImages category2Image2 = new AllCategoryImages();
     category2Image2.setId("b"); category2Image2.setImage(_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES+"2b.png"));
     
-    list2.add(category2Image1); list.add(category2Image2);
+    list2.add(category2Image1); list2.add(category2Image2);
     
     // Category 3
     List<AllCategoryImages> list3 = new ArrayList<>();
@@ -330,7 +330,7 @@ public class ItemServiceImpl implements IItemService{
     category7Image2.setId("b"); category7Image2.setImage(_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES+"7b.png"));
     
     //list7.add(category7Image1); 
-    list.add(category7Image2);
+    list7.add(category7Image2);
 
     map.put("0", list); map.put("1", list2); map.put("2", list3);
     map.put("3", list4); map.put("4", list5); map.put("5", list6);
