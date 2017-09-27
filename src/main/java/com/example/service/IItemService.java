@@ -7,6 +7,7 @@ package com.example.service;
 import java.util.List;
 import java.util.Map;
 
+import com.example.bean.AllCategoryImages;
 import com.example.bean.ParameterBean;
 import com.example.model.Item;
 
@@ -53,7 +54,11 @@ public interface IItemService {
   
   //public byte[] getImageByteArrayFromParameterBean(ParameterBean parameterBean);
   
-  public Map<String,byte[]> getImageByteArrayFromParameterBean(ParameterBean parameterBean); 
+  public Map<String,byte[]> getImageByteArrayFromParameterBean(ParameterBean parameterBean);
+  
+  public Map<String, List<AllCategoryImages>> getMapOfAllCategoryImages();
+  
+  public Map<String, List<AllCategoryImages>> getStaticMapOfAllCategoryImages();
 }
 
 

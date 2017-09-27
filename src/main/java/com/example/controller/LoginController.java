@@ -199,27 +199,28 @@ public class LoginController
 	public ResponseEntity<Map<String, List<AllCategoryImages>>> getCategoryImageByteArrayFromParameterBean()
 	{
 
-		Map<String, List<AllCategoryImages>> map = new HashMap<>();
+		//Map<String, List<AllCategoryImages>> map = new HashMap<>();
 		List<AllCategoryImages> list = new ArrayList<>();
 		ParameterBean parameterBean1 = new ParameterBean("A", "B", "A", "B", "A", "B", "A");
 		// TODO change parameterBean1 to parameterBean below
-		byte[] imageStream = itemService.getImageByteArrayFromParameterBean(parameterBean1).get("front");
-
-		for (int i = 0; i < 3; i++)
-		{
-			AllCategoryImages allCategoryImages = new AllCategoryImages();
-			allCategoryImages.setId(i + "");
-			allCategoryImages.setImage(imageStream);
-			list.add(allCategoryImages);
-
-		}
-
-		for (int j = 0; j < 7; j++)
-		{
-
-			map.put(j + "", list);
-		}
-
+//		byte[] imageStream = itemService.getImageByteArrayFromParameterBean(parameterBean1).get("front");
+//
+//		for (int i = 0; i < 3; i++)
+//		{
+//			AllCategoryImages allCategoryImages = new AllCategoryImages();
+//			allCategoryImages.setId(i + "");
+//			allCategoryImages.setImage(imageStream);
+//			list.add(allCategoryImages);
+//
+//		}
+//
+//		for (int j = 0; j < 7; j++)
+//		{
+//
+//			map.put(j + "", list);
+//		}
+		
+		Map<String, List<AllCategoryImages>> map = itemService.getStaticMapOfAllCategoryImages();
 		ResponseEntity<Map<String, List<AllCategoryImages>>> responseEntity = new ResponseEntity<>(map, HttpStatus.OK);
 		return responseEntity;
 	}
