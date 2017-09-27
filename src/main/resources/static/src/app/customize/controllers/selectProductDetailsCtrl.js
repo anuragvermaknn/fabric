@@ -7,6 +7,7 @@ angular.module('customize.controllers.selectProductDetailsCtrl', [])
             var imageDTO;
             var currentCatName;
             $scope.imgPrefix = $rootScope.assetsURLPrefix;
+            $scope.frontActive = true;
 
             $scope.createInitDTO = function () {
                 imageDTO = {
@@ -47,7 +48,6 @@ angular.module('customize.controllers.selectProductDetailsCtrl', [])
                       $scope.createInitDTO();
                       StorefrontHttpService.renderProductImage(imageDTO).then(function (success) {
                           $scope.images = success.viewImages;
-                          console.log($scope.images);
                           $scope.renderedImage = $scope.images.front;
                       }, function (error) {
 
@@ -59,15 +59,15 @@ angular.module('customize.controllers.selectProductDetailsCtrl', [])
 
 
             $scope.changeImage = function (pos) {
-                if(pos === 1){
+                if(pos == 1){
+                    $scope.frontActive = true;
                     $scope.renderedImage = $scope.images.front;
                 }
-                if(pos === 2){
-                    $scope.renderedImage = $scope.images.left;
-                }
-                else {
+                else{
+                    $scope.frontActive = false;
                     $scope.renderedImage = $scope.images.right;
                 }
+
             };
 
             $scope.displaySelectedCategory = function (id) {

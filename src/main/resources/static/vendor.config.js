@@ -30,8 +30,6 @@ module.exports = {
         'vendor/slick-carousel/slick/slick.js',
         'vendor/angular-slick-carousel/dist/angular-slick.min.js',
 
-        //angular loading bar
-        'vendor/angular-loading-bar/src/loading-bar.js',
         //angular material
         'vendor/angular-animate/angular-animate.min.js',
         'vendor/angular-aria/angular-aria.min.js',

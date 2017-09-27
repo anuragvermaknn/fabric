@@ -10,5 +10,12 @@ angular.module('app.customize', [
             url: '/customize/details/:id',
             templateUrl: 'customize/views/selectProductDetails.tpl.html',
             controller: 'selectProductDetailsCtrl'
+        }).state('measurements', {
+            url: '/customize/details/measurements/:id',
+            templateUrl: 'customize/views/selectMeasurements.tpl.html',
+            controller: 'measurementsCtrl'
         });
 });
+
+
+

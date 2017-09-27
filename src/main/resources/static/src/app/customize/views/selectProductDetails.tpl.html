@@ -64,20 +64,32 @@
         </div>
 
     </div>
-    <div class="small-6 columns" style="text-align: center;">
-        <div>this div will have two buttons</div>
+    <div class="small-6 columns" style="text-align: center;padding-top: 10px;">
         <div>
+
+                <span class="topbar-right-items" STYLE="float: left;cursor:pointer;line-height: 1;background: #1f62a7;color: #fff">Add to cart</span>
+            <span style="float: right;color: #B9B9B9;">INR <span style="color:#3568A2">1200</span></span>
+
+        </div>
+        <div style="padding-top: 40px;">
             <img ng-src="data:image/JPEG;base64,{{renderedImage}}" style="height: 500px;" />
         </div>
-        <div>
-            <span ng-click="changeImage(1)">Front</span>
-            <span ng-click="changeImage(2)">Left</span>
-            <span ng-click="changeImage(3)">Right</span>
 
+    </div>
+    <div>
+        <div class="small-6 columns">
+
+            <span  class="topbar-right-items" STYLE="line-height: 1;background: #E6E6E6;color: #000000" ui-sref="mycustomization">Previous Step</span>
+            <span  class="topbar-right-items" STYLE="line-height: 1;background: #1f62a7;color: #fff" ui-sref="measurements({id: id-1})">Next Step</span>
+
+        </div>
+        <div class="small-6 columns" style="text-align: center;">
+
+                <span  class="topbar-right-items" ng-class="frontActive ? 'active-btn' : ''" style="margin-right:-5px;border-radius: 14px 0 0 14px;border: 1px solid #EAEAEA;color: #b9b9b9" ng-click="changeImage(1)">Front</span>
+                <span  class="topbar-right-items" ng-click="changeImage(3)" ng-class="frontActive ? '' : 'active-btn'" style="border-radius:  0 14px 14px 0;border: 1px solid #EAEAEA;color: #b9b9b9">Back</span>
 
 
         </div>
-
     </div>
 </div>
 </div>

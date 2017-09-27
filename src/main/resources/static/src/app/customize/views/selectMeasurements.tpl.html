@@ -1,0 +1,40 @@
+<div style="height: 90vh;">
+    <div id="timeline" class="row" style="padding: 20px 0;">
+        <ul class="centerUL wizard-progress clearfix">
+            <li class="active-step">
+                <span class="visuallyhidden">Step </span><span class="step-num">1</span>
+            </li>
+            <li class="active-step">
+                <span class="visuallyhidden">Step </span><span class="step-num">2</span>
+            </li>
+            <li class="active-step">
+                <span class="visuallyhidden">Step </span><span class="step-num">3</span>
+            </li>
+            <li>
+                <span class="visuallyhidden">Step </span><span class="step-num">4</span>
+            </li>
+        </ul>
+    </div>
+
+    <div style="text-align: center; padding: 0px 0 20px;font-weight: 600;font-size: 20px;">PROVIDE MEASUREMENTS</div>
+
+    <div style="background:#FAFAFA;padding: 60px 70px 70px 70px;">
+        <div style="margin-bottom: 15px;">
+            <span>1. Choose from our standard sizes</span><span style="float: right;"></span>
+        </div>
+        <div style="padding-bottom: 15px;">
+            <div class="small-6 columns">
+                <select name="hall" id="hall" value="3" style="outline: none;">
+                    <option value="">- Please select a size -</option>
+                    <option>XL (108, 96)</option>
+                    <option>L (102, 92)</option>
+                    <option>M (98, 88)</option>
+                </select>
+            </div>
+            <div class="small-6 columns" style="text-align: right;">
+                <span  class="topbar-right-items" STYLE="line-height: 1;background: #E6E6E6;color: #000000" ui-sref="detailedStyle({id: id-1})">Previous Step</span>
+                <span  class="topbar-right-items" STYLE="line-height: 1;background: #1f62a7;color: #fff" ui-sref="measurements({id: id-1})">Next Step</span>
+            </div>
+        </div>
+    </div>
+</div>

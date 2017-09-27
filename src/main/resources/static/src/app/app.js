@@ -12,7 +12,6 @@ angular.module('storefront', [
         // AngularJS dependencies
         'ui.router',
         'ngResource',
-        'angular-loading-bar',
         'ngMaterial',
         'ngMessages',
         'ngFacebook',
@@ -124,13 +123,12 @@ angular.module('storefront', [
 ]);
 
 
-appConfig.$inject = ['$facebookProvider', 'cfpLoadingBarProvider', '$urlRouterProvider', '$httpProvider'];
+appConfig.$inject = ['$facebookProvider', '$urlRouterProvider', '$httpProvider'];
 
-function appConfig($facebookProvider, cfpLoadingBarProvider, $urlRouterProvider, $httpProvider) {
+function appConfig($facebookProvider, $urlRouterProvider, $httpProvider) {
 
     $facebookProvider.setAppId('123456789098');
     $facebookProvider.setPermissions("email,user_likes");
-    cfpLoadingBarProvider.includeSpinner = false;
     $urlRouterProvider.otherwise('/home');
     $httpProvider.interceptors.push('HttpInterceptor');
 

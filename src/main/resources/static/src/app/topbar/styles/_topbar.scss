@@ -292,35 +292,21 @@ md-tabs md-ink-bar {
   outline: none;
 }
 
-.forgot-password-txt {
-  padding-top: 15px;
-  font-size: 12px;
-  text-align: center;
-  color: rgba(0, 0, 0, 0.87);
-}
-
-.forgot-passwd-button {
-  padding: 0 !important;
-  background: #fff !important;
-  color: black !important;
-}
-
-.sf-validation-error {
-  color: rgb(221, 44, 0);
-  font-size: 12px;
-  line-height: 14px;
-  transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
-  opacity: 1;
-  margin-top: 0;
-  padding-top: 5px;
-}
 
 
 .topbar-right-items{
   line-height: 3.825rem;
+  outline:none;
+  cursor: pointer;
   padding: 10px;
   border-radius: 14px;
   font-size: 12px;
   font-weight: 600;
   margin-right: 20px;
+}
+
+.hover{
+  background-color: #ffffff;
+  border-bottom: 2px solid #1f62a7;
+  color: #1f62a7;
 }
