@@ -53,11 +53,11 @@
 <div class="small-12 columns">
     <div class="small-6 columns">
 
-        <div class='md-padding' layout="row" layout-align="center center" style="margin: 0 auto;" flex="50">
+        <div class='md-padding' layout="row" layout-align="left left"  flex="50">
 
             <div class="container-img" style="width: 180px;" ng-repeat="style in currentCat">
                 <md-card>
-                    <img ng-src="data:image/JPEG;base64,{{style.image}}" ng-click="updateDTO(style)" class="image md-card-image" alt="user avatar">
+                    <img ng-src="data:image/JPEG;base64,{{style.image}}" style="height: 160px;" ng-click="updateDTO(style)" class="image md-card-image" alt="user avatar">
                 </md-card>
             </div>
 
