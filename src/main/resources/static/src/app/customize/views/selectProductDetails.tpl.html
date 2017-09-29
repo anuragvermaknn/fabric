@@ -20,33 +20,33 @@
 <div class="row">
 <div style="text-align: center;padding: 10px 0;
     background: #FAFAFA;">
-    <span class="fabric-components">
+    <span class="fabric-components" ng-class="currentActive == 'silhouttes' ? 'customize-cat' : ''">
         <img ng-click="displaySelectedCategory(0)" class="cloth-type-image" ng-src="{{imgPrefix}}/7_smxyh4.png" />
         Silhoutte
     </span>
-    <span class="fabric-components">
+    <span class="fabric-components" ng-class="currentActive == 'neckline' ? 'customize-cat' : ''">
         <img ng-click="displaySelectedCategory(1)" class="cloth-type-image" ng-src="{{imgPrefix}}/6_ryolao.png" />
         Neckline
     </span>
-    <span class="fabric-components">
+    <span class="fabric-components" ng-class="currentActive == 'backline' ? 'customize-cat' : ''">
         <img ng-click="displaySelectedCategory(2)" class="cloth-type-image"  ng-src="{{imgPrefix}}/5_qz0gir.png" />
         Backline
     </span>
-    <span class="fabric-components">
+    <span class="fabric-components" ng-class="currentActive == 'sleeves' ? 'customize-cat' : ''">
         <img ng-click="displaySelectedCategory(3)"  class="cloth-type-image"  ng-src="{{imgPrefix}}/4_o7o8yy.png" />
         Sleeves
     </span>
-    <span class="fabric-components">
+    <span class="fabric-components" ng-class="currentActive == 'fabric' ? 'customize-cat' : ''">
         <img ng-click="displaySelectedCategory(4)"  class="cloth-type-image" ng-src="{{imgPrefix}}/3_imvrdd.png" />
         Fabric
     </span>
-    <span class="fabric-components">
+    <span class="fabric-components" ng-class="currentActive == 'borders' ? 'customize-cat' : ''">
         <img ng-click="displaySelectedCategory(5)"  class="cloth-type-image" ng-src="{{imgPrefix}}/2_p5pwbq.png" />
-        Embroidery
+        Borders
     </span>
-    <span class="fabric-components">
+    <span class="fabric-components" ng-class="currentActive == 'embroidery' ? 'customize-cat' : ''">
         <img ng-click="displaySelectedCategory(6)"  class="cloth-type-image" ng-src="{{imgPrefix}}/1_bfnmdb.png" />
-        Pockets
+        Embroidery
     </span>
     
 </div>

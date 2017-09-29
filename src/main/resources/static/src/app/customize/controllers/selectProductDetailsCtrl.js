@@ -8,6 +8,7 @@ angular.module('customize.controllers.selectProductDetailsCtrl', [])
             var currentCatName;
             $scope.imgPrefix = $rootScope.assetsURLPrefix;
             $scope.frontActive = true;
+            $scope.currentActive = 'silhouttes';
 
             $scope.createInitDTO = function () {
                 imageDTO = {
@@ -16,7 +17,7 @@ angular.module('customize.controllers.selectProductDetailsCtrl', [])
                     backline : backline[0].id,
                     sleeves : sleeves[0].id,
                     cloth : fabric[0].id,
-                    border : pockets[0].id,
+                    borders : borders[0].id,
                     embroidery : embroidery[0].id
                 }
             };
@@ -41,8 +42,8 @@ angular.module('customize.controllers.selectProductDetailsCtrl', [])
                         backline = success[2];
                         sleeves = success[3];
                         fabric = success[4];
-                        embroidery = success[5];
-                        pockets = success[6];
+                        borders = success[5];
+                        embroidery = success[6];
                       $scope.currentCat = silhouttes;
                       currentCatName = 'silhouttes';
                       $scope.createInitDTO();
@@ -74,48 +75,57 @@ angular.module('customize.controllers.selectProductDetailsCtrl', [])
                     id=id.toString();
                 switch (id){
                     case '0':
-                            $scope.currentCat = silhouttes;
-                            currentCatName = 'silhouette';
+                        $scope.currentCat = silhouttes;
+                        currentCatName = 'silhouette';
+                        $scope.currentActive = 'silhouttes';
                         break;
 
                     case '1':
-                            $scope.currentCat = neckline;
+                        $scope.currentCat = neckline;
                         currentCatName = 'neckline';
+                        $scope.currentActive = 'neckline';
 
                         break;
 
                     case '2':
-                            $scope.currentCat = backline;
+                        $scope.currentCat = backline;
                         currentCatName = 'backline';
+                        $scope.currentActive = 'backline';
 
                         break;
 
                     case '3':
-                            $scope.currentCat = sleeves;
+                        $scope.currentCat = sleeves;
                         currentCatName = 'sleeves';
+                        $scope.currentActive = 'sleeves';
 
                         break;
 
                     case '4':
-                            $scope.currentCat = fabric;
+                        $scope.currentCat = fabric;
                         currentCatName = 'fabric';
+                        $scope.currentActive = 'fabric';
 
                         break;
 
                     case '5':
-                            $scope.currentCat = embroidery;
-                        currentCatName = 'embroidery';
+                        $scope.currentCat = borders;
+                        currentCatName = 'borders';
+                        $scope.currentActive = 'borders';
 
                         break;
 
+
                     case '6':
-                            $scope.currentCat = pockets;
-                        currentCatName = 'pockets';
+                        $scope.currentCat = embroidery;
+                        currentCatName = 'embroidery';
+                        $scope.currentActive = 'embroidery';
 
                         break;
 
                     default:
                         $scope.currentCat = silhouttes;
+                        $scope.currentActive = 'silhouttes';
 
                 }
             };
