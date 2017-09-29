@@ -1,6 +1,6 @@
 {
 	"version": 3,
-	"file": "fabricoot-4.1.5.css",
+	"file": "fabricoot-4.1.7.css",
 	"sources": [
 		"../../src/styles/main.scss",
 		"../../vendor/foundation/scss/normalize.scss",
