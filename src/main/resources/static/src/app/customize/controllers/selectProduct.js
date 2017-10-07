@@ -5,7 +5,6 @@ angular.module('customize.controllers.selectProduct', [])
 
             StorefrontHttpService.getProductDetails().then(function (success){
                 $scope.categoryData = success;
-                console.log($scope.categoryData);
 
             }, function (error){
 

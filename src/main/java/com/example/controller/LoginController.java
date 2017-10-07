@@ -5,6 +5,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +14,7 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.validation.Valid;
 
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
@@ -140,7 +143,7 @@ public class LoginController
 			ByteArrayOutputStream bao = new ByteArrayOutputStream();
 
 			// Write to output stream
-			ImageIO.write(img, "jpg", bao);
+			ImageIO.write(img, "png", bao);
 
 			return bao.toByteArray();
 		}
@@ -151,6 +154,7 @@ public class LoginController
 		}
 	}
 
+  
 	// @RequestMapping(value = "/inventorydtoragedays/customer", method =
 	// RequestMethod.GET)
 	// public ResponseEntity<List<InventoryStorageDaysForMonth>>
@@ -198,27 +202,28 @@ public class LoginController
 	public ResponseEntity<Map<String, List<AllCategoryImages>>> getCategoryImageByteArrayFromParameterBean()
 	{
 
-		Map<String, List<AllCategoryImages>> map = new HashMap<>();
+		//Map<String, List<AllCategoryImages>> map = new HashMap<>();
 		List<AllCategoryImages> list = new ArrayList<>();
 		ParameterBean parameterBean1 = new ParameterBean("A", "B", "A", "B", "A", "B", "A");
 		// TODO change parameterBean1 to parameterBean below
-		byte[] imageStream = itemService.getImageByteArrayFromParameterBean(parameterBean1).get("front");
-
-		for (int i = 0; i < 3; i++)
-		{
-			AllCategoryImages allCategoryImages = new AllCategoryImages();
-			allCategoryImages.setId(i + "");
-			allCategoryImages.setImage(imageStream);
-			list.add(allCategoryImages);
-
-		}
-
-		for (int j = 0; j < 7; j++)
-		{
-
-			map.put(j + "", list);
-		}
-
+//		byte[] imageStream = itemService.getImageByteArrayFromParameterBean(parameterBean1).get("front");
+//
+//		for (int i = 0; i < 3; i++)
+//		{
+//			AllCategoryImages allCategoryImages = new AllCategoryImages();
+//			allCategoryImages.setId(i + "");
+//			allCategoryImages.setImage(imageStream);
+//			list.add(allCategoryImages);
+//
+//		}
+//
+//		for (int j = 0; j < 7; j++)
+//		{
+//
+//			map.put(j + "", list);
+//		}
+		
+		Map<String, List<AllCategoryImages>> map = itemService.getStaticMapOfAllCategoryImages();
 		ResponseEntity<Map<String, List<AllCategoryImages>>> responseEntity = new ResponseEntity<>(map, HttpStatus.OK);
 		return responseEntity;
 	}

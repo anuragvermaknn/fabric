@@ -1,7 +1,7 @@
 
 .container-img {
     position: relative;
-    width: 0%;
+    width: 0;
   cursor: pointer;
 }
 .image {
@@ -87,6 +87,7 @@
   padding: 0 12px;
   height: 50px;
   margin: 0 30px;
+  outline: none;
 }
 
 div#timeline {
@@ -107,4 +108,13 @@ ul.centerUL {
   display: inline-grid;
   font-size: 12px;
   font-weight: 600;
+}
+
+.active-btn{
+  background: #1f62a7 !important;
+  color: #FFFFFF !important;
+}
+
+.customize-cat{
+  border-bottom: 1px solid #1B63B3;
 }

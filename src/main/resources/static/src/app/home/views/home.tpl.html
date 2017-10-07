@@ -1,1 +1,187 @@
-<div style="height: 80vh;">this is home</div>
+
+<script>
+    var slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {slideIndex = 1}
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+        setTimeout(showSlides, 2000); // Change image every 2 seconds
+    }
+</script>
+
+<div class="slideshow-container">
+
+        <div class="mySlides fade">
+            <div class="numbertext">1 / 3</div>
+            <img src="https://static1.squarespace.com/static/55297341e4b026cc27b5b40a/55765085e4b0da9c03623b5c/57c3afe5b3db2b6d36102a66/1472442344431/su2016-carousel-2-update1.jpg" style="width:100%">
+            <div class="text">Caption Text</div>
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">2 / 3</div>
+            <img src="https://static1.squarespace.com/static/55297341e4b026cc27b5b40a/5576501fe4b0377e73c36665/580bb00a893fc06243c80301/1477160974859/pleat+front+folded+peasant+carousel.jpg" style="width:100%">
+            <div class="text">Caption Two</div>
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">3 / 3</div>
+            <img src="https://static1.squarespace.com/static/55297341e4b026cc27b5b40a/5576501fe4b0377e73c36665/57cc57ed29687fcc42b85f85/1473009653106/fa2016-carousel-1.jpg" style="width:100%">
+            <div class="text">Caption Three</div>
+        </div>
+
+    </div>
+    <br>
+
+    <div style="text-align:center">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+
+<div class="home-collection-container">
+    <div class="small-12 row landscape" style="padding-top: 30px;">
+        <img src="https://res.cloudinary.com/drd7xdko2/image/upload/v1506094229/home-kurta_uuedmt.png" style="max-height: 399px;width: 1000px;">
+    </div>
+    <div class="small-12 row landscape" style="padding-top: 30px;">
+        <div class="small-6 columns" style="padding: 0;width: 52%;">
+            <img src="https://res.cloudinary.com/drd7xdko2/image/upload/v1506232417/lady_grey_jhbgtl.png">
+            <img src="https://res.cloudinary.com/drd7xdko2/image/upload/v1506232417/lady_grey_jhbgtl.png" style="padding: 30px 0;">
+        </div>
+        <div class="small-6 columns" style="padding-right: 0;width: 48%">
+            <img src="https://res.cloudinary.com/drd7xdko2/image/upload/v1506232417/lady_green_gqfmpy.png">
+        </div>
+    </div>
+</div>
+
+<div class="product-parent-container">
+    <div style="text-align: center; padding: 0px 0 20px;font-weight: 600;font-size: 20px;">PRODUCTS</div>
+
+    <div class='md-padding' layout="row" layout-wrap layout-align="center center" style="max-width: 55%;margin: 0 auto;" flex="50">
+
+        <div class="container-img" style="width:auto">
+            <md-card class="img-wrap">
+                <img ng-src="https://res.cloudinary.com/drd7xdko2/image/upload/v1506242328/select_pro1_xw4agf.png" class="image md-card-image img-products" alt="user avatar">
+                <div class="centered-text">Kurta</div>
+            </md-card>
+        </div>
+
+        <div class="container-img" style="width:auto">
+            <md-card class="img-wrap">
+                <img ng-src="https://res.cloudinary.com/drd7xdko2/image/upload/v1506270120/7_yncu6g.png" class="image md-card-image img-products" alt="user avatar">
+                <div class="centered-text">Bottom</div>
+
+            </md-card>
+        </div>
+
+        <div class="container-img" style="width:auto">
+            <md-card class="img-wrap">
+                <img ng-src="https://res.cloudinary.com/drd7xdko2/image/upload/v1506357398/3_uwk1s0.jpg" class="image md-card-image img-products" alt="user avatar">
+                <div class="centered-text">Sari Blouse</div>
+
+            </md-card>
+        </div>
+
+
+
+
+        <div class="container-img" style="width:auto">
+            <md-card class="img-wrap">
+                <img ng-src="https://res.cloudinary.com/drd7xdko2/image/upload/v1506357398/4_gsykru.jpg" class="image md-card-image img-products" alt="user avatar">
+                <div class="centered-text">Dress</div>
+
+            </md-card>
+        </div>
+
+
+        <div class="container-img" style="width:auto">
+            <md-card class="img-wrap">
+                <img ng-src="https://res.cloudinary.com/drd7xdko2/image/upload/v1506270542/9_r5kbs5.png" class="image md-card-image img-products" alt="user avatar">
+                <div class="centered-text">Shirt/Top</div>
+
+            </md-card>
+        </div>
+
+
+        <div class="container-img" style="width:auto">
+            <md-card class="img-wrap">
+                <img ng-src="http://res.cloudinary.com/drd7xdko2/image/upload/v1506357398/6_j9fjxf.jpg" class="image md-card-image img-products" alt="user avatar">
+                <div class="centered-text">Trouser</div>
+
+            </md-card>
+        </div>
+
+
+        <div class="container-img" style="width:auto">
+            <md-card class="img-wrap">
+                <img ng-src="https://res.cloudinary.com/drd7xdko2/image/upload/v1506270543/11_zygaxl.png" class="image md-card-image img-products" alt="user avatar">
+                <div class="centered-text">Skirt</div>
+
+            </md-card>
+        </div>
+
+
+        <div class="container-img" style="width:auto">
+            <md-card class="img-wrap">
+                <img ng-src="https://res.cloudinary.com/drd7xdko2/image/upload/v1506270542/12_cfxrqw.png" class="image md-card-image img-products" alt="user avatar">
+                <div class="centered-text">Nightdress/
+                    Housecoat</div>
+
+            </md-card>
+        </div>
+        <div class="container-img" style="width:auto">
+            <md-card class="img-wrap">
+                <img ng-src="https://res.cloudinary.com/drd7xdko2/image/upload/v1506270543/13_m2z64o.png" class="image md-card-image img-products" alt="user avatar">
+                <div class="centered-text">Jacket/Coat</div>
+
+            </md-card>
+        </div>
+
+
+
+
+    </div>
+</div>
+
+
+<div style="margin: 20px 0;">
+    <div style="text-align: center; padding: 0px 0 20px;font-weight: 600;font-size: 20px;">HOW IT WORKS</div>
+<div class="small-12" style="text-align: center;">
+    <img src="https://res.cloudinary.com/drd7xdko2/image/upload/v1506357398/How-it-work_okamgq.jpg">
+    <div><button style="margin: 0 auto;background: #f81851;
+    font-weight: 600;
+    color: #fff;
+    border-radius: 31px;outline: none;">Start Customizing</button></div>
+
+</div>
+
+</div>
+<div style="margin: 70px 0;">
+    <div style="text-align: center; padding: 0px 0 20px;font-weight: 600;font-size: 20px;">IN THE NEWS</div>
+    <div style="text-align: center;">
+        <span class="small-4 columns">
+            <img src="https://res.cloudinary.com/drd7xdko2/image/upload/v1506273598/22_uw21wv.png" />
+        </span>
+        <span class="small-4 columns">
+            <img src="https://res.cloudinary.com/drd7xdko2/image/upload/v1506273598/20_u2xp0e.png" />
+        </span>
+
+
+        <span class="small-4 columns">
+            <img src="https://res.cloudinary.com/drd7xdko2/image/upload/v1506273598/18_s33kte.png" />
+        </span>
+    </div>
+    </div>
+
+
