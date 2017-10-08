@@ -3,9 +3,9 @@
 	monitoring="autodetect" dynamicConfig="true">
 
 	<cache name="fabric" 
-		maxEntriesLocalHeap="2000"
+		maxEntriesLocalHeap="4000"
 		eternal="false"
-		timeToIdleSeconds="7000" timeToLiveSeconds="11000"
+		timeToIdleSeconds="500" timeToLiveSeconds="820"
 		memoryStoreEvictionPolicy="LFU" >
 	</cache>
 
