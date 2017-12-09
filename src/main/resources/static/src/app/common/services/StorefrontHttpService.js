@@ -12,8 +12,8 @@
         function(HttpService, Utils) {
 
             var API_VERSION1 = "/api/v1";
-            var parentUrl="http://34.212.124.194:8081";
-           // var parentUrl='http://127.0.0.1:8081';
+           var parentUrl="http://34.212.124.194:8081";
+          // var parentUrl='http://127.0.0.1:8081';
             
             var service = {
                 getProductDetails : getProductDetails,
