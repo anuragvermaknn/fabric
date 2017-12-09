@@ -174,6 +174,7 @@ public class LoginController
 	{
 
 		ModelBean model = new ModelBean();
+		System.out.println(" ParameterBean values that hit the api \n "+ parameterBean);
 		ParameterBean parameterBean1 = new ParameterBean("A", "B", "A", "B", "A", "B", "A");
 		// TODO change parameterBean1 to parameterBean below
 //		byte[] imageStream = itemService.getImageByteArrayFromParameterBean(parameterBean1);

@@ -6,9 +6,12 @@ package com.example.service;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,7 +36,7 @@ public class ItemServiceImpl implements IItemService{
 
   private final String BASE_PATH_FOR_IMAGES_IN_RESOURCES = "fabricImages/";
   private final String BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES = "categoryImages/";
-  
+  private final char[] ALPHABETS = "abcdefghijklmnopqrstuvwxyz".toCharArray();
   public static Map<String, List<AllCategoryImages>> mapOfAllCategoryImages;
   
   @Autowired
@@ -254,7 +257,46 @@ public class ItemServiceImpl implements IItemService{
     }
   
   }
+  @SuppressWarnings("unused")
+  private byte[] _getImageByteArrayFromAbsoluteFilePath(String absoluteFilePath){
+     
+    try {
+      // Retrieve image from the abs file path.
+      InputStream is = new FileInputStream(absoluteFilePath);
+      // Prepare buffered image.
+      BufferedImage img = ImageIO.read(is);
+  
+      // Create a byte array output stream.
+      ByteArrayOutputStream bao = new ByteArrayOutputStream();
+  
+      // Write to output stream
+      ImageIO.write(img, "png", bao);
+        
+      return bao.toByteArray();  
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+      throw new RuntimeException(e);
+    }
+  
+  }
 
+  public List<String> getSortedFilePathsInDir(String directoryPathInResources){
+
+    List<String> filepaths = new ArrayList<String>();
+    String directoryPath = this.getClass().getClassLoader().getResource(directoryPathInResources).getPath();
+    //If this pathname does not denote a directory, then listFiles() returns null.
+    File[] files = new File(directoryPath).listFiles();
+ 
+    for (File file : files) {
+        if (file.isFile()) {
+          System.out.println("file.getPath() " + file.getPath());
+          filepaths.add(file.getPath());
+        }
+    }
+    Collections.sort(filepaths);
+    return filepaths;
+  }
   /* (non-Javadoc)
    * @see com.example.service.IItemService#getMapOfAllCategoryImages()
    */
@@ -263,42 +305,78 @@ public class ItemServiceImpl implements IItemService{
     // TODO Auto-generated method stub
     Map<String, List<AllCategoryImages>> map = new HashMap<>();
     
-    // Category 1
+    // Category 1 sillhoute
     List<AllCategoryImages> list = new ArrayList<>();
-    AllCategoryImages categoryImage1 = new AllCategoryImages();
-    categoryImage1.setId("a"); categoryImage1.setImage(_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES+"1a.png"));
-    AllCategoryImages categoryImage2 = new AllCategoryImages();
-    categoryImage2.setId("b"); categoryImage2.setImage(_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES+"1b.png"));
+    String directoryPathInResources = BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES + "sillhoute";
+    List<String> filepaths = getSortedFilePathsInDir(directoryPathInResources);
+    int count = 0;
+    for(String filepath : filepaths){
+      AllCategoryImages categoryImage = new AllCategoryImages();
+      categoryImage.setId(String.valueOf(ALPHABETS[count])); categoryImage.setImage(_getImageByteArrayFromAbsoluteFilePath(filepath));
+      list.add(categoryImage);
+      count += 1;
+    }
+//    AllCategoryImages categoryImage1 = new AllCategoryImages();
+//    categoryImage1.setId("a"); categoryImage1.setImage(_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES+"1a.png"));
+//    AllCategoryImages categoryImage2 = new AllCategoryImages();
+//    categoryImage2.setId("b"); categoryImage2.setImage(_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES+"1b.png"));
+//    
+//    list.add(categoryImage1); list.add(categoryImage2);
     
-    list.add(categoryImage1); list.add(categoryImage2);
-    
-    // Category 2
+    // Category 2 neckline
     List<AllCategoryImages> list2 = new ArrayList<>();
-    AllCategoryImages category2Image1 = new AllCategoryImages();
-    category2Image1.setId("a"); category2Image1.setImage(_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES+"2a.png"));
-    AllCategoryImages category2Image2 = new AllCategoryImages();
-    category2Image2.setId("b"); category2Image2.setImage(_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES+"2b.png"));
+    directoryPathInResources = BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES + "neckline";
+    filepaths = getSortedFilePathsInDir(directoryPathInResources);
+    count = 0;
+    for(String filepath : filepaths){
+      AllCategoryImages categoryImage = new AllCategoryImages();
+      categoryImage.setId(String.valueOf(ALPHABETS[count])); categoryImage.setImage(_getImageByteArrayFromAbsoluteFilePath(filepath));
+      list2.add(categoryImage);
+      count += 1;
+    }
+//    AllCategoryImages category2Image1 = new AllCategoryImages();
+//    category2Image1.setId("a"); category2Image1.setImage(_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES+"2a.png"));
+//    AllCategoryImages category2Image2 = new AllCategoryImages();
+//    category2Image2.setId("b"); category2Image2.setImage(_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES+"2b.png"));
+//    
+//    list2.add(category2Image1); list2.add(category2Image2);
     
-    list2.add(category2Image1); list2.add(category2Image2);
-    
-    // Category 3
+    // Category 3 backline
     List<AllCategoryImages> list3 = new ArrayList<>();
-    AllCategoryImages category3Image1 = new AllCategoryImages();
-    category3Image1.setId("a"); category3Image1.setImage(_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES+"3a.png"));
-    AllCategoryImages category3Image2 = new AllCategoryImages();
-    category3Image2.setId("b"); category3Image2.setImage(_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES+"3b.png"));
+    directoryPathInResources = BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES + "backline";
+    filepaths = getSortedFilePathsInDir(directoryPathInResources);
+    count = 0;
+    for(String filepath : filepaths){
+      AllCategoryImages categoryImage = new AllCategoryImages();
+      categoryImage.setId(String.valueOf(ALPHABETS[count])); categoryImage.setImage(_getImageByteArrayFromAbsoluteFilePath(filepath));
+      list3.add(categoryImage);
+      count += 1;
+    }
+//    AllCategoryImages category3Image1 = new AllCategoryImages();
+//    category3Image1.setId("a"); category3Image1.setImage(_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES+"3a.png"));
+//    AllCategoryImages category3Image2 = new AllCategoryImages();
+//    category3Image2.setId("b"); category3Image2.setImage(_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES+"3b.png"));
+//    
+//    list3.add(category3Image1); list3.add(category3Image2);
     
-    list3.add(category3Image1); list3.add(category3Image2);
-    
-    // Category 4
+    // Category 4 sleeve
     List<AllCategoryImages> list4 = new ArrayList<>();
-    AllCategoryImages category4Image1 = new AllCategoryImages();
-    //category4Image1.setId(""); category4Image1.setImage(_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES+""));
-    AllCategoryImages category4Image2 = new AllCategoryImages();
-    category4Image2.setId("b"); category4Image2.setImage(_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES+"4b.png"));
-    
-    //list4.add(category4Image1); 
-    list4.add(category4Image2);
+    directoryPathInResources = BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES + "sleeve";
+    filepaths = getSortedFilePathsInDir(directoryPathInResources);
+    count = 0;
+    for(String filepath : filepaths){
+      AllCategoryImages categoryImage = new AllCategoryImages();
+      categoryImage.setId(String.valueOf(ALPHABETS[count])); categoryImage.setImage(_getImageByteArrayFromAbsoluteFilePath(filepath));
+      list4.add(categoryImage);
+      count += 1;
+    }
+//    AllCategoryImages category4Image1 = new AllCategoryImages();
+//    //category4Image1.setId(""); category4Image1.setImage(_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES+""));
+//    AllCategoryImages category4Image2 = new AllCategoryImages();
+//    category4Image2.setId("b"); category4Image2.setImage(_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES+"4b.png"));
+//    
+//    //list4.add(category4Image1); 
+//    list4.add(category4Image2);
     
     // Category 5
     List<AllCategoryImages> list5 = new ArrayList<>();
