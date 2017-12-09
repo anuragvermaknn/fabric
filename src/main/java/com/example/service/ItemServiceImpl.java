@@ -331,6 +331,7 @@ public class ItemServiceImpl implements IItemService
     Collections.sort(filepaths);
     return filepaths;
   }
+  /*
 	 * @see com.example.service.IItemService#getMapOfAllCategoryImages()
 	 */
 	@Override
