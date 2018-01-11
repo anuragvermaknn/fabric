@@ -474,7 +474,7 @@ public class ItemServiceImpl implements IItemService
 	 * @see com.example.service.IItemService#getStaticMapOfAllCategoryImages()
 	 */
 	@Override
-	@Cacheable
+	@Cacheable("test")
 	public Map<String, List<AllCategoryImages>> getStaticMapOfAllCategoryImages()
 	{
 		// TODO Auto-generated method stub
