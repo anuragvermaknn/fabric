@@ -5,11 +5,14 @@
 package com.example.service;
 
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -40,9 +43,12 @@ public class ItemServiceImpl implements IItemService
 
 	private final String BASE_PATH_FOR_IMAGES_IN_RESOURCES = "fabricImages/";
 	private final String BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES = "categoryImages/";
-  private final char[] ALPHABETS = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+    private final char[] ALPHABETS = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 	public static Map<String, List<AllCategoryImages>> mapOfAllCategoryImages;
 
+	private final String FILE_PATH_PARAMETER_TO_IMAGES_FOLDER_MAP_IN_RESOURCES = "ParameterToModelMap.txt";
+	public static Map<String, String> mapOfParamterAndImagesFolder = new HashMap<String, String>();
+	
 	@Autowired
 	private ItemRepository itemRepository;
 
@@ -55,13 +61,40 @@ public class ItemServiceImpl implements IItemService
 		if (items.isEmpty())
 		{
 			System.out.println(" 0 item is present. Saving 1 item for now");
-			saveSampleItem();
+			//saveSampleItem();
 		}
 		else
 		{
 			System.out.println(" At least 1 item is present. Doing nothing for now");
 		}
 		mapOfAllCategoryImages = getMapOfAllCategoryImages();
+		//loadMapOfParamterAndImagesFolder();
+		try {
+		  loadMapOfParamterAndImagesFolder();
+		  //mapOfParamterAndImagesFolder
+		  for(Map.Entry<String, String> entry : mapOfParamterAndImagesFolder.entrySet()){
+		    String imageFolder = entry.getValue();
+		    String parameterString = entry.getKey();
+//		      System.out.println("\n\n\n For image "+entry.getKey());
+	          List<String> filenames = getResourceFilePaths(imageFolder);
+//	          System.out.println("getBackImage "+ getBackImage(filenames));
+//	          System.out.println("getFrontImage "+getFrontImage(filenames));
+//	          System.out.println("getLeftImage "+getLeftImage(filenames));
+	          
+	          saveSampleItem(parameterString, getFrontImage(filenames), getBackImage(filenames), getLeftImage(filenames));
+		  }
+
+		  for (String filename : getResourceFilePaths("4B-1A-1B-1A")){
+            System.out.println(filename);
+          }
+          List<String> filenames = getResourceFilePaths("4B-1A-1B-1A");
+          System.out.println("getBackImage "+ getBackImage(filenames));
+          System.out.println("getFrontImage "+getFrontImage(filenames));
+          System.out.println("getLeftImage "+getLeftImage(filenames));
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
 	}
 
 	@Override
@@ -196,6 +229,24 @@ public class ItemServiceImpl implements IItemService
 		return itemRepository.findByEncodedString(encodedString).get(0);
 	}
 
+	   public Item saveSampleItem(String encodedString, String frontFilePath, String backFilePath, String leftFilePath)
+	    {
+	        Item item = new Item();
+	        String filePath = BASE_PATH_FOR_IMAGES_IN_RESOURCES + "1A-1B-1A-1B-1A-1B-1A_BK1_optimized.png";
+	        //String encodedString = "A-B-A-B-A-B-A";
+	        String productType = "kurta";
+	        item.setEncodedString(encodedString);
+	        //item.setFilePath(filePath);
+	        item.setProductType(productType);
+	        item.setBackFilePath(backFilePath);
+	        item.setFrontFilePath(frontFilePath);
+	        item.setLeftFilePath(leftFilePath);
+	        if (itemRepository.findByEncodedString(encodedString).isEmpty())
+	        {
+	            saveItem(item);
+	        }
+	        return itemRepository.findByEncodedString(encodedString).get(0);
+	    }
 	// @Override
 	// public byte[] getImageByteArrayFromParameterBean(ParameterBean
 	// parameterBean) {
@@ -238,14 +289,21 @@ public class ItemServiceImpl implements IItemService
 
 			// String sampleImagePath =
 			// "fabricImages/1A-1B-1A-1B-1A-1B-1A_BK1_optimized.png";
-			String backFilePathInResourceFolder = getFilePathFromParameterBean(parameterBean);
+			//String backFilePathInResourceFolder = getFilePathFromParameterBean(parameterBean);
 
 			// fabricImages/1A-1B-1A-1B-1A-1B-1A_L1_optimized.png
-			String leftFilePathInResourceFolder = backFilePathInResourceFolder.replace("BK", "L");
+			//String leftFilePathInResourceFolder = backFilePathInResourceFolder.replace("BK", "L");
 
 			// fabricImages/1A-1B-1A-1B-1A-1B-1A_F1_optimized.png
-			String frontFilePathInResourceFolder = backFilePathInResourceFolder.replace("BK", "F");
+			//String frontFilePathInResourceFolder = backFilePathInResourceFolder.replace("BK", "F");
 
+			String encodedString = getEncodedStringFromParameterBean(parameterBean);
+			List<Item> items = findByEncodedString(encodedString);
+			Item item= items.get(0);
+			String backFilePathInResourceFolder = item.getBackFilePath();
+			String leftFilePathInResourceFolder = item.getLeftFilePath();
+			String frontFilePathInResourceFolder = item.getFrontFilePath();
+			
 			viewImages.put("left", _getImageByteArrayFromFilePathInResourceFolder(leftFilePathInResourceFolder));
 
 			viewImages.put("front", _getImageByteArrayFromFilePathInResourceFolder(frontFilePathInResourceFolder));
@@ -324,7 +382,7 @@ public class ItemServiceImpl implements IItemService
  
     for (File file : files) {
         if (file.isFile()) {
-          System.out.println("file.getPath() " + file.getPath());
+          //System.out.println("file.getPath() " + file.getPath());
           filepaths.add(file.getPath());
         }
     }
@@ -480,4 +538,130 @@ public class ItemServiceImpl implements IItemService
 		// TODO Auto-generated method stub
 		return mapOfAllCategoryImages;
 	}
+	
+	private void loadMapOfParamterAndImagesFolder(){
+
+	  //Map<String, String> encodedStringWithFolderPathMap = new HashMap<String, String>();
+      String csvFile = FILE_PATH_PARAMETER_TO_IMAGES_FOLDER_MAP_IN_RESOURCES;
+      String line = "";
+      String cvsSplitBy = ",";
+      try (BufferedReader br = new BufferedReader(
+                                  new InputStreamReader(
+                                       new FileInputStream(this.getClass().getClassLoader().getResource(csvFile).getFile())))) {
+
+          while ((line = br.readLine()) != null) {
+              String[] tokens = line.split(cvsSplitBy);
+              //System.out.println((tokens.length >=0 ? tokens[0]:"Null"));
+              //System.out.println((tokens.length >=2 ? tokens[1]+" : "+putHyphens(tokens[1]):"Null"));
+              //System.out.println("Country [code= " + tokens[0] + " , name=" + tokens[1] + "]");
+              if(tokens.length >=2){
+                if(tokens[0] != null && tokens[1] != null){
+                  mapOfParamterAndImagesFolder.put(tokens[0], putHyphens(tokens[1]));
+                }                
+              }
+
+          }
+
+      } catch (IOException e) {
+          e.printStackTrace();
+      }
+
+	}
+	private String putHyphens(String withoutHypenString){
+	  //eg 3BACBA, 3BA2BA
+	  StringBuilder withHypen = new StringBuilder();
+	  if(!Character.isDigit(withoutHypenString.charAt(0))){
+	    withHypen.append('1');
+	  }
+	  withHypen.append(withoutHypenString.charAt(0));
+	  for(int i=1; i< withoutHypenString.length(); i++){
+	    if(Character.isLetter(withoutHypenString.charAt(i-1))){
+	      withHypen.append('-');
+	      if(!Character.isDigit(withoutHypenString.charAt(i))){
+	        withHypen.append('1');
+	      }
+	    } 
+	    withHypen.append(withoutHypenString.charAt(i));
+	  }
+	  return withHypen.toString();
+	}
+
+	private List<String> getResourceFilePaths(String imageFolderName) throws IOException {
+	  String prefix = "all_model_files_optimised/";
+	  String path = prefix+imageFolderName; 
+	    List<String> filenames = new ArrayList<>();
+	    System.out.println("path "+path);
+	    try{
+	      //System.out.println("path "+path);
+	      
+	      InputStream in = this.getClass().getClassLoader().getResourceAsStream( path );
+	      if(in != null){
+	          BufferedReader br = new BufferedReader( new InputStreamReader( in ) ) ;
+	           
+	          String resource;
+
+	          while( (resource = br.readLine()) != null ) {
+	            filenames.add(path+"/"+ resource );
+	          }	        
+	      }
+	      
+	    }catch(Exception e){
+	      e.printStackTrace();
+	    }
+	      //)
+	    return filenames;
+	  }
+	
+	public String pickOneFromFilteredList(List<String> filtered){
+	  
+	  if(filtered.size() == 1){
+	    return filtered.get(0);
+	  }
+	  if(filtered.size() >=2 && (filtered.get(0)).toLowerCase().contains("with")){
+	    for (String filename : filtered){
+	      if(!filename.toLowerCase().contains("out")){
+	        return filename;
+	      }
+	    }
+	  }
+	  Collections.sort(filtered);
+	  return filtered.get(filtered.size() - 1);
+	}
+	
+	public String getFrontImage(List<String> filenames){
+	  List<String> filtered = new ArrayList<String>();
+	  for (String filename : filenames){
+	    if(filename.contains("FR") || filename.contains("F1")){
+	      filtered.add(filename);
+	    }
+	  }
+	  if(!filtered.isEmpty()){
+	    return pickOneFromFilteredList(filtered);
+	  }
+	  return "fabricImages/1A-1B-1A-1B-1A-1B-1A_F1_optimized.png";
+	}
+    public String getBackImage(List<String> filenames){
+      List<String> filtered = new ArrayList<String>();
+      for (String filename : filenames){
+        if(filename.contains("BA") || filename.contains("BK1")){
+          filtered.add(filename);
+        }
+      }
+      if(!filtered.isEmpty()){
+        return pickOneFromFilteredList(filtered);
+      }
+      return "fabricImages/1A-1B-1A-1B-1A-1B-1A_BK1_optimized.png";
+    }
+    public String getLeftImage(List<String> filenames){
+      List<String> filtered = new ArrayList<String>();
+      for (String filename : filenames){
+        if(filename.contains("LE") || filename.contains("L1")){
+          filtered.add(filename);
+        }
+      }
+      if(!filtered.isEmpty()){
+        return pickOneFromFilteredList(filtered);
+      }
+      return "fabricImages/1A-1B-1A-1B-1A-1B-1A_L1_optimized.png";
+    }
 }
