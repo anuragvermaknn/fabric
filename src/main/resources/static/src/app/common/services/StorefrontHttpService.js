@@ -23,10 +23,11 @@
 
             return service;
 
-            function renderProductImage() {
+            function renderProductImage(imageDTO) {
                 var config = {
-                    method : 'GET',
-                    url: parentUrl+'/data/image'
+                    method : 'POST',
+                    url: parentUrl+'/data/image',
+                    data: imageDTO
                 };
                 return HttpService.httpRequest(config);
             }

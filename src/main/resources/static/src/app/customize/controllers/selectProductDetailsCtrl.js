@@ -17,13 +17,14 @@ angular.module('customize.controllers.selectProductDetailsCtrl', [])
                     backline : backline[0].id,
                     sleeves : sleeves[0].id,
                     cloth : fabric[0].id,
-                    borders : borders[0].id,
+                    border : borders[0].id,
                     embroidery : embroidery[0].id
                 }
             };
 
 
             $scope.updateDTO = function (data) {
+                console.log(imageDTO);
                 imageDTO[currentCatName] = data.id;
                 StorefrontHttpService.renderProductImage(imageDTO).then(function (success) {
                     $scope.images = success.viewImages;
