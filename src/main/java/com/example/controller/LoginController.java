@@ -184,7 +184,7 @@ public class LoginController
 		// viewImages.put("right", imageStream);
 		// viewImages.put("front", imageStream);
 
-		Map<String, byte[]> viewImages = itemService.getImageByteArrayFromParameterBean(parameterBean1);
+		Map<String, byte[]> viewImages = itemService.getImageByteArrayFromParameterBean(parameterBean);
 
 		model.setViewImages(viewImages);
 

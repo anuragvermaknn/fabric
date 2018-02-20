@@ -278,7 +278,7 @@ public class ItemServiceImpl implements IItemService
 	// }
 
 	@Override
-	@Cacheable
+	//@Cacheable
 	public Map<String, byte[]> getImageByteArrayFromParameterBean(ParameterBean parameterBean)
 	{
 
@@ -298,8 +298,10 @@ public class ItemServiceImpl implements IItemService
 			//String frontFilePathInResourceFolder = backFilePathInResourceFolder.replace("BK", "F");
 
 			String encodedString = getEncodedStringFromParameterBean(parameterBean);
+			System.out.println("encodedString : "+encodedString);
 			List<Item> items = findByEncodedString(encodedString);
 			Item item= items.get(0);
+			System.out.println("Id of image fetched"+ item.getId());
 			String backFilePathInResourceFolder = item.getBackFilePath();
 			String leftFilePathInResourceFolder = item.getLeftFilePath();
 			String frontFilePathInResourceFolder = item.getFrontFilePath();
