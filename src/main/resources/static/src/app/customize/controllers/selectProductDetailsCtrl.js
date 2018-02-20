@@ -8,22 +8,23 @@ angular.module('customize.controllers.selectProductDetailsCtrl', [])
             var currentCatName;
             $scope.imgPrefix = $rootScope.assetsURLPrefix;
             $scope.frontActive = true;
-            $scope.currentActive = 'silhouttes';
+            $scope.currentActive = 'silhouette';
 
             $scope.createInitDTO = function () {
                 imageDTO = {
-                    silhouette : silhouttes[0].id,
+                    silhouette : silhouette[0].id,
                     neckline : neckline[0].id,
                     backline : backline[0].id,
                     sleeves : sleeves[0].id,
                     cloth : fabric[0].id,
-                    borders : borders[0].id,
+                    border : borders[0].id,
                     embroidery : embroidery[0].id
                 }
             };
 
 
             $scope.updateDTO = function (data) {
+                console.log(imageDTO);
                 imageDTO[currentCatName] = data.id;
                 StorefrontHttpService.renderProductImage(imageDTO).then(function (success) {
                     $scope.images = success.viewImages;
@@ -37,15 +38,15 @@ angular.module('customize.controllers.selectProductDetailsCtrl', [])
 
             $scope.getClothData = function () {
                   StorefrontHttpService.getClothDetail().then(function (success){
-                        silhouttes = success[0];
+                      silhouette = success[0];
                         neckline = success[1];
                         backline = success[2];
                         sleeves = success[3];
                         fabric = success[4];
                         borders = success[5];
                         embroidery = success[6];
-                      $scope.currentCat = silhouttes;
-                      currentCatName = 'silhouttes';
+                      $scope.currentCat = silhouette;
+                      currentCatName = 'silhouette';
                       $scope.createInitDTO();
                       StorefrontHttpService.renderProductImage(imageDTO).then(function (success) {
                           $scope.images = success.viewImages;
@@ -75,9 +76,9 @@ angular.module('customize.controllers.selectProductDetailsCtrl', [])
                     id=id.toString();
                 switch (id){
                     case '0':
-                        $scope.currentCat = silhouttes;
+                        $scope.currentCat = silhouette;
                         currentCatName = 'silhouette';
-                        $scope.currentActive = 'silhouttes';
+                        $scope.currentActive = 'silhouette';
                         break;
 
                     case '1':
@@ -124,8 +125,8 @@ angular.module('customize.controllers.selectProductDetailsCtrl', [])
                         break;
 
                     default:
-                        $scope.currentCat = silhouttes;
-                        $scope.currentActive = 'silhouttes';
+                        $scope.currentCat = silhouette;
+                        $scope.currentActive = 'silhouette';
 
                 }
             };
