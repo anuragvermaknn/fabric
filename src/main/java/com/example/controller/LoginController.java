@@ -126,7 +126,7 @@ public class LoginController
 	@RequestMapping(value = "/sample-image", method = RequestMethod.GET, produces = "image/png")
 	public @ResponseBody byte[] getFile()
 	{
-	  System.out.println("\n\n\n"+"/sample-image"+" api hit");
+	  System.out.println("\n\n\n"+"/data/image "+" api hit");
 		System.out.println(" sample image controller");
 		try
 		{

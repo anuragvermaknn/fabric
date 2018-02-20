@@ -306,14 +306,22 @@ public class ItemServiceImpl implements IItemService
 			String leftFilePathInResourceFolder = item.getLeftFilePath();
 			String frontFilePathInResourceFolder = item.getFrontFilePath();
 			
-			viewImages.put("left", _getImageByteArrayFromFilePathInResourceFolder(leftFilePathInResourceFolder));
-
-			viewImages.put("front", _getImageByteArrayFromFilePathInResourceFolder(frontFilePathInResourceFolder));
+			byte[] leftImage = _getImageByteArrayFromFilePathInResourceFolder(leftFilePathInResourceFolder);
+			viewImages.put("left", leftImage);
+			
+			byte[] frontImage = _getImageByteArrayFromFilePathInResourceFolder(frontFilePathInResourceFolder);
+			viewImages.put("front", frontImage);
 
 			// FIX below. remove right below
-			viewImages.put("back", _getImageByteArrayFromFilePathInResourceFolder(backFilePathInResourceFolder));
-			viewImages.put("right", _getImageByteArrayFromFilePathInResourceFolder(backFilePathInResourceFolder));
-
+			byte[] backImage = _getImageByteArrayFromFilePathInResourceFolder(backFilePathInResourceFolder);
+			viewImages.put("back", backImage);
+			viewImages.put("right", backImage);
+			int sizeOfImagesSent = leftImage.length + frontImage.length + backImage.length;
+			System.out.println("Size of images sent in bytes "+ sizeOfImagesSent);
+			int sizeOfImagesSentKB = sizeOfImagesSent/1024;
+			System.out.println("Size of images sent in KB "+ sizeOfImagesSentKB);
+			int sizeOfImagesSentMB = sizeOfImagesSentKB/1024;
+			System.out.println("Size of images sent in MB "+ sizeOfImagesSentMB);
 			return viewImages;
 		}
 		catch (Exception e)
