@@ -169,7 +169,7 @@ public class LoginController
 	// 3d model api
 
 	@RequestMapping(value = "/data/image", method = RequestMethod.POST)
-	public ResponseEntity<ModelBean> getImageByteArrayFromParameterBean(ParameterBean parameterBean)
+	public ResponseEntity<ModelBean> getImageByteArrayFromParameterBean(@RequestBody ParameterBean parameterBean)
 	{
 
 		ModelBean model = new ModelBean();
