@@ -126,6 +126,7 @@ public class LoginController
 	@RequestMapping(value = "/sample-image", method = RequestMethod.GET, produces = "image/png")
 	public @ResponseBody byte[] getFile()
 	{
+	  System.out.println("\n\n\n"+"/sample-image"+" api hit");
 		System.out.println(" sample image controller");
 		try
 		{
@@ -171,7 +172,7 @@ public class LoginController
 	@RequestMapping(value = "/data/image", method = RequestMethod.POST)
 	public ResponseEntity<ModelBean> getImageByteArrayFromParameterBean(@RequestBody ParameterBean parameterBean)
 	{
-
+	   System.out.println("\n\n\n"+"/data/image "+" api hit");
 		ModelBean model = new ModelBean();
 		System.out.println(" ParameterBean values that hit the api \n "+ parameterBean);
 		// TODO change parameterBean1 to parameterBean below
@@ -199,7 +200,7 @@ public class LoginController
 	@RequestMapping(value = "/get/AllCategroies/data", method = RequestMethod.GET)
 	public ResponseEntity<Map<String, List<AllCategoryImages>>> getCategoryImageByteArrayFromParameterBean()
 	{
-
+	  System.out.println("\n\n\n"+"/get/AllCategroies/data"+" api hit");
 		// Map<String, List<AllCategoryImages>> map = new HashMap<>();
 		// TODO change parameterBean1 to parameterBean below
 		// byte[] imageStream =
@@ -230,7 +231,7 @@ public class LoginController
 	@RequestMapping(value = "/data/category/image2", method = RequestMethod.GET)
 	public List<byte[]> getCategoryImageByteArrayFromParameterBean2(@RequestBody(required = false) String category)
 	{
-
+	  System.out.println("\n\n\n"+"/data/category/image2"+" api hit");
 		// Response Type
 		// In this map you have to put beans against each categoryId;
 		//
@@ -254,7 +255,7 @@ public class LoginController
 	@RequestMapping(value = "/data/item", method = RequestMethod.GET)
 	public @ResponseBody List<Item> findItemByParameterBean(@RequestBody(required = false) ParameterBean parameterBean)
 	{
-
+	  System.out.println("\n\n\n"+"/data/item"+" api hit");
 		// TODO change parameterBean1 to parameterBean below
 		List<Item> items = itemService.findByParameterBean(parameterBean1);
 		return items;
@@ -265,7 +266,8 @@ public class LoginController
 	@RequestMapping(value = "/product/items", method = RequestMethod.GET)
 	public ResponseEntity<List<AllCategoryImages>> allProductsListing()
 	{
-		List<AllCategoryImages> result = new ArrayList<>();
+	  System.out.println("\n\n\n"+"/product/items"+" api hit");
+	  List<AllCategoryImages> result = new ArrayList<>();
 
 		// TODO change parameterBean1 to parameterBean below
 		byte[] imageStream = itemService.getImageByteArrayFromParameterBean(parameterBean1).get("front");
