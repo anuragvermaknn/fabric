@@ -318,9 +318,15 @@ public class ItemServiceImpl implements IItemService {
 			ByteArrayOutputStream bao = new ByteArrayOutputStream();
 
 			// Write to output stream
-			ImageIO.write(img, "png", bao);
-
-			return bao.toByteArray();
+			ImageIO.write(img, "jpg", bao);
+			bao.flush();
+			 
+			String base64String=Base64.encode(bao.toByteArray());
+			bao.close();
+	 
+			byte[] bytearray = Base64.decode(base64String);
+			
+			return bytearray;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
