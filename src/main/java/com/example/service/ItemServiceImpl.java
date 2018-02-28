@@ -282,15 +282,20 @@ public class ItemServiceImpl implements IItemService {
 			String frontFilePathInResourceFolder = item.getFrontFilePath();
 
 			byte[] leftImage = _getImageByteArrayFromFilePathInResourceFolder(leftFilePathInResourceFolder);
-			viewImages.put("left", leftImage);
-
+			//TODO
+			//viewImages.put("left", leftImage);
+			viewImages.put("left", new byte[1]);
+			
 			byte[] frontImage = _getImageByteArrayFromFilePathInResourceFolder(frontFilePathInResourceFolder);
 			viewImages.put("front", frontImage);
 
 			// FIX below. remove right below
 			byte[] backImage = _getImageByteArrayFromFilePathInResourceFolder(backFilePathInResourceFolder);
 			viewImages.put("back", backImage);
-			viewImages.put("right", backImage);
+			
+			//TODO
+			//viewImages.put("right", backImage);
+			viewImages.put("right", new byte[1]);
 			int sizeOfImagesSent = leftImage.length + frontImage.length + backImage.length;
 			System.out.println("Size of images sent in bytes " + sizeOfImagesSent);
 			int sizeOfImagesSentKB = sizeOfImagesSent / 1024;
