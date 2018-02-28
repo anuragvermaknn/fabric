@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.bean.AllCategoryImages;
+import com.example.bean.AllCategoryS3Images;
 import com.example.bean.ModelBean;
 import com.example.bean.ParameterBean;
 import com.example.model.Item;
@@ -185,8 +186,8 @@ public class LoginController
 		// viewImages.put("right", imageStream);
 		// viewImages.put("front", imageStream);
 
-		Map<String, byte[]> viewImages = itemService.getImageByteArrayFromParameterBean(parameterBean);
-
+		//Map<String, byte[]> viewImages = itemService.getImageByteArrayFromParameterBean(parameterBean);
+		Map<String, String> viewImages = itemService.getImageS3PathFromParameterBean(parameterBean);
 		model.setViewImages(viewImages);
 
 		ResponseEntity<ModelBean> responseEntity = new ResponseEntity<>(model, HttpStatus.OK);
@@ -198,7 +199,7 @@ public class LoginController
 	// All categories second part data with mapping
 
 	@RequestMapping(value = "/get/AllCategroies/data", method = RequestMethod.GET)
-	public ResponseEntity<Map<String, List<AllCategoryImages>>> getCategoryImageByteArrayFromParameterBean()
+	public ResponseEntity<Map<String, List<AllCategoryS3Images>>> getCategoryImageByteArrayFromParameterBean()
 	{
 	  System.out.println("\n\n\n"+"/get/AllCategroies/data"+" api hit");
 		// Map<String, List<AllCategoryImages>> map = new HashMap<>();
@@ -221,8 +222,8 @@ public class LoginController
 		// map.put(j + "", list);
 		// }
 
-		Map<String, List<AllCategoryImages>> map = itemService.getStaticMapOfAllCategoryImages();
-		ResponseEntity<Map<String, List<AllCategoryImages>>> responseEntity = new ResponseEntity<>(map, HttpStatus.OK);
+		Map<String, List<AllCategoryS3Images>> map = itemService.getStaticMapOfAllCategoryS3Images();
+		ResponseEntity<Map<String, List<AllCategoryS3Images>>> responseEntity = new ResponseEntity<>(map, HttpStatus.OK);
 		return responseEntity;
 	}
 

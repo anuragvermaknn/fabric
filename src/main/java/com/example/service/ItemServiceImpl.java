@@ -28,6 +28,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.example.bean.AllCategoryImages;
+import com.example.bean.AllCategoryS3Images;
 import com.example.bean.ParameterBean;
 import com.example.model.Item;
 import com.example.repository.ItemRepository;
@@ -49,6 +50,8 @@ public class ItemServiceImpl implements IItemService {
 
 	private final String FILE_PATH_PARAMETER_TO_IMAGES_FOLDER_MAP_IN_RESOURCES = "ParameterToModelMap.txt";
 	public static Map<String, String> mapOfParamterAndImagesFolder = new HashMap<String, String>();
+	private final String S3_IMAGES_FOLDER_BASE_PREFIX = "";
+	public static Map<String, List<AllCategoryS3Images>> mapOfAllCategoryS3Images;
 
 	@Autowired
 	private ItemRepository itemRepository;
@@ -64,7 +67,8 @@ public class ItemServiceImpl implements IItemService {
 		} else {
 			System.out.println(" At least 1 item is present. Doing nothing for now");
 		}
-		mapOfAllCategoryImages = getMapOfAllCategoryImages();
+		//mapOfAllCategoryImages = getMapOfAllCategoryImages();
+		mapOfAllCategoryS3Images = getMapOfAllCategoryS3Images();
 		// loadMapOfParamterAndImagesFolder();
 		try {
 			loadMapOfParamterAndImagesFolder();
@@ -305,6 +309,59 @@ public class ItemServiceImpl implements IItemService {
 
 	}
 
+    @Override
+    // @Cacheable
+    public Map<String, String> getImageS3PathFromParameterBean(ParameterBean parameterBean) {
+
+        Map<String, String> viewImages = new HashMap<>();
+         
+        try {
+
+            // String sampleImagePath =
+            // "fabricImages/1A-1B-1A-1B-1A-1B-1A_BK1_optimized.png";
+            // String backFilePathInResourceFolder =
+            // getFilePathFromParameterBean(parameterBean);
+
+            // fabricImages/1A-1B-1A-1B-1A-1B-1A_L1_optimized.png
+            // String leftFilePathInResourceFolder =
+            // backFilePathInResourceFolder.replace("BK", "L");
+
+            // fabricImages/1A-1B-1A-1B-1A-1B-1A_F1_optimized.png
+            // String frontFilePathInResourceFolder =
+            // backFilePathInResourceFolder.replace("BK", "F");
+
+            String encodedString = getEncodedStringFromParameterBean(parameterBean);
+            System.out.println("encodedString : " + encodedString);
+            List<Item> items = findByEncodedString(encodedString);
+            Item item = items.get(0);
+            System.out.println("Id of image fetched" + item.getId());
+            String backFilePathInResourceFolder = item.getBackFilePath();
+            String leftFilePathInResourceFolder = item.getLeftFilePath();
+            String frontFilePathInResourceFolder = item.getFrontFilePath();
+
+            String leftImage = _getImageS3PathFromFilePathInResourceFolder(leftFilePathInResourceFolder);
+            viewImages.put("left", leftImage);
+
+            String frontImage = _getImageS3PathFromFilePathInResourceFolder(frontFilePathInResourceFolder);
+            viewImages.put("front", frontImage);
+
+            // FIX below. remove right below
+            String backImage = _getImageS3PathFromFilePathInResourceFolder(backFilePathInResourceFolder);
+            viewImages.put("back", backImage);
+            viewImages.put("right", backImage);
+//            int sizeOfImagesSent = leftImage.length + frontImage.length + backImage.length;
+//            System.out.println("Size of images sent in bytes " + sizeOfImagesSent);
+//            int sizeOfImagesSentKB = sizeOfImagesSent / 1024;
+//            System.out.println("Size of images sent in KB " + sizeOfImagesSentKB);
+//            int sizeOfImagesSentMB = sizeOfImagesSentKB / 1024;
+//            System.out.println("Size of images sent in MB " + sizeOfImagesSentMB);
+            return viewImages;
+        } catch (Exception e) {
+            // logger.error(e);
+            throw new RuntimeException(e);
+        }
+
+    }	
 	@SuppressWarnings("unused")
 	private byte[] _getImageByteArrayFromFilePathInResourceFolder(String filePathInResourceFolder) {
 
@@ -334,7 +391,12 @@ public class ItemServiceImpl implements IItemService {
 		}
 
 	}
+    @SuppressWarnings("unused")
+    private String _getImageS3PathFromFilePathInResourceFolder(String filePathInResourceFolder) {
 
+      
+      return S3_IMAGES_FOLDER_BASE_PREFIX+filePathInResourceFolder;
+    }
 	@SuppressWarnings("unused")
 	private byte[] _getImageByteArrayFromAbsoluteFilePath(String absoluteFilePath) {
 
@@ -357,14 +419,6 @@ public class ItemServiceImpl implements IItemService {
 	 
 			byte[] bytearray = Base64.decode(base64String);
 			
-			
-			
-			
-			
-			
-			
-			
-			
 			return bytearray;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -373,7 +427,14 @@ public class ItemServiceImpl implements IItemService {
 		}
 
 	}
+    @SuppressWarnings("unused")
+    private String _getImageS3FromAbsoluteFilePath(String absoluteFilePath) {
 
+      //S3_IMAGES_FOLDER_BASE_PREFIX
+      String resourcesPathSuffix = absoluteFilePath.split("resources/")[1];
+      return S3_IMAGES_FOLDER_BASE_PREFIX+resourcesPathSuffix;
+
+    }
 	public List<String> getSortedFilePathsInDir(String directoryPathInResources) {
 
 		List<String> filepaths = new ArrayList<String>();
@@ -539,6 +600,150 @@ public class ItemServiceImpl implements IItemService {
 		return map;
 	}
 
+    @Override
+    public Map<String, List<AllCategoryS3Images>> getMapOfAllCategoryS3Images() {
+        // TODO Auto-generated method stub
+        Map<String, List<AllCategoryS3Images>> map = new HashMap<>();
+
+        // Category 1 sillhoute _getImageS3FromAbsoluteFilePath
+        List<AllCategoryS3Images> list = new ArrayList<>();
+        String directoryPathInResources = BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES + "sillhoute";
+        List<String> filepaths = getSortedFilePathsInDir(directoryPathInResources);
+        int count = 0;
+        for (String filepath : filepaths) {
+          AllCategoryS3Images categoryImage = new AllCategoryS3Images();
+            categoryImage.setId(String.valueOf(ALPHABETS[count]));
+            categoryImage.setImage(_getImageS3FromAbsoluteFilePath(filepath));
+            list.add(categoryImage);
+            count += 1;
+        }
+        // AllCategoryImages categoryImage1 = new AllCategoryImages();
+        // categoryImage1.setId("a");
+        // categoryImage1.setImage(_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES+"1a.png"));
+        // AllCategoryImages categoryImage2 = new AllCategoryImages();
+        // categoryImage2.setId("b");
+        // categoryImage2.setImage(_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES+"1b.png"));
+        //
+        // list.add(categoryImage1); list.add(categoryImage2);
+
+        // Category 2 neckline
+        List<AllCategoryS3Images> list2 = new ArrayList<>();
+        directoryPathInResources = BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES + "neckline";
+        filepaths = getSortedFilePathsInDir(directoryPathInResources);
+        count = 0;
+        for (String filepath : filepaths) {
+          AllCategoryS3Images categoryImage = new AllCategoryS3Images();
+            categoryImage.setId(String.valueOf(ALPHABETS[count]));
+            categoryImage.setImage(_getImageS3FromAbsoluteFilePath(filepath));
+            list2.add(categoryImage);
+            count += 1;
+        }
+        // AllCategoryImages category2Image1 = new AllCategoryImages();
+        // category2Image1.setId("a");
+        // category2Image1.setImage(_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES+"2a.png"));
+        // AllCategoryImages category2Image2 = new AllCategoryImages();
+        // category2Image2.setId("b");
+        // category2Image2.setImage(_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES+"2b.png"));
+        //
+        // list2.add(category2Image1); list2.add(category2Image2);
+        //AllCategoryS3Images
+        // Category 3 backline
+        List<AllCategoryS3Images> list3 = new ArrayList<>();
+        directoryPathInResources = BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES + "backline";
+        filepaths = getSortedFilePathsInDir(directoryPathInResources);
+        count = 0;
+        for (String filepath : filepaths) {
+            AllCategoryS3Images categoryImage = new AllCategoryS3Images();
+            categoryImage.setId(String.valueOf(ALPHABETS[count]));
+            categoryImage.setImage(_getImageS3FromAbsoluteFilePath(filepath));
+            list3.add(categoryImage);
+            count += 1;
+        }
+        // AllCategoryS3Images category3Image1 = new AllCategoryS3Images();
+        // category3Image1.setId("a");
+        // category3Image1.setImage(_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES+"3a.png"));
+        // AllCategoryS3Images category3Image2 = new AllCategoryS3Images();
+        // category3Image2.setId("b");
+        // category3Image2.setImage(_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES+"3b.png"));
+        //
+        // list3.add(category3Image1); list3.add(category3Image2);
+
+        // Category 4 sleeve
+        List<AllCategoryS3Images> list4 = new ArrayList<>();
+        directoryPathInResources = BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES + "sleeve";
+        filepaths = getSortedFilePathsInDir(directoryPathInResources);
+        count = 0;
+        for (String filepath : filepaths) {
+            AllCategoryS3Images categoryImage = new AllCategoryS3Images();
+            categoryImage.setId(String.valueOf(ALPHABETS[count]));
+            categoryImage.setImage(_getImageS3FromAbsoluteFilePath(filepath));
+            list4.add(categoryImage);
+            count += 1;
+        }
+        // AllCategoryS3Images category4Image1 = new AllCategoryS3Images();
+        // //category4Image1.setId("");
+        // category4Image1.setImage(_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES+""));
+        // AllCategoryS3Images category4Image2 = new AllCategoryS3Images();
+        // category4Image2.setId("b");
+        // category4Image2.setImage(_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES+"4b.png"));
+        //
+        // //list4.add(category4Image1);
+        // list4.add(category4Image2);
+
+        // Category 5
+        List<AllCategoryS3Images> list5 = new ArrayList<>();
+        AllCategoryS3Images category5Image1 = new AllCategoryS3Images();
+        // category5Image1.setId("");
+        // category5Image1.setImage(_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES+""));
+        AllCategoryS3Images category5Image2 = new AllCategoryS3Images();
+        category5Image2.setId("b");
+        category5Image2.setImage(
+          _getImageS3PathFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES + "5b.png"));
+        AllCategoryS3Images category5Image3 = new AllCategoryS3Images();
+        category5Image3.setId("c");
+        category5Image3.setImage(
+          _getImageS3PathFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES + "5c.png"));
+
+        // list5.add(category5Image1);
+        list5.add(category5Image2);
+        list5.add(category5Image3);
+
+        // Category 6
+        List<AllCategoryS3Images> list6 = new ArrayList<>();
+        AllCategoryS3Images category6Image1 = new AllCategoryS3Images();
+        // category6Image1.setId("");
+        // category6Image1.setImage(_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES+""));
+        AllCategoryS3Images category6Image2 = new AllCategoryS3Images();
+        category6Image2.setId("b");
+        category6Image2.setImage(
+          _getImageS3PathFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES + "6b.png"));
+
+        // list6.add(category6Image1);
+        list6.add(category6Image2);
+
+        // Category 7
+        List<AllCategoryS3Images> list7 = new ArrayList<>();
+        AllCategoryS3Images category7Image1 = new AllCategoryS3Images();
+        // category7Image1.setId("");
+        // category7Image1.setImage(_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES+""));
+        AllCategoryS3Images category7Image2 = new AllCategoryS3Images();
+        category7Image2.setId("b");
+        category7Image2.setImage(
+          _getImageS3PathFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES + "7b.png"));
+
+        // list7.add(category7Image1);
+        list7.add(category7Image2);
+
+        map.put("0", list);
+        map.put("1", list2);
+        map.put("2", list3);
+        map.put("3", list4);
+        map.put("4", list5);
+        map.put("5", list6);
+        map.put("6", list7);
+
+        return map;
+    }	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -551,7 +756,13 @@ public class ItemServiceImpl implements IItemService {
 		// TODO Auto-generated method stub
 		return mapOfAllCategoryImages;
 	}
-
+    @Override
+    @Cacheable("test")
+    public Map<String, List<AllCategoryS3Images>> getStaticMapOfAllCategoryS3Images() {
+        int size = mapOfAllCategoryS3Images.size();
+        // TODO Auto-generated method stub
+        return mapOfAllCategoryS3Images;
+    }
 	private void loadMapOfParamterAndImagesFolder() {
 
 		// Map<String, String> encodedStringWithFolderPathMap = new HashMap<String,
