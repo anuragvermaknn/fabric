@@ -7,6 +7,7 @@ public class AllCategoryImages
 	private String id;
 	private byte[] image;
 	private String productId;
+	private String s3ImagePath;
 
 	public String getProductId()
 	{
@@ -38,10 +39,21 @@ public class AllCategoryImages
 		this.image = image;
 	}
 
-	@Override
-	public String toString()
-	{
-		return "AllCategoryImages [id=" + id + ", image=" + Arrays.toString(image) + ", productId=" + productId + "]";
-	}
+  public String getS3ImagePath() {
+    return s3ImagePath;
+  }
+
+  public void setS3ImagePath(String s3ImagePath) {
+    this.s3ImagePath = s3ImagePath;
+  }
+
+  @Override
+  public String toString() {
+    return "AllCategoryImages [id=" + id + ", image=" + Arrays.toString(image) + ", productId="
+        + productId + ", s3ImagePath=" + s3ImagePath + "]";
+  }
+		
+
+
 
 }

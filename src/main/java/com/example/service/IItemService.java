@@ -55,6 +55,8 @@ public interface IItemService {
   //public byte[] getImageByteArrayFromParameterBean(ParameterBean parameterBean);
   
   public Map<String,byte[]> getImageByteArrayFromParameterBean(ParameterBean parameterBean);
+
+  public Map<String,String> getS3ImageByteArrayFromParameterBean(ParameterBean parameterBean);
   
   public Map<String, List<AllCategoryImages>> getMapOfAllCategoryImages();
   

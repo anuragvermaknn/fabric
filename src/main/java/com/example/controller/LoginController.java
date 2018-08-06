@@ -185,9 +185,13 @@ public class LoginController
 		// viewImages.put("right", imageStream);
 		// viewImages.put("front", imageStream);
 
-		Map<String, byte[]> viewImages = itemService.getImageByteArrayFromParameterBean(parameterBean);
+		//Map<String, byte[]> viewImages = itemService.getImageByteArrayFromParameterBean(parameterBean);
+		
+		Map<String, String> s3ImagePaths = itemService.getS3ImageByteArrayFromParameterBean(parameterBean);
+		
 
-		model.setViewImages(viewImages);
+		//model.setViewImages(viewImages);
+		model.setS3ImagePaths(s3ImagePaths);
 
 		ResponseEntity<ModelBean> responseEntity = new ResponseEntity<>(model, HttpStatus.OK);
 		return responseEntity;
