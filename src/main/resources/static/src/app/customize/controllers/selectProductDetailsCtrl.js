@@ -27,7 +27,7 @@ angular.module('customize.controllers.selectProductDetailsCtrl', [])
                 console.log(imageDTO);
                 imageDTO[currentCatName] = data.id;
                 StorefrontHttpService.renderProductImage(imageDTO).then(function (success) {
-                    $scope.images = success.viewImages;
+                    $scope.images = success.s3ImagePaths;
                     $scope.renderedImage = $scope.images.front;
                 }, function (error) {
 
@@ -49,7 +49,7 @@ angular.module('customize.controllers.selectProductDetailsCtrl', [])
                       currentCatName = 'silhouette';
                       $scope.createInitDTO();
                       StorefrontHttpService.renderProductImage(imageDTO).then(function (success) {
-                          $scope.images = success.viewImages;
+                          $scope.images = success.s3ImagePaths;
                           $scope.renderedImage = $scope.images.front;
                       }, function (error) {
 
