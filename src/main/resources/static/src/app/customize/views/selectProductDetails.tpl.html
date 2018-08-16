@@ -57,7 +57,7 @@
 
             <div class="container-img" style="width: 120px;" ng-repeat="style in currentCat">
                 <md-card style="width: 100px;">
-                    <img ng-src="data:image/JPEG;base64,{{style.image}}" style="height: 160px;" ng-click="updateDTO(style)" class="image md-card-image" alt="user avatar">
+                    <img ng-src="{{style.s3ImagePaths}}" style="height: 160px;" ng-click="updateDTO(style)" class="image md-card-image" alt="user avatar">
                 </md-card>
             </div>
 
