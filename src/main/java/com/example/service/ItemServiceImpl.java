@@ -580,41 +580,49 @@ public class ItemServiceImpl implements IItemService {
 				_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES + "5b.png"));
 		category5Image2.setS3ImagePath(_getS3ImagPathFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES + "5b.png"));
 		AllCategoryImages category5Image3 = new AllCategoryImages();
-		category5Image3.setId("c");
+		//TODO Jugaad
+		category5Image3.setId("a");
 		category5Image3.setImage(
 				_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES + "5c.png"));
 		category5Image3.setS3ImagePath(_getS3ImagPathFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES + "5c.png"));
 
 		// list5.add(category5Image1);
-		list5.add(category5Image2);
+		
 		list5.add(category5Image3);
+		list5.add(category5Image2);
 
 		// Category 6
 		List<AllCategoryImages> list6 = new ArrayList<>();
 		AllCategoryImages category6Image1 = new AllCategoryImages();
-		// category6Image1.setId("");
-		// category6Image1.setImage(_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES+""));
+		//TODO Jugaad
+		category6Image1.setId("a");
+		category6Image1.setImage(
+          _getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES + "5c.png"));
+		category6Image1.setS3ImagePath(_getS3ImagPathFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES + "5c.png"));
 		AllCategoryImages category6Image2 = new AllCategoryImages();
 		category6Image2.setId("b");
 		category6Image2.setImage(
 				_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES + "6b.png"));
 		category6Image2.setS3ImagePath(_getS3ImagPathFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES + "6b.png"));
 
-		// list6.add(category6Image1);
+		list6.add(category6Image1);
 		list6.add(category6Image2);
 
 		// Category 7
 		List<AllCategoryImages> list7 = new ArrayList<>();
 		AllCategoryImages category7Image1 = new AllCategoryImages();
-		// category7Image1.setId("");
-		// category7Image1.setImage(_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES+""));
+		//TODO Jugaad
+		category7Image1.setId("a");
+		category7Image1.setImage(
+          _getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES + "5c.png"));
+		category7Image1.setS3ImagePath(_getS3ImagPathFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES + "5c.png"));
 		AllCategoryImages category7Image2 = new AllCategoryImages();
 		category7Image2.setId("b");
 		category7Image2.setImage(
 				_getImageByteArrayFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES + "7b.png"));
 		category7Image2.setS3ImagePath(_getS3ImagPathFromFilePathInResourceFolder(BASE_PATH_FOR_CATEGORY_IMAGES_IN_RESOURCES + "7b.png"));
 
-		// list7.add(category7Image1);
+		list7.add(category7Image1);
 		list7.add(category7Image2);
 
 		map.put("0", list);
@@ -743,7 +751,13 @@ public class ItemServiceImpl implements IItemService {
 	        }
 	        if (!filtered.isEmpty()) {
 	            return pickOneFromFilteredList(filtered);
-	        }		  
+	        } else {
+	            for (String filename : filenames) {
+	                if (filename.contains("(5)")) {
+	                    return filename;
+	                }
+	            }	          
+	        }
 		}
 		return "fabricImages/1A-1B-1A-1B-1A-1B-1A_F1_optimized.png";
 	}
@@ -758,7 +772,13 @@ public class ItemServiceImpl implements IItemService {
 	        }
 	        if (!filtered.isEmpty()) {
 	            return pickOneFromFilteredList(filtered);
-	        }		  
+	        } else {
+              for (String filename : filenames) {
+                if (filename.contains("(4)")) {
+                    return filename;
+                }
+            }   	          
+	        }
 		}
 		return "fabricImages/1A-1B-1A-1B-1A-1B-1A_BK1_optimized.png";
 	}

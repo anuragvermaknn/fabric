@@ -17,7 +17,7 @@ angular.module('customize.controllers.selectProductDetailsCtrl', [])
                     backline : backline[0].id,
                     sleeves : sleeves[0].id,
                     cloth : fabric[0].id,
-                    border : borders[0].id,
+                    border : border[0].id,
                     embroidery : embroidery[0].id
                 }
             };
@@ -25,7 +25,15 @@ angular.module('customize.controllers.selectProductDetailsCtrl', [])
 
             $scope.updateDTO = function (data) {
                 console.log(imageDTO);
-                imageDTO[currentCatName] = data.id;
+                
+                if(currentCatName === 'fabric') {
+                	imageDTO['cloth'] = data.id;
+                } else if (currentCatName === 'borders'){
+                	imageDTO['border'] = data.id;
+                } 
+                else {
+                	imageDTO[currentCatName] = data.id;
+                }
                 StorefrontHttpService.renderProductImage(imageDTO).then(function (success) {
                     $scope.images = success.s3ImagePaths;
                     $scope.renderedImage = $scope.images.front;

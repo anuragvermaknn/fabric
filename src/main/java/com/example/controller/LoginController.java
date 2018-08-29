@@ -274,7 +274,7 @@ public class LoginController
 	  List<AllCategoryImages> result = new ArrayList<>();
 
 		// TODO change parameterBean1 to parameterBean below
-		byte[] imageStream = itemService.getImageByteArrayFromParameterBean(parameterBean1).get("front");
+		//byte[] imageStream = itemService.getImageByteArrayFromParameterBean(parameterBean1).get("front");
 
 		for (int i = 0; i < 10; i++)
 		{
@@ -282,7 +282,7 @@ public class LoginController
 			int k = (i + 1);
 			productImage.setId("id-" + k);
 			productImage.setProductId("productId" + k);
-			productImage.setImage(imageStream);
+			//productImage.setImage(imageStream);
 			result.add(productImage);
 
 		}
