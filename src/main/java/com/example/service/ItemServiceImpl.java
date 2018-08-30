@@ -21,6 +21,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -96,7 +97,9 @@ public class ItemServiceImpl implements IItemService {
 				// System.out.println("getBackImage "+ getBackImage(filenames));
 				// System.out.println("getFrontImage "+getFrontImage(filenames));
 				// System.out.println("getLeftImage "+getLeftImage(filenames));
-				
+				if(parameterString.equals("B-A-A-A-A-A-A")){
+				  System.out.println("\n\n\n\ngetFrontImage(filenames) "+ getFrontImage(filenames));
+				}
 				saveSampleItem(parameterString, getFrontImage(filenames), getBackImage(filenames),
 						getLeftImage(filenames));
 			}
@@ -230,7 +233,7 @@ public class ItemServiceImpl implements IItemService {
 
 	public Item saveSampleItem(String encodedString, String frontFilePath, String backFilePath, String leftFilePath) {
 		Item item = new Item();
-		String filePath = BASE_PATH_FOR_IMAGES_IN_RESOURCES + "1A-1B-1A-1B-1A-1B-1A_BK1_optimized.png";
+		//String filePath = BASE_PATH_FOR_IMAGES_IN_RESOURCES + "1A-1B-1A-1B-1A-1B-1A_BK1_optimized.png";
 		// String encodedString = "A-B-A-B-A-B-A";
 		String productType = "kurta";
 		item.setEncodedString(encodedString);
@@ -736,6 +739,8 @@ public class ItemServiceImpl implements IItemService {
 					return filename;
 				}
 			}
+		} else if (filtered.size() == 2){
+		  return filtered.get(0);
 		}
 		Collections.sort(filtered);
 		return filtered.get(filtered.size() - 1);
@@ -751,13 +756,7 @@ public class ItemServiceImpl implements IItemService {
 	        }
 	        if (!filtered.isEmpty()) {
 	            return pickOneFromFilteredList(filtered);
-	        } else {
-	            for (String filename : filenames) {
-	                if (filename.contains("(5)")) {
-	                    return filename;
-	                }
-	            }	          
-	        }
+	        } 
 		}
 		return "fabricImages/1A-1B-1A-1B-1A-1B-1A_F1_optimized.png";
 	}
@@ -772,13 +771,7 @@ public class ItemServiceImpl implements IItemService {
 	        }
 	        if (!filtered.isEmpty()) {
 	            return pickOneFromFilteredList(filtered);
-	        } else {
-              for (String filename : filenames) {
-                if (filename.contains("(4)")) {
-                    return filename;
-                }
-            }   	          
-	        }
+	        }   	          
 		}
 		return "fabricImages/1A-1B-1A-1B-1A-1B-1A_BK1_optimized.png";
 	}
@@ -857,13 +850,16 @@ public class ItemServiceImpl implements IItemService {
               if (tokens.length >= 2) {
                   if (tokens[0] != null && tokens[1] != null) {
                     String key = tokens[0];
-                    String value = tokens[1];
+                    //String value = tokens[1];
+                    String[] subArray = Arrays.copyOfRange(tokens, 1, tokens.length);
+                    String value = String.join(cvsSplitBy, subArray);
                     if(mapOfParamterToFilenames.containsKey(key)){
                       mapOfParamterToFilenames.get(key).add(value);
+                    } else {
+                      List<String> l = new ArrayList<>();
+                      l.add(value);
+                      mapOfParamterToFilenames.put(key, l);                      
                     }
-                    List<String> l = new ArrayList<>();
-                    l.add(value);
-                    mapOfParamterToFilenames.put(key, l);
                   }
               }
 
