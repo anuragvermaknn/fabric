@@ -12,8 +12,8 @@
         function(HttpService, Utils) {
 
             var API_VERSION1 = "/api/v1";
-         var parentUrl="http://fabric-env.smw9rqcurp.us-east-1.elasticbeanstalk.com:8081";
-        //   var parentUrl='http://127.0.0.1:8081';
+         //var parentUrl="http://fabric-env.smw9rqcurp.us-east-1.elasticbeanstalk.com:8081";
+           var parentUrl='http://54.234.50.76:8081';
             
             var service = {
                 getProductDetails : getProductDetails,
