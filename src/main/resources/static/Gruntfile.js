@@ -291,7 +291,7 @@ module.exports = function (grunt) {
                 options: { // Target options
                     removeComments: true, // Strip HTML comments
                     removeCommentsFromCDATA: true, // Strip HTML comments from scripts and styles
-                    minifyJS: true, // Minify JavaScript inside script tags
+                    minifyJS: false, // Minify JavaScript inside script tags
                     collapseWhitespace: true // Remove white spaces
                 },
                 files: {

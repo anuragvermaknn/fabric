@@ -33,7 +33,7 @@
             isLoggedIn: isLoggedIn,
             changePassword: changePassword,
             //refresh: refresh,
-            registerWithFacebook: registerWithFacebook,
+          //  registerWithFacebook: registerWithFacebook,
             setUserName: setUserName,
             getUserName: getUserName,
             setUserEmail: setUserEmail,
@@ -83,22 +83,22 @@
             }
         }
 
-        function registerWithFacebook(response, token) {
-
-            var facebookLoginObj = {
-                method: 'POST',
-                url: USER_AUTH_API + '/register',
-                data: {
-                    "name": response.name,
-                    "email": response.email || null,
-                    "providerToken": token,
-                    "providerUserId": response.id,
-                    "providerName": "f"
-                }
-            };
-
-            return HttpService.httpRequest(facebookLoginObj);
-        }
+//        function registerWithFacebook(response, token) {
+//
+//            var facebookLoginObj = {
+//                method: 'POST',
+//                url: USER_AUTH_API + '/register',
+//                data: {
+//                    "name": response.name,
+//                    "email": response.email || null,
+//                    "providerToken": token,
+//                    "providerUserId": response.id,
+//                    "providerName": "f"
+//                }
+//            };
+//
+//            return HttpService.httpRequest(facebookLoginObj);
+//        }
 
         function registerNewUser(userDetailRegistrationDTO) {
 
