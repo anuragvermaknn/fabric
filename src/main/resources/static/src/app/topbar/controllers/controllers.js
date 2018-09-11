@@ -1,3 +1,3 @@
-angular.module('topbar.controllers', [
-    'topbar.controllers.TopbarCtrl'
-]);
+//angular.module('topbar.controllers', [
+//    'topbar.controllers.TopbarCtrl'
+//]);

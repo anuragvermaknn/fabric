@@ -33,7 +33,7 @@ angular.module('storefront', [
         'angularUtils.directives.dirPagination',
         
         // Components
-        'app.topbar',
+      //  'app.topbar',
         'app.home',
         'app.pdp',
         'app.cart',
