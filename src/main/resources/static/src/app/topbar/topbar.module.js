@@ -1,3 +1,3 @@
-//angular.module('app.topbar', [
-//  'topbar.controllers'
-//]);
+angular.module('app.topbar', [
+  'topbar.controllers'
+]);
